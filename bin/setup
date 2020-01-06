@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+system('bundle install')
+
+require 'sqlite3'
+
+db = SQLite3::Database.new 'database_receitas.db'
+
+db.execute <<-SQL
+CREATE TABLE IF NOT EXISTS receitas (
+  id integer PRIMARY KEY AUTOINCREMENT,
+  nome varchar(20) NOT NULL,
+  tipo varchar(10) NOT NULL
+);
+SQL
+db.close
