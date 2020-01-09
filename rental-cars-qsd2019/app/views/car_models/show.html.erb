@@ -1,0 +1,11 @@
+<h2> Modelo de Carro <%= @car_model.name %> </h2>
+<h3> <%= flash[:notice] %> </h3>
+
+<ul>
+  <li>Ano: <%= @car_model.year %></li>
+  <li>Motorização: <%= @car_model.motorization %></li>
+  <li>Tipo de Combustível: <%= @car_model.fuel_type %></li>
+</ul>
+
+<%= link_to 'Home Page', root_path %> |
+<%= link_to 'Todos os modelos de carros', car_models_path %>

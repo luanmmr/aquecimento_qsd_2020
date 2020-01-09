@@ -15,7 +15,7 @@ feature 'Visitor view manufacturers' do
 
     # Assert - Verificar coisas
     expect(page).to have_content('Fiat')
-    expect(page).to have_link('Voltar')
+    expect(page).to have_link('Home Page')
   end
 
   scenario 'and return to home page' do
@@ -25,7 +25,7 @@ feature 'Visitor view manufacturers' do
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
-    click_on 'Voltar'
+    click_on 'Home Page'
 
     expect(current_path).to eq root_path
   end

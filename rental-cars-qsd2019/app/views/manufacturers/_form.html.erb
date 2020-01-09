@@ -1,0 +1,26 @@
+<% if @manufacturer.errors.any? %>
+<div>
+  <h3>
+    <%= pluralize(@manufacturer.errors.count, 'falha') %>
+  </h3>
+  <p> Você deve corrigir os seguintes erros para continuar: </p>
+  <ul>
+    <% @manufacturer.errors.values.each do |messages_group| %>
+    <% messages_group.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<%= form_for @manufacturer do |f| %>
+<p>
+<%= f.label :name, 'Nome'%><br>
+<%= f.text_field :name %>
+</p>
+
+<p>
+<%= f.submit 'Enviar' %>
+</p>
+<% end %>

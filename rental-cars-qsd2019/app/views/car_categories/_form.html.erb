@@ -1,0 +1,36 @@
+<% if @car_category.errors.any? %>
+<h3> <%= pluralize(@car_category.errors.count, 'falha') %></h3>
+<p> Você deve corrigir os seguintes erros para continuar: </p>
+
+<ul>
+  <% @car_category.errors.values.each do |messages_group| %>
+  <% messages_group.each do |message| %>
+  <li> <%= message %> </li>
+  <% end %>
+  <% end %>
+</ul>
+<% end %>
+
+<p>
+<%= form_with(model: @car_category, local: true) do |form| %>
+<p>
+  <%= form.label :name, 'Nome' %>
+  <%= form.text_field :name %>
+</p>
+<p>
+  <%= form.label :daily_rate, 'Diária' %>
+  <%= form.text_field :daily_rate %>
+</p>
+<p>
+  <%= form.label :car_insurance, 'Seguro do Carro' %>
+  <%= form.text_field :car_insurance %>
+</p>
+<p>
+  <%= form.label :third_party_insurance, 'Seguro para Terceiros' %>
+  <%= form.text_field :third_party_insurance %>
+</p>
+<p>
+  <%= form.submit 'Enviar' %>
+</p>
+<% end %>
+</p>

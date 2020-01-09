@@ -1,0 +1,35 @@
+<% if @car_model.errors.any? %>
+<div>
+  <h3> <%= pluralize(@car_model.errors.count, 'falha') %> </h3>
+  <p> Você deve corrigir os seguintes erros para continuar: </p>
+  <ul>
+    <% @car_model.errors.values.each do |messages_group| %>
+    <% messages_group.each do |message| %>
+    <li> <%= message %> </li>
+    <% end %>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<%= form_for @car_model do |form| %>
+<p>
+  <%= form.label :name, 'Nome' %>
+  <%= form.text_field :name %>
+</p>
+<p>
+  <%= form.label :year, 'Ano' %>
+  <%= form.text_field :year %>
+</p>
+<p>
+  <%= form.label :motorization, 'Motorização' %>
+  <%= form.text_field :motorization %>
+</p>
+<p>
+  <%= form.label :fuel_type, 'Tipo de Combustível' %>
+  <%= form.text_field :fuel_type %>
+</p>
+<p>
+  <%= form.submit 'Enviar' %>
+</p>
+<% end %>
