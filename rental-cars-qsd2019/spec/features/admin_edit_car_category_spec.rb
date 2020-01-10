@@ -2,7 +2,6 @@ require 'rails_helper'
 
 feature 'Admin edits car category' do
   scenario 'successfully' do
-    page.driver.browser.authorize('admin', '123')
     CarCategory.create(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
 
     visit root_path
@@ -25,7 +24,6 @@ feature 'Admin edits car category' do
   end
 
   scenario 'and must fill in all fields' do
-    page.driver.browser.authorize('admin', '123')
     CarCategory.create(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
 
     visit root_path
@@ -48,7 +46,7 @@ feature 'Admin edits car category' do
   end
 
   scenario 'and name must be unique' do
-    page.driver.browser.authorize('admin', '123')
+
     CarCategory.create(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
     CarCategory.create(name: 'B', daily_rate: 97.20, car_insurance: 35.00, third_party_insurance: 22.50)
 
@@ -64,7 +62,7 @@ feature 'Admin edits car category' do
   end
 
   scenario 'and the fields daily rate, car insurance and third party insurance must be a number' do
-    page.driver.browser.authorize('admin', '123')
+
     car_category = CarCategory.create(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
 
     visit edit_car_category_path(car_category)

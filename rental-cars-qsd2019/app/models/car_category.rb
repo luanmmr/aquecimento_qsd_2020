@@ -1,4 +1,8 @@
 class CarCategory < ApplicationRecord
+
+  has_many :car_models
+
+
   validates :name,
   presence: {message: 'O campo nome está vazio'},
   uniqueness: {message: 'Já existe uma categoria com este nome', case_sensitive: false},
@@ -15,4 +19,5 @@ class CarCategory < ApplicationRecord
   validates :third_party_insurance,
   presence: {message: 'O seguro para terceiros está vazio'},
   numericality: {message: 'Informe um valor para o seguro de terceiros'}
+  
 end

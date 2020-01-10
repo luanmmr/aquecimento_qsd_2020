@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin register manufacturer' do
   scenario 'successfully' do
-    page.driver.browser.authorize('admin', '123')
+
     visit root_path
     click_on 'Fabricantes'
     click_on 'Registrar novo fabricante'
@@ -15,7 +15,7 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'and must fill in all fields' do
-    page.driver.browser.authorize('admin', '123')
+
     visit root_path
     click_on 'Fabricantes'
     click_on 'Registrar novo fabricante'
@@ -29,7 +29,7 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'name must be unique' do
-    page.driver.browser.authorize('admin', '123')
+
     # Create com bang - create! - lança uma exceção caso o argumento seja passado de maneira errada
     # Assim saberei que houve um erro logo na criação
     # Caso não coloque e o argumento seja passado de maneira errada, será difícil a identificação da
@@ -49,7 +49,7 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'with single name' do
-    page.driver.browser.authorize('admin', '123')
+
     visit new_manufacturer_path
 
     fill_in 'Nome', with: 'General Motors'

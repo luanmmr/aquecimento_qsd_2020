@@ -1,6 +1,5 @@
 class ManufacturersController < ApplicationController
 
-  http_basic_authenticate_with name: 'admin', password: '123', only: [:new, :edit, :destroy]
 
   def new
     @manufacturer = Manufacturer.new
@@ -51,9 +50,8 @@ class ManufacturersController < ApplicationController
 
   def destroy
     Manufacturer.destroy(params[:id])
-    redirect_to manufacturers_path
+    redirect_to manufacturers_path, notice: 'Fábrica deletada com sucesso'
   end
-
 
 
 

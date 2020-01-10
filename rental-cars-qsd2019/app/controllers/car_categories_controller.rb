@@ -1,6 +1,5 @@
 class CarCategoriesController < ApplicationController
 
-  http_basic_authenticate_with name: 'admin', password: '123', only: [:new, :edit, :destroy]
 
   def new
     @car_category = CarCategory.new
@@ -39,9 +38,8 @@ class CarCategoriesController < ApplicationController
   end
 
   def destroy
-    @car_category = CarCategory.find(params[:id])
-    @car_category.destroy
-    redirect_to car_categories_path
+    CarCategory.destroy(params[:id])
+    redirect_to car_categories_path, notice: 'Categoria de carro deletada com sucesso'
   end
 
   private

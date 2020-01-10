@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin register subsidiary' do
   scenario 'successfully' do
-    page.driver.browser.authorize('admin', '123')
+
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova filial'
@@ -18,7 +18,7 @@ feature 'Admin register subsidiary' do
   end
 
   scenario 'and must fill in all fields' do
-    page.driver.browser.authorize('admin', '123')
+
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova filial'
@@ -36,7 +36,7 @@ feature 'Admin register subsidiary' do
   end
 
   scenario 'name must be unique' do
-    page.driver.browser.authorize('admin', '123')
+
     Subsidiary.create(name: 'Aeroporto Congonhas',
       address: 'Rua Otávio Tarquínio De Souza, 379, Campo Belo, SP',
       cnpj: '28179836000114')
@@ -56,7 +56,7 @@ feature 'Admin register subsidiary' do
     end
 
     scenario 'and cnpj must have 14 digits (-)' do
-      page.driver.browser.authorize('admin', '123')
+
       visit new_subsidiary_path
 
       fill_in 'Nome', with: 'Aeroporto Congonhas'
@@ -69,7 +69,7 @@ feature 'Admin register subsidiary' do
     end
 
     scenario 'and cnpj must have 14 digits (+)' do
-      page.driver.browser.authorize('admin', '123')
+
       visit new_subsidiary_path
 
       fill_in 'Nome', with: 'Aeroporto Congonhas'

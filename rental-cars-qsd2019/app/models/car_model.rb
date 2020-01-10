@@ -1,16 +1,20 @@
 class CarModel < ApplicationRecord
 
+  belongs_to :manufacturer
+  belongs_to :car_category
+
+
   validates :name,
   presence: {message: 'O campo nome está vazio'},
-  uniqueness: {message: 'Este modelo de carro já existe', case_sensitive: false}
+  uniqueness: {message: 'Este modelo de carro já existe nesta categoria', case_sensitive: false, scope: [:year, :car_category_id]}
 
   validates :year,
-  presence: {message: 'Preencha o campo Ano'}
+  presence: {message: 'Preencha o campo ano'}
 
   validates :motorization,
-  presence: {message: 'Você deve informar a Motorização'}
+  presence: {message: 'Você deve informar a motorização'}
 
   validates :fuel_type,
-  presence: {message: 'Ops, você se esqueceu do Tipo de Combustível'}
+  presence: {message: 'Ops, você se esqueceu do tipo de combustível'}
 
 end

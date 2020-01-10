@@ -30,6 +30,14 @@
   <%= form.text_field :fuel_type %>
 </p>
 <p>
+ <%= form.label :manufacturer_id, 'Fabricante' %>
+ <%= form.collection_select(:manufacturer_id, @manufacturers, :id, :name) %>
+</p>
+<p>
+<%= form.label :car_category_id, 'Categoria do Carro' %>
+<%= form.collection_select(:car_category_id, @car_categories, :id, :name) %>
+</p>
+<p>
   <%= form.submit 'Enviar' %>
 </p>
 <% end %>

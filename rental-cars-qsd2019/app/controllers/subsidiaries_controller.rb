@@ -1,6 +1,5 @@
 class SubsidiariesController < ApplicationController
 
-  http_basic_authenticate_with name: 'admin', password: '123', only: [:new, :edit, :destroy]
 
   def new
     @subsidiary = Subsidiary.new
@@ -39,9 +38,8 @@ class SubsidiariesController < ApplicationController
   end
 
   def destroy
-    @subsidiary = Subsidiary.find(params[:id])
-    @subsidiary.destroy
-    redirect_to subsidiaries_path
+    Subsidiary.destroy(params[:id])
+    redirect_to subsidiaries_path, notice: 'Filial deletada com sucesso'
   end
 
 

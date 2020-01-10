@@ -2,7 +2,6 @@ require 'rails_helper'
 
 feature 'Admin edits manufacturer' do
   scenario 'successfully' do
-    page.driver.browser.authorize('admin', '123')
     Manufacturer.create(name: 'Fiat')
 
     visit root_path
@@ -18,7 +17,6 @@ feature 'Admin edits manufacturer' do
   end
 
   scenario 'and must fill in all fields' do
-    page.driver.browser.authorize('admin', '123')
     Manufacturer.create(name: 'Fiat')
 
     visit root_path
@@ -34,7 +32,6 @@ feature 'Admin edits manufacturer' do
   end
 
   scenario 'and name must be unique' do
-    page.driver.browser.authorize('admin', '123')
     Manufacturer.create(name: 'Fiat')
     Manufacturer.create(name: 'Honda')
 
@@ -51,7 +48,6 @@ feature 'Admin edits manufacturer' do
   end
 
   scenario 'with single name' do
-    page.driver.browser.authorize('admin', '123')
     Manufacturer.create(name: 'Ford')
 
     visit manufacturers_path

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin register car category' do
   scenario 'successfully' do
-    page.driver.browser.authorize('admin', '123')
+
     visit root_path
     click_on 'Categorias de Carros'
     click_on 'Registrar nova categoria de carro'
@@ -19,7 +19,7 @@ feature 'Admin register car category' do
   end
 
   scenario 'and must fill in all fields' do
-    page.driver.browser.authorize('admin', '123')
+
     visit root_path
     click_on 'Categorias de Carros'
     click_on 'Registrar nova categoria de carro'
@@ -39,7 +39,7 @@ feature 'Admin register car category' do
   end
 
   scenario 'name must be unique' do
-    page.driver.browser.authorize('admin', '123')
+
     CarCategory.create(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10)
 
     visit root_path
@@ -54,7 +54,7 @@ feature 'Admin register car category' do
   end
 
   scenario 'and the fields daily rate, car insurance and third party insurance must be a number' do
-    page.driver.browser.authorize('admin', '123')
+
     visit new_car_category_path
 
     fill_in 'Nome', with: 'A'
