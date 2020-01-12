@@ -1,6 +1,8 @@
 class CarModelsController < ApplicationController
 
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :collection_manufacturer, :collection_car_category, only: [:new, :edit]
+
 
   def new
     @car_model = CarModel.new
@@ -8,13 +10,13 @@ class CarModelsController < ApplicationController
 
   def create
     @car_model = CarModel.new(params_car_model)
-    if @car_model.save
-      redirect_to @car_model, notice: 'Modelo de carro criado com sucesso!'
-    else
-      collection_manufacturer
-      collection_car_category
-      render :new
-    end
+
+    return redirect_to @car_model, notice: 'Modelo de carro criado com sucesso!' if @car_model.save
+
+    collection_manufacturer
+    collection_car_category
+
+    render :new
   end
 
   def index
@@ -32,20 +34,19 @@ class CarModelsController < ApplicationController
   def update
     @car_model = CarModel.find(params[:id])
 
-    if @car_model.update(params_car_model)
-      flash[:notice] = 'Modelo de carro editado com sucesso!'
-      redirect_to car_model_path(@car_model)
-    else
-      collection_manufacturer
-      collection_car_category
-      render :edit
-    end
+    return redirect_to car_model_path(@car_model), notice: 'Modelo de carro editado com sucesso!' if @car_model.update(params_car_model)
+
+    collection_manufacturer
+    collection_car_category
+
+    render :edit
   end
 
   def destroy
     CarModel.destroy(params[:id])
     redirect_to car_models_path, notice: 'Modelo de carro deletado com sucesso'
   end
+
 
 
   private

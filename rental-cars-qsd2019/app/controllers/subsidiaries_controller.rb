@@ -1,5 +1,7 @@
 class SubsidiariesController < ApplicationController
 
+  before_action :authenticate_user!, except: [:show, :index]
+
 
   def new
     @subsidiary = Subsidiary.new

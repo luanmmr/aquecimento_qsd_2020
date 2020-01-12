@@ -1,6 +1,6 @@
 class CarCategory < ApplicationRecord
 
-  has_many :car_models
+  has_many :car_models, dependent: :destroy
 
 
   validates :name,
@@ -19,5 +19,14 @@ class CarCategory < ApplicationRecord
   validates :third_party_insurance,
   presence: {message: 'O seguro para terceiros está vazio'},
   numericality: {message: 'Informe um valor para o seguro de terceiros'}
-  
+
+
+  after_validation :formatting
+
+
+  private
+  def formatting
+    self.name = name.downcase.titleize
+  end
+
 end

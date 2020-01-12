@@ -11,4 +11,13 @@ class Subsidiary < ApplicationRecord
   presence: {message: 'O campo CNPJ deve ser preenchido'},
   length: {is: 14, message: 'O CNPJ deve ter 14 números'},
   numericality: {only_integer: true, message: 'Digite apenas números no CNPJ'}
+
+
+  after_validation :formatting
+
+
+  def formatting
+    self.name = name.downcase.titleize
+  end
+
 end

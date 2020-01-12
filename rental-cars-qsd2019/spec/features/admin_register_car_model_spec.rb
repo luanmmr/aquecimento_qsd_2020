@@ -6,6 +6,9 @@ feature 'Admin register car model' do
     manufacturer = Manufacturer.create(name: 'Fiat')
     car_category = CarCategory.create(name: 'A', daily_rate: 120.00, car_insurance: 40.50, third_party_insurance: 15)
 
+    user = User.create!(email: 'test#@test.com', password: '123456')
+    login_as(user, :scope => :user)
+
     visit root_path
     click_on 'Modelos de Carros'
     click_on 'Registrar modelo de carro'
@@ -30,6 +33,10 @@ feature 'Admin register car model' do
   end
 
   scenario 'and must fill in all fields' do
+
+    user = User.create!(email: 'test#@test.com', password: '123456')
+    login_as(user, :scope => :user)
+
     visit new_car_model_path
 
     click_on 'Enviar'
@@ -42,6 +49,9 @@ feature 'Admin register car model' do
   end
 
   scenario 'name must be unique' do
+
+    user = User.create!(email: 'test#@test.com', password: '123456')
+    login_as(user, :scope => :user)
 
     manufacturer = Manufacturer.create(name: 'Fiat')
     car_category = CarCategory.create(name: 'A', daily_rate: 120.00, car_insurance: 40.50, third_party_insurance: 15)

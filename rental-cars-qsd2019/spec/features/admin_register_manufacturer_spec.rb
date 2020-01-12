@@ -3,6 +3,9 @@ require 'rails_helper'
 feature 'Admin register manufacturer' do
   scenario 'successfully' do
 
+    user = User.create!(email: 'test#@test.com', password: '123456')
+    login_as(user, :scope => :user)
+
     visit root_path
     click_on 'Fabricantes'
     click_on 'Registrar novo fabricante'
@@ -15,6 +18,9 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'and must fill in all fields' do
+
+    user = User.create!(email: 'test#@test.com', password: '123456')
+    login_as(user, :scope => :user)
 
     visit root_path
     click_on 'Fabricantes'
@@ -36,6 +42,9 @@ feature 'Admin register manufacturer' do
     # origem da faha
     Manufacturer.create!(name: 'Honda')
 
+    user = User.create!(email: 'test#@test.com', password: '123456')
+    login_as(user, :scope => :user)
+
     visit root_path
     click_on 'Fabricantes'
     click_on 'Registrar novo fabricante'
@@ -49,6 +58,9 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'with single name' do
+
+    user = User.create!(email: 'test#@test.com', password: '123456')
+    login_as(user, :scope => :user)
 
     visit new_manufacturer_path
 

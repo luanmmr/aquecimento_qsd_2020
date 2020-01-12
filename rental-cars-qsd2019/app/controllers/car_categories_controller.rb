@@ -1,5 +1,7 @@
 class CarCategoriesController < ApplicationController
 
+  before_action :authenticate_user!, except: [:show, :index]
+
 
   def new
     @car_category = CarCategory.new
@@ -42,7 +44,10 @@ class CarCategoriesController < ApplicationController
     redirect_to car_categories_path, notice: 'Categoria de carro deletada com sucesso'
   end
 
+
+
   private
+
   def params_car_category
     params.require(:car_category).permit(:name, :daily_rate, :car_insurance, :third_party_insurance)
   end

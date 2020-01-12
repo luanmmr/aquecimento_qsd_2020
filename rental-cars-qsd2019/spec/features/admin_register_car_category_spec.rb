@@ -3,6 +3,9 @@ require 'rails_helper'
 feature 'Admin register car category' do
   scenario 'successfully' do
 
+    user = User.create!(email: 'test#@test.com', password: '123456')
+    login_as(user, :scope => :user)
+
     visit root_path
     click_on 'Categorias de Carros'
     click_on 'Registrar nova categoria de carro'
@@ -19,6 +22,9 @@ feature 'Admin register car category' do
   end
 
   scenario 'and must fill in all fields' do
+
+    user = User.create!(email: 'test#@test.com', password: '123456')
+    login_as(user, :scope => :user)
 
     visit root_path
     click_on 'Categorias de Carros'
@@ -42,6 +48,9 @@ feature 'Admin register car category' do
 
     CarCategory.create(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10)
 
+    user = User.create!(email: 'test#@test.com', password: '123456')
+    login_as(user, :scope => :user)
+
     visit root_path
     click_on 'Categorias de Carros'
     click_on 'Registrar nova categoria de carro'
@@ -55,6 +64,9 @@ feature 'Admin register car category' do
 
   scenario 'and the fields daily rate, car insurance and third party insurance must be a number' do
 
+    user = User.create!(email: 'test#@test.com', password: '123456')
+    login_as(user, :scope => :user)
+
     visit new_car_category_path
 
     fill_in 'Nome', with: 'A'
@@ -67,6 +79,7 @@ feature 'Admin register car category' do
     expect(page).to have_content('O campo diária só aceita números')
     expect(page).to have_content('Informe um valor para o seguro do carro')
     expect(page).to have_content('Informe um valor para o seguro de terceiros')
+    
   end
 
 

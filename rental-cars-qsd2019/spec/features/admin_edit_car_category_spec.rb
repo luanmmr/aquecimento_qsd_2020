@@ -2,7 +2,11 @@ require 'rails_helper'
 
 feature 'Admin edits car category' do
   scenario 'successfully' do
+
     CarCategory.create(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
+
+    user = User.create!(email: 'test#@test.com', password: '123456')
+    login_as(user, :scope => :user)
 
     visit root_path
     click_on 'Categorias de Carros'
@@ -24,7 +28,11 @@ feature 'Admin edits car category' do
   end
 
   scenario 'and must fill in all fields' do
+
     CarCategory.create(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
+
+    user = User.create!(email: 'test#@test.com', password: '123456')
+    login_as(user, :scope => :user)
 
     visit root_path
     click_on 'Categorias de Carros'
@@ -50,6 +58,9 @@ feature 'Admin edits car category' do
     CarCategory.create(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
     CarCategory.create(name: 'B', daily_rate: 97.20, car_insurance: 35.00, third_party_insurance: 22.50)
 
+    user = User.create!(email: 'test#@test.com', password: '123456')
+    login_as(user, :scope => :user)
+
     visit root_path
     click_on 'Categorias de Carros'
     click_on 'A'
@@ -64,6 +75,9 @@ feature 'Admin edits car category' do
   scenario 'and the fields daily rate, car insurance and third party insurance must be a number' do
 
     car_category = CarCategory.create(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
+
+    user = User.create!(email: 'test#@test.com', password: '123456')
+    login_as(user, :scope => :user)
 
     visit edit_car_category_path(car_category)
 

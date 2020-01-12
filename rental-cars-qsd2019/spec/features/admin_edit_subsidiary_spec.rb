@@ -6,6 +6,9 @@ feature 'Admin edits subsidiary' do
       address: 'Rua Otávio Tarquínio De Souza, 379, Campo Belo, SP',
       cnpj: '28179836000114')
 
+      user = User.create!(email: 'test#@test.com', password: '123456')
+      login_as(user, :scope => :user)
+
       visit root_path
       click_on 'Filiais'
       click_on 'Aeroporto Congonhas'
@@ -25,6 +28,9 @@ feature 'Admin edits subsidiary' do
       Subsidiary.create(name: 'Aeroporto Congonhas',
         address: 'Rua Otávio Tarquínio De Souza, 379, Campo Belo, SP',
         cnpj: '28179836000114')
+
+        user = User.create!(email: 'test#@test.com', password: '123456')
+        login_as(user, :scope => :user)
 
         visit root_path
         click_on 'Filiais'
@@ -53,6 +59,9 @@ feature 'Admin edits subsidiary' do
             address: 'Av Alberto Augusto Alves, 50, Vila Andrade, SP',
             cnpj: '28179836000114')
 
+            user = User.create!(email: 'test#@test.com', password: '123456')
+            login_as(user, :scope => :user)
+
             visit root_path
             click_on 'Filiais'
             click_on 'Aeroporto Congonhas'
@@ -73,6 +82,10 @@ feature 'Admin edits subsidiary' do
             subsidiary = Subsidiary.create(name: 'Aeroporto Congonhas',
               address: 'Rua Otávio Tarquínio De Souza, 379, Campo Belo, SP',
               cnpj: '28179836000114')
+
+              user = User.create!(email: 'test#@test.com', password: '123456')
+              login_as(user, :scope => :user)
+
               visit edit_subsidiary_path(subsidiary)
 
               fill_in 'Nome', with: 'Aeroporto Congonhas'
@@ -89,6 +102,10 @@ feature 'Admin edits subsidiary' do
               subsidiary = Subsidiary.create(name: 'Aeroporto Congonhas',
                 address: 'Rua Otávio Tarquínio De Souza, 379, Campo Belo, SP',
                 cnpj: '28179836000114')
+
+                user = User.create!(email: 'test#@test.com', password: '123456')
+                login_as(user, :scope => :user)
+                
                 visit edit_subsidiary_path(subsidiary)
 
                 fill_in 'Nome', with: 'Aeroporto Congonhas'

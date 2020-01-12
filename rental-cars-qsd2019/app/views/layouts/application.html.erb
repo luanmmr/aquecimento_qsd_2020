@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RentalCars</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>RentalCars</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+
+  <table align = 'center' cellspacing = '10'>
+    <tr>
+      <th><%= link_to 'Fabricantes', manufacturers_path %></th>
+      <th><%= link_to 'Filiais', subsidiaries_path %></th>
+      <th><%= link_to 'Categorias de Carros', car_categories_path %></th>
+      <th><%= link_to 'Modelos de Carros', car_models_path %></th>
+      <th width = '100'></th>
+      <% if user_signed_in? %>
+      <th>Olá <%= current_user.email %> | <%= link_to 'Sair', destroy_user_session_path, method: :delete %></th>
+      <% else %>
+      <th><%= link_to 'Entrar', new_user_session_path %></th>
+      <% end %>
+    </tr>
+  </table>
+
+  <h4> <%= notice %> </h4>
+  <h4> <%= alert %> </h4>
+
+  <%= yield %>
+
+</body>
 </html>

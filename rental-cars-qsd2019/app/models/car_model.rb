@@ -17,4 +17,14 @@ class CarModel < ApplicationRecord
   validates :fuel_type,
   presence: {message: 'Ops, você se esqueceu do tipo de combustível'}
 
+
+  after_validation :formatting
+
+
+  private
+  def formatting
+    self.name = name.downcase.titleize
+    self.fuel_type = fuel_type.downcase.titleize
+  end
+
 end
