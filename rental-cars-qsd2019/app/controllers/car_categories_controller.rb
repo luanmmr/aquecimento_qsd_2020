@@ -1,6 +1,6 @@
 class CarCategoriesController < ApplicationController
 
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!#, only: [:index, :show]
 
 
   def new

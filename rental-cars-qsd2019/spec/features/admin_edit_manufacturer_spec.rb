@@ -3,10 +3,9 @@ require 'rails_helper'
 feature 'Admin edits manufacturer' do
   scenario 'successfully' do
     Manufacturer.create(name: 'Fiat')
-
     user = User.create!(email: 'test#@test.com', password: '123456')
-    login_as(user, :scope => :user)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -21,10 +20,9 @@ feature 'Admin edits manufacturer' do
 
   scenario 'and must fill in all fields' do
     Manufacturer.create(name: 'Fiat')
-
     user = User.create!(email: 'test#@test.com', password: '123456')
-    login_as(user, :scope => :user)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -40,10 +38,9 @@ feature 'Admin edits manufacturer' do
   scenario 'and name must be unique' do
     Manufacturer.create(name: 'Fiat')
     Manufacturer.create(name: 'Honda')
-
     user = User.create!(email: 'test#@test.com', password: '123456')
-    login_as(user, :scope => :user)
 
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -58,10 +55,9 @@ feature 'Admin edits manufacturer' do
 
   scenario 'with single name' do
     Manufacturer.create(name: 'Ford')
-
     user = User.create!(email: 'test#@test.com', password: '123456')
-    login_as(user, :scope => :user)
 
+    login_as(user, scope: :user)
     visit manufacturers_path
     click_on 'Ford'
     click_on 'Editar'
@@ -73,4 +69,13 @@ feature 'Admin edits manufacturer' do
     expect(page).to have_content('Nome composto ou caracteres inválidos')
 
   end
+
+  scenario 'and must be authenticated' do
+
+    visit edit_car_category_path(7)
+
+    expect(current_path).to eq(new_user_session_path)
+
+  end
+  
 end

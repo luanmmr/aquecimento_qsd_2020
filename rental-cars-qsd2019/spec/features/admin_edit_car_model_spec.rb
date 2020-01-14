@@ -7,12 +7,11 @@ feature 'Admin edits car model' do
     car_category = CarCategory.create(name: 'A', daily_rate: 120.00, car_insurance: 40.50, third_party_insurance: 15)
     Manufacturer.create(name: 'Honda')
     CarCategory.create(name: 'B', daily_rate: 120.00, car_insurance: 40.50, third_party_insurance: 15)
-
     car_model = CarModel.create!(name: 'Uno', year: '2018', motorization: '1.5', fuel_type: 'Flex', car_category_id: car_category.id, manufacturer_id: manufacturer.id)
 
     user = User.create!(email: 'test#@test.com', password: '123456')
-    login_as(user, :scope => :user)
 
+    login_as(user, scope: :user)
     visit edit_car_model_path(car_model)
 
     fill_in 'Nome', with: 'Fit'
@@ -38,11 +37,11 @@ feature 'Admin edits car model' do
 
     manufacturer = Manufacturer.create(name: 'Fiat')
     car_category = CarCategory.create(name: 'B', daily_rate: 120.00, car_insurance: 40.50, third_party_insurance: 15)
-    car_model = CarModel.create!(name: 'Uno', year: '2018', motorization: '1.5', fuel_type: 'Flex', car_category_id: car_category.id, manufacturer_id: manufacturer.id)
+    car_model = CarModel.create!(name: 'Uno', year: '2018', motorization: '1.5', fuel_type: 'Flex', car_category: car_category, manufacturer: manufacturer)
 
     user = User.create!(email: 'test#@test.com', password: '123456')
-    login_as(user, :scope => :user)
 
+    login_as(user, scope: :user)
     visit edit_car_model_path(car_model)
 
     fill_in 'Nome', with: ''
@@ -67,12 +66,12 @@ feature 'Admin edits car model' do
     manufacturer_honda = Manufacturer.create(name: 'Honda')
     car_category_b = CarCategory.create(name: 'B', daily_rate: 120.00, car_insurance: 40.50, third_party_insurance: 15)
 
-    car_model_1 = CarModel.create!(name: 'Uno', year: '2018', motorization: '1.5', fuel_type: 'Flex', car_category_id: car_category_a.id, manufacturer_id: manufacturer_fiat.id)
+    car_model_1 = CarModel.create!(name: 'Uno', year: '2018', motorization: '1.5', fuel_type: 'Flex', car_category: car_category_a, manufacturer: manufacturer_fiat)
     car_model_2 = CarModel.create!(name: 'Fit', year: '2018', motorization: '1.5', fuel_type: 'Flex', car_category_id: car_category_b.id, manufacturer_id: manufacturer_honda.id)
 
     user = User.create!(email: 'test#@test.com', password: '123456')
-    login_as(user, :scope => :user)
 
+    login_as(user, scope: :user)
     visit edit_car_model_path(car_model_1)
 
     fill_in 'Nome', with: 'Fit'
@@ -83,6 +82,14 @@ feature 'Admin edits car model' do
 
     expect(page).to have_content('Você deve corrigir os seguintes erros para continuar:')
     expect(page).to have_content('Este modelo de carro já existe nesta categoria')
+  end
+
+  scenario 'and must be authenticated' do
+
+    visit edit_car_category_path(7)
+
+    expect(current_path).to eq(new_user_session_path)
+
   end
 
 end

@@ -4,8 +4,8 @@ feature 'Admin register subsidiary' do
   scenario 'successfully' do
 
     user = User.create!(email: 'test#@test.com', password: '123456')
-    login_as(user, :scope => :user)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova filial'
@@ -23,8 +23,8 @@ feature 'Admin register subsidiary' do
   scenario 'and must fill in all fields' do
 
     user = User.create!(email: 'test#@test.com', password: '123456')
-    login_as(user, :scope => :user)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova filial'
@@ -48,8 +48,8 @@ feature 'Admin register subsidiary' do
       cnpj: '28179836000114')
 
       user = User.create!(email: 'test#@test.com', password: '123456')
-      login_as(user, :scope => :user)
 
+      login_as(user, scope: :user)
       visit root_path
       click_on 'Filiais'
       click_on 'Registrar nova filial'
@@ -67,8 +67,8 @@ feature 'Admin register subsidiary' do
     scenario 'and cnpj must have 14 digits (-)' do
 
       user = User.create!(email: 'test#@test.com', password: '123456')
-      login_as(user, :scope => :user)
 
+      login_as(user, scope: :user)
       visit new_subsidiary_path
 
       fill_in 'Nome', with: 'Aeroporto Congonhas'
@@ -83,8 +83,8 @@ feature 'Admin register subsidiary' do
     scenario 'and cnpj must have 14 digits (+)' do
 
       user = User.create!(email: 'test#@test.com', password: '123456')
-      login_as(user, :scope => :user)
 
+      login_as(user, scope: :user)
       visit new_subsidiary_path
 
       fill_in 'Nome', with: 'Aeroporto Congonhas'
@@ -94,6 +94,14 @@ feature 'Admin register subsidiary' do
       click_on 'Enviar'
 
       expect(page).to have_content('O CNPJ deve ter 14 números')
+    end
+
+    scenario 'and must be authenticated' do
+
+      visit new_subsidiary_path
+
+      expect(current_path).to eq(new_user_session_path)
+      
     end
 
   end

@@ -5424,3 +5424,623 @@ Migrating to CreateClients (20200113043702)
   ↳ bin/rails:4
   [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ bin/rails:4
+Started GET "/" for 127.0.0.1 at 2020-01-13 20:35:48 -0300
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by HomeController#index as HTML
+  Parameters: {"only"=>[:index]}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 1734ms (Views: 1602.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-01-13 20:36:34 -0300
+Processing by HomeController#index as HTML
+  Parameters: {"only"=>[:index]}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 58ms (Views: 55.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2020-01-13 20:36:36 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (6.9ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (368.7ms)
+Completed 200 OK in 518ms (Views: 477.6ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-01-13 20:37:04 -0300
+Processing by HomeController#index as HTML
+  Parameters: {"only"=>[:index]}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 48ms (Views: 45.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2020-01-13 20:37:19 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 48ms (Views: 45.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2020-01-13 20:37:50 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.7ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (19.9ms)
+Completed 200 OK in 91ms (Views: 88.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-01-13 20:41:34 -0300
+Processing by HomeController#index as HTML
+  Parameters: {"only"=>[:index]}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.6ms)
+Completed 500 Internal Server Error in 980ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `current_path' for #<#<Class:0x0000557654d08778>:0x00007f54187c9e30>
+Did you mean?  current_page?):
+    24:       <th>Olá <%= current_user.email %> | <%= link_to 'Sair', destroy_user_session_path, method: :delete %></th>
+    25: 
+    26:       <% else %>
+    27:       <% if current_path == root_path %>
+    28:       <th><%= link_to 'Entrar', new_user_session_path %></th>
+    29:       <% else %>
+    30:       <th><%= link_to 'Home Page', root_path %></th>
+  
+app/views/layouts/application.html.erb:27:in `_app_views_layouts_application_html_erb__3957591209686235024_69999582622420'
+Started GET "/" for 127.0.0.1 at 2020-01-13 20:42:47 -0300
+Processing by HomeController#index as HTML
+  Parameters: {"only"=>[:index]}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 46ms (Views: 44.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2020-01-13 20:42:49 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.4ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 44ms (Views: 42.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-01-13 20:58:25 -0300
+Processing by HomeController#index as HTML
+  Parameters: {"only"=>[:index]}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 157ms (Views: 154.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/manufacturers" for 127.0.0.1 at 2020-01-13 20:58:37 -0300
+Processing by ManufacturersController#index as HTML
+  Rendering manufacturers/index.html.erb within layouts/application
+  [1m[36mManufacturer Exists (1.2ms)[0m  [1m[34mSELECT  1 AS one FROM "manufacturers" LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/views/manufacturers/index.html.erb:2
+  [1m[36mManufacturer Load (0.3ms)[0m  [1m[34mSELECT "manufacturers".* FROM "manufacturers"[0m
+  ↳ app/views/manufacturers/index.html.erb:6
+  Rendered manufacturers/index.html.erb within layouts/application (15.8ms)
+Completed 200 OK in 56ms (Views: 43.2ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/manufacturers/" for 127.0.0.1 at 2020-01-13 20:58:43 -0300
+Processing by ManufacturersController#index as HTML
+  Rendering manufacturers/index.html.erb within layouts/application
+  [1m[36mManufacturer Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "manufacturers" LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/views/manufacturers/index.html.erb:2
+  [1m[36mManufacturer Load (0.2ms)[0m  [1m[34mSELECT "manufacturers".* FROM "manufacturers"[0m
+  ↳ app/views/manufacturers/index.html.erb:6
+  Rendered manufacturers/index.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 44ms (Views: 40.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/manufacturers/" for 127.0.0.1 at 2020-01-13 20:59:05 -0300
+Processing by ManufacturersController#index as HTML
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2020-01-13 20:59:06 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.9ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 95ms (Views: 34.9ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2020-01-13 21:55:06 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.6ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 342ms (Views: 321.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-01-13 21:55:14 -0300
+Processing by HomeController#index as HTML
+  Parameters: {"only"=>[:index]}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 66ms (Views: 61.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2020-01-13 21:55:20 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (8.3ms)
+Completed 200 OK in 45ms (Views: 42.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2020-01-13 21:55:32 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"98tTI3602SpKQ0cGiiTOqcmO/BQbOFKiZOaabSx4YfR6eSn4V9rlUsOiooWqKdtcGQZUuNY/FWlcH92x34AQIw==", "user"=>{"email"=>"luan.mesquita@hotmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Entrar"}
+  [1m[36mUser Load (23.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "luan.mesquita@hotmail.com"], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/manufacturers
+Completed 302 Found in 277ms (ActiveRecord: 23.0ms)
+
+
+Started GET "/manufacturers" for 127.0.0.1 at 2020-01-13 21:55:33 -0300
+Processing by ManufacturersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  Rendering manufacturers/index.html.erb within layouts/application
+  [1m[36mManufacturer Exists (2.1ms)[0m  [1m[34mSELECT  1 AS one FROM "manufacturers" LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/views/manufacturers/index.html.erb:2
+  [1m[36mManufacturer Load (0.3ms)[0m  [1m[34mSELECT "manufacturers".* FROM "manufacturers"[0m
+  ↳ app/views/manufacturers/index.html.erb:6
+  Rendered manufacturers/index.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 77ms (Views: 66.8ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-01-13 21:56:14 -0300
+Processing by HomeController#index as HTML
+  Parameters: {"only"=>[:index]}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:18
+Completed 200 OK in 32ms (Views: 30.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/car_categories" for 127.0.0.1 at 2020-01-13 21:56:18 -0300
+Processing by CarCategoriesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  Rendering car_categories/index.html.erb within layouts/application
+  [1m[36mCarCategory Exists (6.6ms)[0m  [1m[34mSELECT  1 AS one FROM "car_categories" LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/views/car_categories/index.html.erb:2
+  [1m[36mCarCategory Load (0.3ms)[0m  [1m[34mSELECT "car_categories".* FROM "car_categories"[0m
+  ↳ app/views/car_categories/index.html.erb:6
+  Rendered car_categories/index.html.erb within layouts/application (23.4ms)
+Completed 200 OK in 62ms (Views: 42.9ms | ActiveRecord: 8.3ms)
+
+
+Started GET "/car_categories/new" for 127.0.0.1 at 2020-01-13 21:56:23 -0300
+Processing by CarCategoriesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  Rendering car_categories/new.html.erb within layouts/application
+  Rendered car_categories/_form.html.erb (12.5ms)
+  Rendered car_categories/new.html.erb within layouts/application (17.4ms)
+Completed 200 OK in 86ms (Views: 77.5ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/car_categories" for 127.0.0.1 at 2020-01-13 21:56:31 -0300
+Processing by CarCategoriesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"QdrDYkg1CxoL5bpV9MSQ+PoFDQxAFRM9ek4uX2/LIUFD11dh1H50cmNuK+PJFtcRhJSL5MyZT50emASP+2uPKA==", "car_category"=>{"name"=>"C", "daily_rate"=>"0", "car_insurance"=>"0", "third_party_insurance"=>"0"}, "commit"=>"Enviar"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/car_categories_controller.rb:12
+  [1m[36mCarCategory Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "car_categories" WHERE LOWER("car_categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "C"], ["LIMIT", 1]]
+  ↳ app/controllers/car_categories_controller.rb:12
+  [1m[36mCarCategory Create (1.8ms)[0m  [1m[32mINSERT INTO "car_categories" ("name", "daily_rate", "car_insurance", "third_party_insurance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "C"], ["daily_rate", 0.0], ["car_insurance", 0.0], ["third_party_insurance", 0.0], ["created_at", "2020-01-14 00:56:31.573681"], ["updated_at", "2020-01-14 00:56:31.573681"]]
+  ↳ app/controllers/car_categories_controller.rb:12
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/car_categories_controller.rb:12
+Redirected to http://localhost:3000/car_categories/15
+Completed 302 Found in 34ms (ActiveRecord: 8.0ms)
+
+
+Started GET "/car_categories/15" for 127.0.0.1 at 2020-01-13 21:56:31 -0300
+Processing by CarCategoriesController#show as HTML
+  Parameters: {"id"=>"15"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mCarCategory Load (0.4ms)[0m  [1m[34mSELECT  "car_categories".* FROM "car_categories" WHERE "car_categories"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/car_categories_controller.rb:25
+  Rendering car_categories/show.html.erb within layouts/application
+  Rendered car_categories/show.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 56ms (Views: 46.6ms | ActiveRecord: 0.9ms)
+
+
+Started DELETE "/car_categories/15" for 127.0.0.1 at 2020-01-13 21:57:51 -0300
+Processing by CarCategoriesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"s78M7iF5yEG7gA7DJo0e3tGh9bfGqwzj6LdU/1QOtisAYW2EaPACnJAgHqQ+Z4FHKjs0VMShIha7u7KQHFs5IQ==", "id"=>"15"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 2.1ms)
+
+
+  
+SyntaxError (/home/luanribeiro/Workspace/campuscode/campuscode_training_2020/aquecimento_qsd/rental-cars-qsd2019/app/models/car_category.rb:21: syntax error, unexpected '}', expecting =>
+...or para o seguro de terceiros'}
+...                              ^):
+  
+app/models/car_category.rb:21: syntax error, unexpected '}', expecting =>
+app/controllers/car_categories_controller.rb:43:in `destroy'
+Started DELETE "/car_categories/15" for 127.0.0.1 at 2020-01-13 21:58:40 -0300
+Processing by CarCategoriesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"s78M7iF5yEG7gA7DJo0e3tGh9bfGqwzj6LdU/1QOtisAYW2EaPACnJAgHqQ+Z4FHKjs0VMShIha7u7KQHFs5IQ==", "id"=>"15"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mCarCategory Load (0.7ms)[0m  [1m[34mSELECT  "car_categories".* FROM "car_categories" WHERE "car_categories"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/car_categories_controller.rb:43
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/car_categories_controller.rb:43
+  [1m[36mCarModel Load (0.3ms)[0m  [1m[34mSELECT "car_models".* FROM "car_models" WHERE "car_models"."car_category_id" = ?[0m  [["car_category_id", 15]]
+  ↳ app/controllers/car_categories_controller.rb:43
+  [1m[36mCarCategory Destroy (0.4ms)[0m  [1m[31mDELETE FROM "car_categories" WHERE "car_categories"."id" = ?[0m  [["id", 15]]
+  ↳ app/controllers/car_categories_controller.rb:43
+  [1m[35m (121.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/car_categories_controller.rb:43
+Redirected to http://localhost:3000/car_categories
+Completed 302 Found in 200ms (ActiveRecord: 126.6ms)
+
+
+Started GET "/car_categories" for 127.0.0.1 at 2020-01-13 21:58:40 -0300
+Processing by CarCategoriesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  Rendering car_categories/index.html.erb within layouts/application
+  [1m[36mCarCategory Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "car_categories" LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/views/car_categories/index.html.erb:2
+  [1m[36mCarCategory Load (0.4ms)[0m  [1m[34mSELECT "car_categories".* FROM "car_categories"[0m
+  ↳ app/views/car_categories/index.html.erb:6
+  Rendered car_categories/index.html.erb within layouts/application (10.1ms)
+Completed 200 OK in 69ms (Views: 59.8ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/car_categories/new" for 127.0.0.1 at 2020-01-13 21:58:44 -0300
+Processing by CarCategoriesController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  Rendering car_categories/new.html.erb within layouts/application
+  Rendered car_categories/_form.html.erb (12.4ms)
+  Rendered car_categories/new.html.erb within layouts/application (15.1ms)
+Completed 200 OK in 70ms (Views: 61.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/car_categories" for 127.0.0.1 at 2020-01-13 21:58:50 -0300
+Processing by CarCategoriesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Q30aiQCFmBmXP8iDOzfdQg5Uj421TNC/qW2GFbAdZhFBcI6KnM7ncf+0WTUG5ZqrcMUJZTnAjB/Nu6zFJL3IeA==", "car_category"=>{"name"=>"C", "daily_rate"=>"0", "car_insurance"=>"0", "third_party_insurance"=>"0"}, "commit"=>"Enviar"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/car_categories_controller.rb:12
+  [1m[36mCarCategory Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "car_categories" WHERE LOWER("car_categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "C"], ["LIMIT", 1]]
+  ↳ app/controllers/car_categories_controller.rb:12
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/car_categories_controller.rb:12
+  Rendering car_categories/new.html.erb within layouts/application
+  Rendered car_categories/_form.html.erb (3.0ms)
+  Rendered car_categories/new.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 58ms (Views: 41.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-01-13 21:58:59 -0300
+Processing by HomeController#index as HTML
+  Parameters: {"only"=>[:index]}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:18
+Completed 200 OK in 31ms (Views: 29.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-01-13 21:59:25 -0300
+Processing by HomeController#index as HTML
+  Parameters: {"only"=>[:index]}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.8ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:18
+Completed 200 OK in 49ms (Views: 47.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-01-13 22:06:20 -0300
+Processing by HomeController#index as HTML
+  Parameters: {"only"=>[:index]}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.6ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:18
+Completed 200 OK in 47ms (Views: 43.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/car_categories" for 127.0.0.1 at 2020-01-13 22:06:22 -0300
+Processing by CarCategoriesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  Rendering car_categories/index.html.erb within layouts/application
+  [1m[36mCarCategory Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "car_categories" LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/views/car_categories/index.html.erb:2
+  [1m[36mCarCategory Load (0.3ms)[0m  [1m[34mSELECT "car_categories".* FROM "car_categories"[0m
+  ↳ app/views/car_categories/index.html.erb:6
+  Rendered car_categories/index.html.erb within layouts/application (27.8ms)
+Completed 200 OK in 134ms (Views: 109.9ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/car_categories/new" for 127.0.0.1 at 2020-01-13 22:06:24 -0300
+Processing by CarCategoriesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  Rendering car_categories/new.html.erb within layouts/application
+  Rendered car_categories/_form.html.erb (4.4ms)
+  Rendered car_categories/new.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 72ms (Views: 66.9ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/car_categories" for 127.0.0.1 at 2020-01-13 22:06:37 -0300
+Processing by CarCategoriesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hiy46ck1YoH3i9mxVIwxbJKq1rT6UhCTZMZOsJdb3FCEISzqVX4d6Z8ASAdpXnaF7DtQXHbeTDMAEGRgA/tyOQ==", "car_category"=>{"name"=>"C", "daily_rate"=>"0", "car_insurance"=>"0", "third_party_insurance"=>"0"}, "commit"=>"Enviar"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/car_categories_controller.rb:12
+  [1m[36mCarCategory Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "car_categories" WHERE LOWER("car_categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "C"], ["LIMIT", 1]]
+  ↳ app/controllers/car_categories_controller.rb:12
+  [1m[36mCarCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "car_categories" ("name", "daily_rate", "car_insurance", "third_party_insurance", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "C"], ["daily_rate", 0.0], ["car_insurance", 0.0], ["third_party_insurance", 0.0], ["created_at", "2020-01-14 01:06:37.572521"], ["updated_at", "2020-01-14 01:06:37.572521"]]
+  ↳ app/controllers/car_categories_controller.rb:12
+  [1m[35m (107.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/car_categories_controller.rb:12
+Redirected to http://localhost:3000/car_categories/16
+Completed 302 Found in 132ms (ActiveRecord: 108.0ms)
+
+
+Started GET "/car_categories/16" for 127.0.0.1 at 2020-01-13 22:06:37 -0300
+Processing by CarCategoriesController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mCarCategory Load (0.9ms)[0m  [1m[34mSELECT  "car_categories".* FROM "car_categories" WHERE "car_categories"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/car_categories_controller.rb:25
+  Rendering car_categories/show.html.erb within layouts/application
+  Rendered car_categories/show.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 67ms (Views: 49.0ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/car_categories/16" for 127.0.0.1 at 2020-01-13 22:09:09 -0300
+Processing by CarCategoriesController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 1.6ms)
+
+
+  
+SyntaxError (/home/luanribeiro/Workspace/campuscode/campuscode_training_2020/aquecimento_qsd/rental-cars-qsd2019/app/models/car_category.rb:15: syntax error, unexpected tSYMBEG, expecting do or '{' or '('
+  validates :car_insurance,
+            ^
+/home/luanribeiro/Workspace/campuscode/campuscode_training_2020/aquecimento_qsd/rental-cars-qsd2019/app/models/car_category.rb:16: syntax error, unexpected ',', expecting end
+... seguro do carro está vazio'},
+...                              ^):
+  
+app/models/car_category.rb:15: syntax error, unexpected tSYMBEG, expecting do or '{' or '('
+app/models/car_category.rb:16: syntax error, unexpected ',', expecting end
+app/controllers/car_categories_controller.rb:25:in `show'
+Started GET "/car_categories/16" for 127.0.0.1 at 2020-01-13 22:09:23 -0300
+Processing by CarCategoriesController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mCarCategory Load (0.2ms)[0m  [1m[34mSELECT  "car_categories".* FROM "car_categories" WHERE "car_categories"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/car_categories_controller.rb:25
+  Rendering car_categories/show.html.erb within layouts/application
+  Rendered car_categories/show.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 107ms (Views: 31.1ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/car_categories" for 127.0.0.1 at 2020-01-13 22:09:25 -0300
+Processing by CarCategoriesController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  Rendering car_categories/index.html.erb within layouts/application
+  [1m[36mCarCategory Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "car_categories" LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/views/car_categories/index.html.erb:2
+  [1m[36mCarCategory Load (0.3ms)[0m  [1m[34mSELECT "car_categories".* FROM "car_categories"[0m
+  ↳ app/views/car_categories/index.html.erb:6
+  Rendered car_categories/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 65ms (Views: 57.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/car_categories/new" for 127.0.0.1 at 2020-01-13 22:09:38 -0300
+Processing by CarCategoriesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  Rendering car_categories/new.html.erb within layouts/application
+  Rendered car_categories/_form.html.erb (4.6ms)
+  Rendered car_categories/new.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 61ms (Views: 54.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/car_categories" for 127.0.0.1 at 2020-01-13 22:09:44 -0300
+Processing by CarCategoriesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  Rendering car_categories/index.html.erb within layouts/application
+  [1m[36mCarCategory Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "car_categories" LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/views/car_categories/index.html.erb:2
+  [1m[36mCarCategory Load (0.2ms)[0m  [1m[34mSELECT "car_categories".* FROM "car_categories"[0m
+  ↳ app/views/car_categories/index.html.erb:6
+  Rendered car_categories/index.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 41ms (Views: 37.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/car_categories/16" for 127.0.0.1 at 2020-01-13 22:09:45 -0300
+Processing by CarCategoriesController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mCarCategory Load (0.3ms)[0m  [1m[34mSELECT  "car_categories".* FROM "car_categories" WHERE "car_categories"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/car_categories_controller.rb:25
+  Rendering car_categories/show.html.erb within layouts/application
+  Rendered car_categories/show.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 48ms (Views: 40.5ms | ActiveRecord: 0.7ms)
+
+
+Started DELETE "/car_categories/16" for 127.0.0.1 at 2020-01-13 22:09:47 -0300
+Processing by CarCategoriesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"LYyyjjlDVmDTTlm148CBq6786mjE7T2DQFGh8bu7Zr6eUtPkcMqcvfjuSdL7Kh4yVWYri8bnE3YTXUee8+7ptA==", "id"=>"16"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mCarCategory Load (0.2ms)[0m  [1m[34mSELECT  "car_categories".* FROM "car_categories" WHERE "car_categories"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/car_categories_controller.rb:43
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/car_categories_controller.rb:43
+  [1m[36mCarModel Load (0.3ms)[0m  [1m[34mSELECT "car_models".* FROM "car_models" WHERE "car_models"."car_category_id" = ?[0m  [["car_category_id", 16]]
+  ↳ app/controllers/car_categories_controller.rb:43
+  [1m[36mCarCategory Destroy (0.3ms)[0m  [1m[31mDELETE FROM "car_categories" WHERE "car_categories"."id" = ?[0m  [["id", 16]]
+  ↳ app/controllers/car_categories_controller.rb:43
+  [1m[35m (119.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/car_categories_controller.rb:43
+Redirected to http://localhost:3000/car_categories
+Completed 302 Found in 180ms (ActiveRecord: 121.1ms)
+
+
+Started GET "/car_categories" for 127.0.0.1 at 2020-01-13 22:09:47 -0300
+Processing by CarCategoriesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  Rendering car_categories/index.html.erb within layouts/application
+  [1m[36mCarCategory Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "car_categories" LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/views/car_categories/index.html.erb:2
+  [1m[36mCarCategory Load (0.2ms)[0m  [1m[34mSELECT "car_categories".* FROM "car_categories"[0m
+  ↳ app/views/car_categories/index.html.erb:6
+  Rendered car_categories/index.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 58ms (Views: 50.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/car_categories/new" for 127.0.0.1 at 2020-01-13 22:09:48 -0300
+Processing by CarCategoriesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  Rendering car_categories/new.html.erb within layouts/application
+  Rendered car_categories/_form.html.erb (6.1ms)
+  Rendered car_categories/new.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 60ms (Views: 52.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/car_categories" for 127.0.0.1 at 2020-01-13 22:09:55 -0300
+Processing by CarCategoriesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hiLakSi+3YwpAnUhoRfLy9yl3Xw2RG1yYc9VOEL7PVCEL06StPWi5EGJ5JecxYwiojRblLrIMdIFGX/o1luTOQ==", "car_category"=>{"name"=>"C", "daily_rate"=>"0", "car_insurance"=>"0", "third_party_insurance"=>"0"}, "commit"=>"Enviar"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/car_categories_controller.rb:12
+  [1m[36mCarCategory Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "car_categories" WHERE LOWER("car_categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "C"], ["LIMIT", 1]]
+  ↳ app/controllers/car_categories_controller.rb:12
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/car_categories_controller.rb:12
+  Rendering car_categories/new.html.erb within layouts/application
+  Rendered car_categories/_form.html.erb (3.1ms)
+  Rendered car_categories/new.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 43ms (Views: 35.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-01-13 22:11:05 -0300
+Processing by HomeController#index as HTML
+  Parameters: {"only"=>[:index]}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:18
+Completed 200 OK in 70ms (Views: 67.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/car_categories" for 127.0.0.1 at 2020-01-13 22:11:06 -0300
+Processing by CarCategoriesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  Rendering car_categories/index.html.erb within layouts/application
+  [1m[36mCarCategory Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "car_categories" LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/views/car_categories/index.html.erb:2
+  [1m[36mCarCategory Load (0.2ms)[0m  [1m[34mSELECT "car_categories".* FROM "car_categories"[0m
+  ↳ app/views/car_categories/index.html.erb:6
+  Rendered car_categories/index.html.erb within layouts/application (19.5ms)
+Completed 200 OK in 67ms (Views: 49.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/car_categories/new" for 127.0.0.1 at 2020-01-13 22:11:08 -0300
+Processing by CarCategoriesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  Rendering car_categories/new.html.erb within layouts/application
+  Rendered car_categories/_form.html.erb (7.0ms)
+  Rendered car_categories/new.html.erb within layouts/application (10.2ms)
+Completed 200 OK in 53ms (Views: 48.0ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/car_categories" for 127.0.0.1 at 2020-01-13 22:11:14 -0300
+Processing by CarCategoriesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IW7FZ2QDzs99ZUatu5ATTz/4kXG9ms8Tn2SXsJsgoDQjY1Fk+EixpxXu1xuGQlSmQWkXmTEWk7P7sr1gD4AOXQ==", "car_category"=>{"name"=>"C", "daily_rate"=>"0", "car_insurance"=>"0", "third_party_insurance"=>"0"}, "commit"=>"Enviar"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/car_categories_controller.rb:12
+  [1m[36mCarCategory Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "car_categories" WHERE LOWER("car_categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "C"], ["LIMIT", 1]]
+  ↳ app/controllers/car_categories_controller.rb:12
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/car_categories_controller.rb:12
+  Rendering car_categories/new.html.erb within layouts/application
+  Rendered car_categories/_form.html.erb (9.0ms)
+  Rendered car_categories/new.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 48ms (Views: 38.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-01-13 23:00:03 -0300
+Processing by HomeController#index as HTML
+  Parameters: {"only"=>[:index]}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:18
+Completed 200 OK in 52ms (Views: 48.7ms | ActiveRecord: 1.4ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2020-01-13 23:00:05 -0300
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"V8Nj8ztHeMJichu8Qj5qYkJwvaWLw+PQUHvL8KNtTtvkHQKZcs6yH0nSC9ta1PX7uep8RonJzSUDdy2f6zjB0Q=="}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /home/luanribeiro/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Redirected to http://localhost:3000/
+Completed 302 Found in 64ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-01-13 23:00:05 -0300
+Processing by HomeController#index as HTML
+  Parameters: {"only"=>[:index]}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 60ms (Views: 57.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-01-13 23:00:47 -0300
+Processing by HomeController#index as HTML
+  Parameters: {"only"=>[:index]}
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 39ms (Views: 37.2ms | ActiveRecord: 0.0ms)
+
+

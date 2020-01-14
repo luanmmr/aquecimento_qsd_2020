@@ -7,8 +7,8 @@ feature 'Admin edits subsidiary' do
       cnpj: '28179836000114')
 
       user = User.create!(email: 'test#@test.com', password: '123456')
-      login_as(user, :scope => :user)
 
+      login_as(user, scope: :user)
       visit root_path
       click_on 'Filiais'
       click_on 'Aeroporto Congonhas'
@@ -30,7 +30,8 @@ feature 'Admin edits subsidiary' do
         cnpj: '28179836000114')
 
         user = User.create!(email: 'test#@test.com', password: '123456')
-        login_as(user, :scope => :user)
+
+        login_as(user, scope: :user)
 
         visit root_path
         click_on 'Filiais'
@@ -60,8 +61,8 @@ feature 'Admin edits subsidiary' do
             cnpj: '28179836000114')
 
             user = User.create!(email: 'test#@test.com', password: '123456')
-            login_as(user, :scope => :user)
 
+            login_as(user, :scope => :user)
             visit root_path
             click_on 'Filiais'
             click_on 'Aeroporto Congonhas'
@@ -84,8 +85,8 @@ feature 'Admin edits subsidiary' do
               cnpj: '28179836000114')
 
               user = User.create!(email: 'test#@test.com', password: '123456')
-              login_as(user, :scope => :user)
 
+              login_as(user, scope: :user)
               visit edit_subsidiary_path(subsidiary)
 
               fill_in 'Nome', with: 'Aeroporto Congonhas'
@@ -104,8 +105,8 @@ feature 'Admin edits subsidiary' do
                 cnpj: '28179836000114')
 
                 user = User.create!(email: 'test#@test.com', password: '123456')
-                login_as(user, :scope => :user)
-                
+
+                login_as(user, scope: :user)
                 visit edit_subsidiary_path(subsidiary)
 
                 fill_in 'Nome', with: 'Aeroporto Congonhas'
@@ -115,6 +116,14 @@ feature 'Admin edits subsidiary' do
                 click_on 'Enviar'
 
                 expect(page).to have_content('O CNPJ deve ter 14 números')
+              end
+
+              scenario 'and must be authenticated' do
+
+                visit edit_car_category_path(7)
+
+                expect(current_path).to eq(new_user_session_path)
+
               end
 
             end

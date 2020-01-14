@@ -4,10 +4,9 @@ feature 'Admin edits car category' do
   scenario 'successfully' do
 
     CarCategory.create(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
-
     user = User.create!(email: 'test#@test.com', password: '123456')
-    login_as(user, :scope => :user)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categorias de Carros'
     click_on 'A'
@@ -32,8 +31,8 @@ feature 'Admin edits car category' do
     CarCategory.create(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
 
     user = User.create!(email: 'test#@test.com', password: '123456')
-    login_as(user, :scope => :user)
 
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Categorias de Carros'
     click_on 'A'
@@ -57,10 +56,9 @@ feature 'Admin edits car category' do
 
     CarCategory.create(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
     CarCategory.create(name: 'B', daily_rate: 97.20, car_insurance: 35.00, third_party_insurance: 22.50)
-
     user = User.create!(email: 'test#@test.com', password: '123456')
-    login_as(user, :scope => :user)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categorias de Carros'
     click_on 'A'
@@ -82,14 +80,22 @@ feature 'Admin edits car category' do
     visit edit_car_category_path(car_category)
 
     fill_in 'Diária', with: 'teste'
-    fill_in 'Seguro do Carro', with: 'teste'
-    fill_in 'Seguro para Terceiros', with: 'teste'
+    fill_in 'Seguro do Carro', with: 0
+    fill_in 'Seguro para Terceiros', with: 0
 
     click_on 'Enviar'
 
-    expect(page).to have_content('O campo diária só aceita números')
-    expect(page).to have_content('Informe um valor para o seguro do carro')
-    expect(page).to have_content('Informe um valor para o seguro de terceiros')
+    expect(page).to have_content('Campo diária com valor inválido')
+    expect(page).to have_content('Campo seguro do carro com valor inválido')
+    expect(page).to have_content('Campo seguro para terceiros com valor inválido')
+
+  end
+
+  scenario 'and must be authenticated' do
+
+    visit edit_car_category_path(7)
+
+    expect(current_path).to eq(new_user_session_path)
 
   end
 end

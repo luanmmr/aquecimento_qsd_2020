@@ -5,10 +5,9 @@ feature 'Admin register car model' do
 
     manufacturer = Manufacturer.create(name: 'Fiat')
     car_category = CarCategory.create(name: 'A', daily_rate: 120.00, car_insurance: 40.50, third_party_insurance: 15)
-
     user = User.create!(email: 'test#@test.com', password: '123456')
-    login_as(user, :scope => :user)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Modelos de Carros'
     click_on 'Registrar modelo de carro'
@@ -19,7 +18,6 @@ feature 'Admin register car model' do
     fill_in 'Tipo de Combustível', with: 'Gasolina'
     select 'Fiat', from: 'Fabricante'
     select 'A', from: 'Categoria do Carro'
-
     click_on 'Enviar'
 
     expect(page).to have_content('Modelo de carro criado com sucesso!')
@@ -35,10 +33,9 @@ feature 'Admin register car model' do
   scenario 'and must fill in all fields' do
 
     user = User.create!(email: 'test#@test.com', password: '123456')
-    login_as(user, :scope => :user)
 
+    login_as(user, scope: :user)
     visit new_car_model_path
-
     click_on 'Enviar'
 
     expect(page).to have_content('Você deve corrigir os seguintes erros para continuar:')
@@ -50,13 +47,12 @@ feature 'Admin register car model' do
 
   scenario 'name must be unique' do
 
-    user = User.create!(email: 'test#@test.com', password: '123456')
-    login_as(user, :scope => :user)
-
     manufacturer = Manufacturer.create(name: 'Fiat')
     car_category = CarCategory.create(name: 'A', daily_rate: 120.00, car_insurance: 40.50, third_party_insurance: 15)
     CarModel.create!(name: 'Uno', year: '2018', motorization: '1.5', fuel_type: 'Flex', car_category_id: car_category.id, manufacturer_id: manufacturer.id)
+    user = User.create!(email: 'test#@test.com', password: '123456')
 
+    login_as(user, scope: :user)
     visit new_car_model_path
 
     fill_in 'Nome', with: 'Uno'
@@ -67,4 +63,13 @@ feature 'Admin register car model' do
     expect(page).to have_content('Este modelo de carro já existe nesta categoria')
 
   end
+
+  scenario 'and must be authenticated' do
+
+    visit new_car_category_path
+
+    expect(current_path).to eq(new_user_session_path)
+
+  end
+  
 end

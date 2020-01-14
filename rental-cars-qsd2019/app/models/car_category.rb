@@ -10,15 +10,15 @@ class CarCategory < ApplicationRecord
 
   validates :daily_rate,
   presence: {message: 'A diária está vazia'},
-  numericality: {message: 'O campo diária só aceita números'}
+  numericality: {greater_than: 1, message: 'Campo diária com valor inválido'}
 
   validates :car_insurance,
   presence: {message: 'O seguro do carro está vazio'},
-  numericality: {message: 'Informe um valor para o seguro do carro'}
+  numericality: {greater_than: 1, message: 'Campo seguro do carro com valor inválido'}
 
   validates :third_party_insurance,
   presence: {message: 'O seguro para terceiros está vazio'},
-  numericality: {message: 'Informe um valor para o seguro de terceiros'}
+  numericality: {greater_than: 1, message: 'Campo seguro para terceiros com valor inválido'}
 
 
   after_validation :formatting
