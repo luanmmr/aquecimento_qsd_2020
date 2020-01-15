@@ -1,0 +1,19 @@
+<table width = 500>
+  <tr>
+    <th>Código</th>
+    <th>Cliente</th>
+    <th>Email</th>
+    <th>Categoria</th>
+  </tr>
+
+  <% if @rentals.any? %>
+  <% @rentals.each do |rental| %>
+  <tr>
+    <td align = CENTER><%= rental.code %></td>
+    <td align = CENTER><%= rental.client.name %></td>
+    <td align = CENTER><%= rental.client.email %></td>
+    <td align = CENTER><%= rental.car_category.name %></td>
+  </tr>
+  <% end %>
+  <% end %>
+</table>
