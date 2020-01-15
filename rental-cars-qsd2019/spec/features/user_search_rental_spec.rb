@@ -5,20 +5,21 @@ feature 'User search rental' do
 
     car_category =  CarCategory.create!(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
     client = Client.create!(name: 'Fulano', document: '2938248684', email: 'fulano@test.com')
+    user = User.create!(email: 'teste@hotmail.com', password: '123456')
 
     Rental.create!(code: 'XFB0000', start_date: Date.current,
       end_date: 1.day.from_now,
-      client: client, car_category: car_category)
+      client: client, car_category: car_category, user: user)
 
     Rental.create!(code: 'XFB0001', start_date: Date.current,
       end_date: 1.day.from_now,
-      client: client, car_category: car_category)
+      client: client, car_category: car_category, user: user)
 
     Rental.create!(code: 'XFB0000', start_date: Date.current,
       end_date: 1.day.from_now,
-      client: client, car_category: car_category)
+      client: client, car_category: car_category, user: user)
 
-    user = User.create!(email: 'teste@hotmail.com', password: '123456')
+
 
     login_as(user, scopo: :user)
     visit root_path
@@ -41,13 +42,12 @@ feature 'User search rental' do
 
       car_category =  CarCategory.create!(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
       client = Client.create!(name: 'Fulano', document: '2938248684', email: 'fulano@test.com')
+      user = User.create!(email: 'teste@hotmail.com', password: '123456')
 
       Rental.create!(code: 'XFB0000', start_date: Date.current,
         end_date: 1.day.from_now,
-        client: client, car_category: car_category)
-
-
-      user = User.create!(email: 'teste@hotmail.com', password: '123456')
+        client: client, car_category: car_category, user: user)
+        
 
       login_as(user, scopo: :user)
       visit root_path
@@ -67,20 +67,21 @@ feature 'User search rental' do
 
       car_category =  CarCategory.create!(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
       client = Client.create!(name: 'Fulano', document: '2938248684', email: 'fulano@test.com')
+      user = User.create!(email: 'teste@hotmail.com', password: '123456')
 
       Rental.create!(code: 'XFB0000', start_date: Date.current,
                      end_date: 1.day.from_now,
-                     client: client, car_category: car_category)
+                     client: client, car_category: car_category, user: user)
 
       Rental.create!(code: 'XFB0001', start_date: Date.current,
                      end_date: 1.day.from_now,
-                     client: client, car_category: car_category)
+                     client: client, car_category: car_category, user: user)
 
       Rental.create!(code: 'FXB0000', start_date: Date.current,
                      end_date: 1.day.from_now,
-                     client: client, car_category: car_category)
+                     client: client, car_category: car_category, user: user)
 
-      user = User.create!(email: 'teste@hotmail.com', password: '123456')
+
 
       login_as(user, scope: :user)
       visit rentals_path

@@ -14,4 +14,9 @@ class Client < ApplicationRecord
   presence: {message: 'CPF não pode ficar em branco'},
   length: {maximum: 11, message: 'O CPF é composto de até 11 algarismo.'}
 
+
+  def name_documento
+    "#{name} - #{document}"
+  end
+
 end

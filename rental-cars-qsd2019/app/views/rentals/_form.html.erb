@@ -1,0 +1,27 @@
+<%= form_for @rental do |form| %>
+
+<p>
+<%= form.label :start_date, 'Data de início' %>
+<%= form.date_field :start_date %>
+</p>
+
+<p>
+<%= form.label :end_date, 'Data de fim' %>
+<%= form.date_field :end_date %>
+</p>
+
+<p>
+<%= form.label :client_id, 'Cliente' %>
+<%= form.collection_select :client_id, @clients, :id, :name_documento %>
+</p>
+
+<p>
+<%= form.label :car_category_id, 'Categoria de Carro' %>
+<%= form.collection_select :car_category_id, @car_categories, :id, :name %>
+</p>
+
+<p>
+<%= form.submit 'Enviar' %>
+</p>
+
+<% end %>
