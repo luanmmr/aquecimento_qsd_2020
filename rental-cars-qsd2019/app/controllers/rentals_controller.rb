@@ -7,7 +7,11 @@ class RentalsController < ApplicationController
   end
 
   def search
-    @rentals = Rental.where(code: params[:q])
+    # Busca exata
+    #@rentals = Rental.where(code: params[:q])
+    # Outro modo de busca exata, agora, utilizando SQL
+    #@rentals = Rental.where("code LIKE ?", "#{params[:q]}")
+    @rentals = Rental.where("code LIKE ?", "%#{params[:q]}%")
   end
 
 end
