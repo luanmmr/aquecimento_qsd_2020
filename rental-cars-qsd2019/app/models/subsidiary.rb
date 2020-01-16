@@ -1,4 +1,7 @@
 class Subsidiary < ApplicationRecord
+
+  has_many :cars
+
   validates :name,
   presence: {message: 'O campo nome deve ser preenchido'}
 

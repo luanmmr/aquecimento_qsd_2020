@@ -1,7 +1,37 @@
 <h1>Pesquisa</h1>
 
-<%= render partial: 'results' %>
+<%= form_tag search_rentals_path, method: :get do %>
+<%= label_tag :q, 'Pesquisa' %>
+<%= text_field_tag :q %>
+<%= submit_tag 'Buscar' %>
+<% end %>
+
+<br><br>
+
+<% if @q.present? %>
+
+<table width = 1200>
+  <tr>
+    <th>Código</th>
+    <th>Cliente</th>
+    <th>Email</th>
+    <th>Categoria</th>
+  </tr>
+
+  <% if @rentals.any? %>
+  <% @rentals.each do |rental| %>
+  <tr>
+    <td align = CENTER><%= link_to rental.code, rental_path(rental) %></td>
+    <td align = CENTER><%= rental.client.name %></td>
+    <td align = CENTER><%= rental.client.email %></td>
+    <td align = CENTER><%= rental.car_category.name %></td>
+  </tr>
+  <% end %>
+  <% end %>
+</table>
 
 <br>
 
 <%= "#{@rentals.length} resultado(s) encontrado(s)" %>
+
+<% end %>

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :clients
   resources :rentals, only: [:index, :show, :new, :create] do
     get 'search', on: :collection
+    get 'reserve', on: :member
+    post 'create_reserve', on: :member
+    get 'show_reserve', on: :member
   end
 
 end

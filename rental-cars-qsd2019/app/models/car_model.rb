@@ -1,9 +1,10 @@
 class CarModel < ApplicationRecord
 
+  has_many :cars
   belongs_to :manufacturer
   belongs_to :car_category
 
-  
+
   validates :name,
   presence: {message: 'O campo nome está vazio'},
   uniqueness: {message: 'Este modelo de carro já existe nesta categoria', case_sensitive: false, scope: [:year, :car_category_id]}

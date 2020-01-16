@@ -1,0 +1,8 @@
+<h1> Efetivar Locação </h1>
+
+<%= form_for @car_rental, url: {action: "create_reserve"}, local: true do |f| %>
+<%= f.label :car_id, 'Carros disponíveis' %>
+<%= f.collection_select :car_id, @cars, :id, :view_car %>
+<%= f.submit 'Efetivar' %>
+
+<% end %>

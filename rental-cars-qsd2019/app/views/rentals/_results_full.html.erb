@@ -1,5 +1,8 @@
 <table width = 1200>
   <tr>
+    <% if @rental.agendada_status? %>
+    <th></th>
+    <% end %>
     <th>Código</th>
     <th>Cliente</th>
     <th>Email</th>
@@ -10,12 +13,16 @@
   </tr>
 
   <tr>
+
+    <% if @rental.agendada_status? %>
+    <td align = CENTER><%= link_to 'Efetivar locação', reserve_rental_path(@rental) %></td>
+    <% end %>
     <td align = CENTER><%= @rental.code %></td>
     <td align = CENTER><%= @rental.client.name %></td>
     <td align = CENTER><%= @rental.client.email %></td>
     <td align = CENTER><%= @rental.car_category.name %></td>
-    <td align = CENTER><%= @rental.start_date %></td>
-    <td align = CENTER><%= @rental.end_date %></td>
+    <td align = CENTER><%= @rental.start_date.strftime("%d/%m/%Y") %></td>
+    <td align = CENTER><%= @rental.end_date.strftime("%d/%m/%Y") %></td>
     <td align = CENTER><%= @rental.user.email %></td>
   </tr>
 

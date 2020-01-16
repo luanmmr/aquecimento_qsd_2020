@@ -5,3 +5,44 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+subsidiary = Subsidiary.create(name: 'Aeroporto Congonhas',
+                  address: 'Rua Otávio Tarquínio De Souza, 379, Campo Belo, SP',
+                  cnpj: '28179836000114')
+subsidiary_2 = Subsidiary.create(name: 'Campo Limpo',
+                  address: 'Rua Marília de Souza Bueno, 147, Campo Limpo, SP',
+                  cnpj: '21173836050122')
+subsidiary_3 = Subsidiary.create(name: 'Capão Redondo',
+                  address: 'Rua Satélite de Marciano, 24, Capão Redondo, SP',
+                  cnpj: '11173424050752')
+
+manufacturer = Manufacturer.create(name: 'Fiat')
+manufacturer_2 = Manufacturer.create(name: 'Ford')
+manufacturer_3 = Manufacturer.create(name: 'Honda')
+
+car_category = CarCategory.create(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
+car_category_2 = CarCategory.create(name: 'B', daily_rate: 92.20, car_insurance: 35.20, third_party_insurance: 12.00)
+car_category_3 = CarCategory.create(name: 'C', daily_rate: 125.20, car_insurance: 40.20, third_party_insurance: 15.50)
+
+
+car_model = CarModel.create!(name: 'Uno', year: '2018', motorization: '1.5', fuel_type: 'Flex', car_category: car_category, manufacturer: manufacturer)
+car_model_2 = CarModel.create!(name: 'Fiesta', year: '2019', motorization: '1.8', fuel_type: 'Flex', car_category: car_category_2, manufacturer: manufacturer_2)
+car_model_3 = CarModel.create!(name: 'Civic', year: '2017', motorization: '2.0', fuel_type: 'Flex', car_category: car_category_3, manufacturer: manufacturer_3)
+
+client = Client.create!(name: 'Fulano', document: '2938248684', email: 'fulano@test.com')
+client_2 = Client.create!(name: 'Sicrano', document: '1238344486', email: 'sicrano@test.com')
+client_3 = Client.create!(name: 'Beltrano', document: '9278245521', email: 'beltrano@test.com')
+
+user = User.create(email: 'luan@hotmail.com', password: '123456')
+user_2 = User.create(email: 'cintia@hotmail.com', password: '123456')
+user_3 = User.create(email: 'leonardo@hotmail.com', password: '123456')
+
+
+Rental.create!(code: 'XFB0000', start_date: Date.current, end_date: 1.day.from_now, client: client, car_category: car_category, user: user)
+Rental.create!(code: 'XFB0001', start_date: Date.current, end_date: 3.day.from_now, client: client_2, car_category: car_category_2, user: user_2)
+Rental.create!(code: 'XFB0002', start_date: Date.current, end_date: 6.day.from_now, client: client_3, car_category: car_category_3, user: user_3)
+
+
+Car.create!(license_plate: 'MVL7266', color: 'Vermelho', car_model: car_model, mileage: 120.00, subsidiary: subsidiary, status: 0)
+Car.create!(license_plate: 'UFC4212', color: 'Azul', car_model: car_model_2, mileage: 50.00, subsidiary: subsidiary_2, status: 0)
+Car.create!(license_plate: 'KTY4212', color: 'Preto', car_model: car_model_3, mileage: 10.00, subsidiary: subsidiary_3, status: 0)
