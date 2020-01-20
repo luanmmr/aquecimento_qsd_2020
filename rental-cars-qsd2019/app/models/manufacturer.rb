@@ -8,7 +8,7 @@ class Manufacturer < ApplicationRecord
   format: {with: /\A[a-zA-Z]{2,}\z/, message: 'Nome composto ou caracteres inválidos'}
 
 
-  after_validation :formatting
+  before_create :formatting
 
 
   private

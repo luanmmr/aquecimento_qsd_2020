@@ -7,9 +7,6 @@
 # Ignore bundler config.
 rental-cars-qsd2019/.bundle
 
-# Ignore the default SQLite database.
-rental-cars-qsd2019/db/*.sqlite3
-rental-cars-qsd2019/db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
 rental-cars-qsd2019/log/*

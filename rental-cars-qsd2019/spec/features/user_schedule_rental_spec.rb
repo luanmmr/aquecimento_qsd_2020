@@ -26,4 +26,21 @@ feature 'User schedule rental' do
     expect(page).to have_content('teste@hotmail.com')
 
   end
+
+  scenario 'and must fill in all fields' do
+    user = User.create!(email: 'teste@hotmail.com', password: '123456')
+    car_category =  CarCategory.create!(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
+    client = Client.create!(name: 'Fulano', document: '2938248684', email: 'fulano@test.com')
+
+    login_as user, scope: :user
+    visit new_rental_path
+    fill_in 'Data de início', with: ''
+    fill_in 'Data de fim', with: ''
+    click_on 'Enviar'
+
+    expect(page).to have_content('Você deve corrigir os seguintes erros para continuar:')
+    expect(page).to have_content('Você deve informar uma data de início')
+    expect(page).to have_content('Não foi informado a data de fim')
+
+  end
 end

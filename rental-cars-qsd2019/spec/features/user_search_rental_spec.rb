@@ -47,7 +47,7 @@ feature 'User search rental' do
       Rental.create!(code: 'XFB0000', start_date: Date.current,
         end_date: 1.day.from_now,
         client: client, car_category: car_category, user: user)
-        
+
 
       login_as(user, scopo: :user)
       visit root_path

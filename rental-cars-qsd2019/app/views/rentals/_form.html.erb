@@ -1,3 +1,16 @@
+<% if @rental.errors.any? %>
+<p> Você deve corrigir os seguintes erros para continuar: </p>
+<ul>
+<% @rental.errors.values.each do |error_messages_group| %>
+<% error_messages_group.each do |error_message| %>
+<li><%= error_message %></li>
+<% end %>
+<% end %>
+</ul>
+
+<% end %>
+
+
 <%= form_for @rental do |form| %>
 
 <p>
@@ -12,7 +25,7 @@
 
 <p>
 <%= form.label :client_id, 'Cliente' %>
-<%= form.collection_select :client_id, @clients, :id, :name_documento %>
+<%= form.collection_select :client_id, @clients, :id, :name_document %>
 </p>
 
 <p>

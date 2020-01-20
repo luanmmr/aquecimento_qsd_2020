@@ -1,6 +1,6 @@
 <table width = 1200>
   <tr>
-    <% if @rental.agendada_status? %>
+    <% if @rental.status_agendada? %>
     <th></th>
     <% end %>
     <th>Código</th>
@@ -10,20 +10,22 @@
     <th>Data de início</th>
     <th>Data de fim</th>
     <th>Usuário</th>
+    <th colspan = "2"></th>
   </tr>
 
   <tr>
 
-    <% if @rental.agendada_status? %>
+    <% if @rental.status_agendada? %>
     <td align = CENTER><%= link_to 'Efetivar locação', reserve_rental_path(@rental) %></td>
     <% end %>
     <td align = CENTER><%= @rental.code %></td>
     <td align = CENTER><%= @rental.client.name %></td>
     <td align = CENTER><%= @rental.client.email %></td>
     <td align = CENTER><%= @rental.car_category.name %></td>
-    <td align = CENTER><%= @rental.start_date.strftime("%d/%m/%Y") %></td>
-    <td align = CENTER><%= @rental.end_date.strftime("%d/%m/%Y") %></td>
+    <td align = CENTER><%= @rental.start_date.strftime("%d/%m/%Y") if @rental %></td>
+    <td align = CENTER><%= @rental.end_date.strftime("%d/%m/%Y") if @rental %></td>
     <td align = CENTER><%= @rental.user.email %></td>
+    <td align = CENTER><%= link_to 'Deletar', rental_path(@rental), method: :delete %></td>
   </tr>
 
 </table>

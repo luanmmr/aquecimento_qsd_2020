@@ -8,11 +8,11 @@ Rails.application.routes.draw do
   resources :car_categories#, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :car_models#,     only: [:index, :new, :create, :show, :edit, :update, :destroy]
   resources :clients
-  resources :rentals, only: [:index, :show, :new, :create] do
+  resources :rentals, only: [:index, :show, :new, :create, :destroy] do
     get 'search', on: :collection
     get 'reserve', on: :member
-    post 'create_reserve', on: :member
-    get 'show_reserve', on: :member
+    post 'reserve', on: :member, to: 'rentals#create_reserve'
   end
+  resources :car_rentals, only: [:show]
 
 end
