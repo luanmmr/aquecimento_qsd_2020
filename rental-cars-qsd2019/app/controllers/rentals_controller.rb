@@ -47,19 +47,28 @@ class RentalsController < ApplicationController
   def reserve
     @rental = Rental.find(params[:id])
     @car_rental = CarRental.new
+    #@cars = Car.where(car_model: @rental.car_category.car_models)
     @cars = Car.all.select do |car|
        car.car_category == @rental.car_category && car.status_disponivel?
     end
   end
 
   def create_reserve
-    rental = Rental.find(params[:id])
+    @rental = Rental.find(params[:id])
     car = Car.find(params[:car_rental][:car_id])
-    @car_rental = CarRental.create!(car: car, rental: rental, daily_rate: rental.daily_price)
-    @car_rental.car.status_indisponivel!
-    @car_rental.rental.status_em_andamento!
+    @car_rental = CarRental.new(car: car, rental: @rental,
+                                    daily_rate: @rental.daily_price,
+                                    car_insurance: @rental.car_insurance,
+                                    third_party_insurance: @rental. third_party_insurance)
 
-    redirect_to car_rental_path(@car_rental), notice: "Locação efetivada"
+    return redirect_to car_rental_path(@car_rental), notice: "Locação efetivada" if @car_rental.save
+
+    @cars = Car.all.select do |car|
+       car.car_category == @rental.car_category && car.status_disponivel?
+    end
+
+    render :reserve
+
   end
 
 

@@ -18,4 +18,12 @@ class Rental < ApplicationRecord
     car_category.daily_rate + car_category.car_insurance + car_category.third_party_insurance
   end
 
+  def car_insurance
+    car_category.car_insurance
+  end
+
+  def third_party_insurance
+    car_category.third_party_insurance
+  end
+
 end

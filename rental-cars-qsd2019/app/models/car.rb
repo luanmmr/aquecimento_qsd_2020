@@ -4,8 +4,9 @@ class Car < ApplicationRecord
 
   enum status: {disponivel: 0, indisponivel: 1}, _prefix: true
 
-  def view_car
-    "#{car_model.name} - #{color} - #{license_plate}"
+  def full_description
+    return 'Carro não cadastro corretamente' if car_model.nil? || subsidiary.nil?
+    "#{car_model.manufacturer.name} #{car_model.name} - #{color} - #{license_plate}"
   end
 
   def car_category
