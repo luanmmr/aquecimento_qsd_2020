@@ -1,8 +1,8 @@
 class Car < ApplicationRecord
   belongs_to :car_model
   belongs_to :subsidiary
+  has_one :car_rental
 
-  enum status: {disponivel: 0, indisponivel: 1}, _prefix: true
 
   def full_description
     return 'Carro não cadastro corretamente' if car_model.nil? || subsidiary.nil?

@@ -10,7 +10,6 @@ feature 'Admin edits manufacturer' do
     click_on 'Fabricantes'
     click_on 'Fiat'
     click_on 'Editar'
-
     fill_in 'Nome', with: 'Honda'
     click_on 'Enviar'
 
@@ -27,7 +26,6 @@ feature 'Admin edits manufacturer' do
     click_on 'Fabricantes'
     click_on 'Fiat'
     click_on 'Editar'
-
     fill_in 'Nome', with: ''
     click_on 'Enviar'
 
@@ -45,7 +43,6 @@ feature 'Admin edits manufacturer' do
     click_on 'Fabricantes'
     click_on 'Fiat'
     click_on 'Editar'
-
     fill_in 'Nome', with: 'Honda'
     click_on 'Enviar'
 
@@ -54,6 +51,7 @@ feature 'Admin edits manufacturer' do
   end
 
   scenario 'with single name' do
+    
     Manufacturer.create(name: 'Ford')
     user = User.create!(email: 'test#@test.com', password: '123456')
 
@@ -61,7 +59,6 @@ feature 'Admin edits manufacturer' do
     visit manufacturers_path
     click_on 'Ford'
     click_on 'Editar'
-
     fill_in 'Nome', with: 'Fabricante Ford'
     click_on 'Enviar'
 
@@ -77,5 +74,5 @@ feature 'Admin edits manufacturer' do
     expect(current_path).to eq(new_user_session_path)
 
   end
-  
+
 end

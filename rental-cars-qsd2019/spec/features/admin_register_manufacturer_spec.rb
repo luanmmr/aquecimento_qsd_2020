@@ -9,12 +9,12 @@ feature 'Admin register manufacturer' do
     visit root_path
     click_on 'Fabricantes'
     click_on 'Registrar novo fabricante'
-
     fill_in 'Nome', with: 'Fiat'
     click_on 'Enviar'
 
     expect(page).to have_content('Fiat')
     expect(page).to have_content('Fabricante criada com sucesso!')
+
   end
 
   scenario 'and must fill in all fields' do
@@ -25,8 +25,6 @@ feature 'Admin register manufacturer' do
     visit root_path
     click_on 'Fabricantes'
     click_on 'Registrar novo fabricante'
-
-    fill_in 'Nome', with: ''
     click_on 'Enviar'
 
     expect(page).to have_content('Você deve corrigir os seguintes erros para continuar:')
@@ -47,7 +45,6 @@ feature 'Admin register manufacturer' do
     visit root_path
     click_on 'Fabricantes'
     click_on 'Registrar novo fabricante'
-
     fill_in 'Nome', with: 'Honda'
     click_on 'Enviar'
 
@@ -62,9 +59,7 @@ feature 'Admin register manufacturer' do
 
     login_as(user, scope: :user)
     visit new_manufacturer_path
-
     fill_in 'Nome', with: 'General Motors'
-
     click_on 'Enviar'
 
     expect(page).to have_content('Você deve corrigir os seguintes erros para continuar:')

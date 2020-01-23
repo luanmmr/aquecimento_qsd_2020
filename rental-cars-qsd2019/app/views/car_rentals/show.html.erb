@@ -3,6 +3,6 @@
   <li><%= @car_rental.car.license_plate %></li>
   <li><%= @car_rental.rental.client.name %></li>
   <li><%= @car_rental.rental.client.document %></li>
-  <li><%= format("%.2f", @car_rental.daily_rate) %></li>
+  <li><%= format("%.2f", @car_rental.rental.daily_price_total) %></li>
   <li><%= @car_rental.rental.status %></li>
 </ul>

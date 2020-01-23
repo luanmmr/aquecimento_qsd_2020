@@ -8,8 +8,8 @@ feature 'Admin view rentals' do
     other_client = Client.create!(name: 'Pedro', document: '25498769452', email: 'pedro@jose.com.br')
     car_category = CarCategory.create(name: 'A', daily_rate: '72.20', car_insurance: '28.00', third_party_insurance: '10.00')
     other_car_category = CarCategory.create(name: 'B', daily_rate: '92.20', car_insurance: '35.20', third_party_insurance: '10.00')
-    Rental.create!(code: '12a120c4c7', start_date: '02/01/2020', end_date: '02/03/2020', client: client, car_category: car_category, user: user)
-    Rental.create!(code: '45a157c4b8', start_date: '02/04/2020', end_date: '02/07/2020', client: other_client, car_category: other_car_category, user: user)
+    Rental.create!(code: '12a120c4c7', start_date: Date.current, end_date: 2.days.from_now, client: client, car_category: car_category, user: user)
+    Rental.create!(code: '45a157c4b8', start_date: Date.current, end_date: 2.days.from_now, client: other_client, car_category: other_car_category, user: user)
 
     login_as(user, scope: :user)
     visit root_path
@@ -32,7 +32,7 @@ feature 'Admin view rentals' do
     user = User.create!(email: 'teste@teste.com.br', password: '123456')
     client = Client.create!(name: 'Jose', document: '25498763123', email: 'jose@jose.com.br')
     car_category = CarCategory.create(name: 'A', daily_rate: '72.20', car_insurance: '28.00', third_party_insurance: '10.00')
-    Rental.create!(code: '12a120c4c7', start_date: '01/02/2020', end_date: '03/02/2020', client: client, car_category: car_category, user: user)
+    Rental.create!(code: '12a120c4c7', start_date: Date.current, end_date: 2.days.from_now, client: client, car_category: car_category, user: user)
 
     login_as(user, scope: :user)
     visit rentals_path
@@ -42,8 +42,8 @@ feature 'Admin view rentals' do
     expect(page).to have_content('Jose')
     expect(page).to have_content('jose@jose.com.br')
     expect(page).to have_content('A')
-    expect(page).to have_content('01/02/2020')
-    expect(page).to have_content('03/02/2020')
+    expect(page).to have_content(Date.current.strftime("%d/%m/%Y"))
+    expect(page).to have_content(2.days.from_now.strftime("%d/%m/%Y"))
     expect(page).to have_content('teste@teste.com.br')
 
   end

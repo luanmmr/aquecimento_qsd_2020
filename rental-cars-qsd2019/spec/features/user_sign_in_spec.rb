@@ -6,7 +6,6 @@ feature 'User sign in' do
 
     visit root_path
     click_on 'Entrar'
-
     within 'form' do
       fill_in 'Email', with: 'test@test.com'
       fill_in 'Senha', with: '123456'
@@ -25,18 +24,15 @@ feature 'User sign in' do
 
     visit root_path
     click_on 'Entrar'
-
     within 'form' do
       fill_in 'Email', with: 'test@test.com'
       fill_in 'Senha', with: '123456'
       click_on 'Entrar'
     end
-
     click_on 'Sair'
 
     expect(page).to have_content('Signed out successfully')
     expect(current_path).to eq(root_path)
-
 
   end
 end

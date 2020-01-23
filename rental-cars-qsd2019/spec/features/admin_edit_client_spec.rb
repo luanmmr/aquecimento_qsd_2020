@@ -40,7 +40,7 @@ feature 'Admin edit client' do
 
   scenario 'and cpf must be unique' do
     user = User.create!(email: 'teste@hotmail.com', password: '123456')
-    client = Client.create(name: 'Jose', document: '25498763123', email: 'jose@jose.com.br')
+    Client.create(name: 'Jose', document: '25498763123', email: 'jose@jose.com.br')
     other_client = Client.create(name: 'Maria', document: '14498169112', email: 'maria@jose.com.br')
 
     login_as(user, scope: :user)
@@ -53,6 +53,7 @@ feature 'Admin edit client' do
   end
 
   scenario 'and name must to have only words' do
+
     user = User.create!(email: 'teste@hotmail.com', password: '123456')
     client = Client.create(name: 'Jose', document: '25498763123', email: 'jose@jose.com.br')
 
@@ -66,9 +67,11 @@ feature 'Admin edit client' do
     fill_in 'Nome', with: 'Pedr_ S#ilva'
 
     expect(page).to have_content('Nome inválido')
+
   end
 
   scenario 'and cpf must have only numbers' do
+    
     user = User.create!(email: 'teste@hotmail.com', password: '123456')
     client = Client.create(name: 'Jose', document: '25498763123', email: 'jose@jose.com.br')
 

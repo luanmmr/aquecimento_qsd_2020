@@ -9,12 +9,10 @@ feature 'Admin register car category' do
     visit root_path
     click_on 'Categorias de Carros'
     click_on 'Registrar nova categoria de carro'
-
     fill_in 'Nome', with: 'A'
     fill_in 'Diária', with: 71.73
     fill_in 'Seguro do Carro', with: 28.00
     fill_in 'Seguro para Terceiros', with: 10.00
-
     click_on 'Enviar'
 
     expect(page).to have_content('Categoria A')
@@ -29,12 +27,6 @@ feature 'Admin register car category' do
     visit root_path
     click_on 'Categorias de Carros'
     click_on 'Registrar nova categoria de carro'
-
-    fill_in 'Nome', with: ''
-    fill_in 'Diária', with: ''
-    fill_in 'Seguro do Carro', with: ''
-    fill_in 'Seguro para Terceiros', with: ''
-
     click_on 'Enviar'
 
     expect(page).to have_content('Você deve corrigir os seguintes erros para continuar:')
@@ -53,12 +45,11 @@ feature 'Admin register car category' do
     visit root_path
     click_on 'Categorias de Carros'
     click_on 'Registrar nova categoria de carro'
-
     fill_in 'Nome', with: 'A'
-
     click_on 'Enviar'
 
     expect(page).to have_content('Já existe uma categoria com este nome')
+
   end
 
   scenario 'and the fields daily rate, car insurance and third party insurance must be a number' do
@@ -67,12 +58,10 @@ feature 'Admin register car category' do
 
     login_as(user, scope: :user)
     visit new_car_category_path
-
     fill_in 'Nome', with: 'A'
     fill_in 'Diária', with: 'teste'
-    fill_in 'Seguro do Carro', with: 0
+    fill_in 'Seguro do Carro', with: 'teste'
     fill_in 'Seguro para Terceiros', with: 0
-
     click_on 'Enviar'
 
     expect(page).to have_content('Campo diária com valor inválido')

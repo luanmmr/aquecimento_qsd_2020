@@ -17,6 +17,7 @@ feature 'Admin view Car Models' do
   end
 
   scenario 'and return to home page' do
+    
     manufacturer = Manufacturer.create(name: 'Fiat')
     car_category = CarCategory.create(name: 'A', daily_rate: 120.00, car_insurance: 40.50, third_party_insurance: 15)
     CarModel.create!(name: 'Uno', year: '2018', motorization: '1.5', fuel_type: 'Flex', car_category: car_category, manufacturer: manufacturer)

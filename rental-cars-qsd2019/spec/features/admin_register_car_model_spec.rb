@@ -11,7 +11,6 @@ feature 'Admin register car model' do
     visit root_path
     click_on 'Modelos de Carros'
     click_on 'Registrar modelo de carro'
-
     fill_in 'Nome', with: 'Fiesta'
     fill_in 'Ano', with: '2020'
     fill_in 'Motorização', with: '1.8'
@@ -43,6 +42,7 @@ feature 'Admin register car model' do
     expect(page).to have_content('Preencha o campo ano')
     expect(page).to have_content('Você deve informar a motorização')
     expect(page).to have_content('Ops, você se esqueceu do tipo de combustível')
+    
   end
 
   scenario 'name must be unique' do
@@ -71,5 +71,5 @@ feature 'Admin register car model' do
     expect(current_path).to eq(new_user_session_path)
 
   end
-  
+
 end

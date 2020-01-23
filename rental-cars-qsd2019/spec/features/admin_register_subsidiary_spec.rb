@@ -9,11 +9,9 @@ feature 'Admin register subsidiary' do
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova filial'
-
     fill_in 'Nome', with: 'Aeroporto Congonhas'
     fill_in 'Endereço', with: 'Rua Otávio Tarquínio De Souza, 379, Campo Belo, SP'
     fill_in 'CNPJ', with: '28179836000114'
-
     click_on 'Enviar'
 
     expect(page).to have_content('Filial Aeroporto Congonhas')
@@ -28,11 +26,6 @@ feature 'Admin register subsidiary' do
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova filial'
-
-    fill_in 'Nome', with: ''
-    fill_in 'Endereço', with: ''
-    fill_in 'CNPJ', with: ''
-
     click_on 'Enviar'
 
     expect(page).to have_content('Você deve corrigir os seguintes erros para continuar:')
@@ -46,18 +39,15 @@ feature 'Admin register subsidiary' do
     Subsidiary.create(name: 'Aeroporto Congonhas',
       address: 'Rua Otávio Tarquínio De Souza, 379, Campo Belo, SP',
       cnpj: '28179836000114')
-
       user = User.create!(email: 'test#@test.com', password: '123456')
 
       login_as(user, scope: :user)
       visit root_path
       click_on 'Filiais'
       click_on 'Registrar nova filial'
-
       fill_in 'Nome', with: 'Aeroporto Congonhas'
       fill_in 'Endereço', with: 'Rua Otávio Tarquínio De Souza, 379, Campo Belo, SP'
       fill_in 'CNPJ', with: '28179836000114'
-
       click_on 'Enviar'
 
       expect(page).to have_content('Você deve corrigir os seguintes erros para continuar:')
@@ -70,11 +60,9 @@ feature 'Admin register subsidiary' do
 
       login_as(user, scope: :user)
       visit new_subsidiary_path
-
       fill_in 'Nome', with: 'Aeroporto Congonhas'
       fill_in 'Endereço', with: 'Rua Otávio Tarquínio De Souza, 379, Campo Belo, SP'
       fill_in 'CNPJ', with: '2817983600011'
-
       click_on 'Enviar'
 
       expect(page).to have_content('O CNPJ deve ter 14 números')
@@ -86,11 +74,9 @@ feature 'Admin register subsidiary' do
 
       login_as(user, scope: :user)
       visit new_subsidiary_path
-
       fill_in 'Nome', with: 'Aeroporto Congonhas'
       fill_in 'Endereço', with: 'Rua Otávio Tarquínio De Souza, 379, Campo Belo, SP'
       fill_in 'CNPJ', with: '281798360001141'
-
       click_on 'Enviar'
 
       expect(page).to have_content('O CNPJ deve ter 14 números')
@@ -101,7 +87,7 @@ feature 'Admin register subsidiary' do
       visit new_subsidiary_path
 
       expect(current_path).to eq(new_user_session_path)
-      
+
     end
 
   end
