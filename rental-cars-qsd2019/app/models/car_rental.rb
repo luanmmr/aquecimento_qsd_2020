@@ -24,7 +24,6 @@ class CarRental < ApplicationRecord
 
   private
 
-
   def rental_status_change
     rental.status_em_andamento!
   end
@@ -32,7 +31,7 @@ class CarRental < ApplicationRecord
   def check_car_category
     if car && rental
       if car.car_model.car_category != rental.car_category
-        errors.add(:car, ' não é mais da mesma categoria da alocação')
+        errors.add(:base, 'Categoria do carro e da locação não são a mesma.')
       end
     end
   end

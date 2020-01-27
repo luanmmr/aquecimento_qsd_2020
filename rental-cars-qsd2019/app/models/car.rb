@@ -4,9 +4,19 @@ class Car < ApplicationRecord
   has_one :car_rental
 
 
+  validates :color,
+  presence: {message: 'O cor deve ser informada'}
+
+  validates :license_plate,
+  presence: {message: 'A placa não foi informada'}
+
+
   def full_description
-    return 'Carro não cadastro corretamente' if car_model.nil? || subsidiary.nil?
-    "#{car_model.manufacturer.name} #{car_model.name} - #{color} - #{license_plate}"
+    if car_model.nil? || color.nil? || license_plate.nil?
+      'Carro não cadastro corretamente'
+    else
+      "#{car_model.manufacturer.name} #{car_model.name} - #{color} - #{license_plate}"
+    end
   end
 
   def car_category

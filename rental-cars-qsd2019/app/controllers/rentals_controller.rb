@@ -1,8 +1,6 @@
 class RentalsController < ApplicationController
-
   before_action :authenticate_user!
   before_action :clients_collection, :categories_collection, only: [:new, :edit]
-
 
   def new
     @rental = Rental.new
@@ -17,9 +15,7 @@ class RentalsController < ApplicationController
 
     clients_collection
     categories_collection
-
     render :new
-
   end
 
   def index
@@ -57,12 +53,9 @@ class RentalsController < ApplicationController
                                 car_insurance: @rental.car_insurance,
                                 third_party_insurance: @rental.third_party_insurance,
                                 start_mileage: @car.mileage)
-
     @car_rental.save!
     redirect_to car_rental_path(@car_rental), notice: "Locação efetivada"
-
   end
-
 
 
   private
@@ -82,6 +75,5 @@ class RentalsController < ApplicationController
   def params_create_reserve
     params.require(:car_rental).permit(:car_id, :id)
   end
-
 
 end

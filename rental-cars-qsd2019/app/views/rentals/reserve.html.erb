@@ -5,11 +5,11 @@
 <p>Você deve corrigir os seguintes erros para continuar:</p>
 
 <ul>
-<% @car_rental.errors.values.each do |error_messages_group| %>
-<% error_messages_group.each do |error_message| %>
-<li><%= error_message %></li>
-<% end %>
-<% end %>
+  <% @car_rental.errors.values.each do |error_messages_group| %>
+  <% error_messages_group.each do |error_message| %>
+  <li><%= error_message %></li>
+  <% end %>
+  <% end %>
 </ul>
 <% end %>
 

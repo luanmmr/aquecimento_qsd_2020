@@ -11,10 +11,10 @@ class Rental < ApplicationRecord
   validates :end_date,
   presence: {message: 'Não foi informado a data de fim'}
 
-  validate :start_date_valid, :end_date_valid, :availables_cars
+  validate :start_date_valid, :end_date_valid
+  validate :availables_cars, on: :create
 
   enum status: {agendada: 0, em_andamento: 1}, _prefix: true
-
 
 
 
@@ -32,22 +32,23 @@ class Rental < ApplicationRecord
 
   def availables_cars
     # Será buscado todos os carros ONDE o car_model deles são iguais os car_models de car_category
-      if car_category && !car_category.car_models.empty?
+    if car_category && !car_category.car_models.empty?
       category_cars = Car.where(car_model: car_category.car_models)
-      category_rentals = Rental.where(car_category: car_category)
       # unavaible_cars = category_rentals.where('start_date BETWEEN ? AND ?', start_date,
       # end_date).or('end_date BETWEEN ? AND ?', start_date, end_date)
-      rented_cars = category_rentals.where(start_date: start_date..end_date)
-                                       .or(category_rentals.where(end_date: start_date..end_date))
-                                       .or(category_rentals.where("start_date < ? AND end_date > ?",
-                                       "#{start_date}", "#{end_date}"))
+      rented_cars = Rental.where(car_category: car_category)
+                          .where(start_date: start_date..end_date)
+                          .or(Rental.where(car_category: car_category)
+                          .where(end_date: start_date..end_date))
+                          .or(Rental.where(car_category: car_category)
+                          .where("start_date < ? AND end_date > ?",
+                          "#{start_date}", "#{end_date}"))
 
-      if rented_cars.length == category_cars.length
-        errors[:base] << 'Não há carros dessa categoria disponível para o período'
+        if rented_cars.length >= category_cars.length
+          errors[:base] << 'Não há carros dessa categoria disponível para o período'
+        end
       end
-
     end
-  end
 
 
   def daily_price_total
