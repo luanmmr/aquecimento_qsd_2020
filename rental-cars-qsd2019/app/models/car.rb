@@ -10,6 +10,10 @@ class Car < ApplicationRecord
   validates :license_plate,
   presence: {message: 'A placa não foi informada'}
 
+  validates :mileage,
+  presence: {message: 'A quilometragem deve ser informada'},
+  numericality: {message: 'A quilometragem não aceita letras'}
+
 
   def full_description
     if car_model.nil? || color.nil? || license_plate.nil?

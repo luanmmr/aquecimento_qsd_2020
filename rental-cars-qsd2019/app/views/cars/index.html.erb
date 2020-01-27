@@ -1,0 +1,29 @@
+<h1> Carros </h1>
+
+<table width = 800>
+  <tr>
+    <th>Placa</th>
+    <th>Fabricante</th>
+    <th>Modelo</th>
+    <th>Filial</th>
+  </tr>
+
+  <% if @cars.any? %>
+  <% @cars.each do |car| %>
+  <tr>
+    <td align = CENTER><%= link_to car.license_plate, car_path(car) %></td>
+    <td align = CENTER><%= car.car_model.manufacturer.name %></td>
+    <td align = CENTER><%= car.car_model.name %></td>
+    <td align = CENTER><%= car.subsidiary.name %></td
+  </tr>
+  <% end %>
+
+  <% else %>
+  <h3> Nenhum Carro cadastrado </h3>
+
+  <% end %>
+</table>
+
+<p>
+  <%= link_to 'Registrar novo carro', new_car_path %>
+</p>

@@ -1,5 +1,4 @@
 class CarModelsController < ApplicationController
-
   before_action :authenticate_user!#, except: [:show, :index]
   before_action :collection_manufacturer, :collection_car_category, only: [:new, :edit]
 

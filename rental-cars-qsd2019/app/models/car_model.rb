@@ -23,9 +23,22 @@ class CarModel < ApplicationRecord
 
 
   private
+
   def formatting
-    self.name = name.downcase.titleize
-    self.fuel_type = fuel_type.downcase.titleize
+    if name.present? && fuel_type.present?
+      self.name = name.downcase.titleize
+      self.fuel_type = fuel_type.downcase.titleize
+    else
+      'Este modelo foi criado incompleto'
+    end
+  end
+
+  def full_description
+    if name.present? && manufacturer.present?
+      "#{manufacturer.name} #{name} | #{year} | #{motorization} | #{fuel_type}"
+    else
+      "Modelo de carro cadastrado incorretamente!"
+    end
   end
 
 end

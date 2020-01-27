@@ -1,0 +1,39 @@
+<% if @car.errors.any? %>
+<div>
+  <h3> <%= pluralize(@car.errors.count, 'falha') %> </h3>
+  <p> Você deve corrigir os seguintes erros para continuar: </p>
+  <ul>
+    <% @car.errors.values.each do |messages_group| %>
+    <% messages_group.each do |message| %>
+    <li> <%= message %> </li>
+    <% end %>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<%= form_with model: @car, local: true do |form| %>
+<p>
+  <%= form.label :license_plate, 'Placa' %>
+  <%= form.text_field :license_plate %>
+</p>
+<p>
+  <%= form.label :color, 'Cor' %>
+  <%= form.text_field :color %>
+</p>
+<p>
+ <%= form.label :mileage , 'Quilometragem' %>
+ <%= form.text_field :mileage %>
+</p>
+<p>
+ <%= form.label :car_model_id, 'Modelo do Carro' %>
+ <%= form.collection_select :car_model_id, @car_models, :id, :full_description %>
+</p>
+<p>
+<%= form.label :subsidiary_id, 'Filial' %>
+<%= form.collection_select :subsidiary_id, @subsidiaries, :id, :full_description %>
+</p>
+<p>
+<%= form.submit 'Enviar' %>
+</p>
+<% end %>

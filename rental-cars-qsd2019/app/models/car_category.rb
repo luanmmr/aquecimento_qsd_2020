@@ -28,7 +28,7 @@ class CarCategory < ApplicationRecord
 
   private
   def formatting
-    self.name = name.downcase.titleize
+    self.name = name.downcase.titleize if name.present?
   end
 
 end

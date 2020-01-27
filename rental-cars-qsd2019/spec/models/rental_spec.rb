@@ -53,9 +53,9 @@ describe Rental do
                                          fuel_type: 'Flex', car_category: car_category,
                                          manufacturer: Manufacturer.new)
       car = Car.create!(license_plate: 'CAR01', car_model: car_model,
-                        color: 'Vermelho', subsidiary: Subsidiary.new)
+                        color: 'Vermelho', subsidiary: Subsidiary.new, mileage: 100)
       other_car = Car.create!(license_plate: 'CAR02', car_model: car_model,
-                              color: 'Vermelho', subsidiary: Subsidiary.new)
+                              color: 'Vermelho', subsidiary: Subsidiary.new, mileage: 100)
       rental = Rental.create!(code: 'RENTAL01', car_category: car_category,
                               client: Client.new, user: User.new,
                               start_date: 10.days.from_now, end_date: 17.days.from_now)
@@ -83,9 +83,9 @@ describe Rental do
                                          fuel_type: 'Flex', car_category: car_category,
                                          manufacturer: Manufacturer.new)
       car = Car.create!(license_plate: 'CAR01', car_model: car_model,
-                        color: 'Vermelho', subsidiary: Subsidiary.new)
+                        color: 'Vermelho', subsidiary: Subsidiary.new, mileage: 100)
       other_car = Car.create!(license_plate: 'CAR02', car_model: car_model,
-                              color: 'Vermelho', subsidiary: Subsidiary.new)
+                              color: 'Vermelho', subsidiary: Subsidiary.new, mileage: 100)
       rental = Rental.create!(code: 'RENTAL01', car_category: car_category,
                               client: Client.new, user: User.new,
                               start_date: 10.days.from_now, end_date: 17.days.from_now)
@@ -113,9 +113,9 @@ describe Rental do
                                          fuel_type: 'Flex', car_category: car_category,
                                          manufacturer: Manufacturer.new)
       car = Car.create!(license_plate: 'CAR01', car_model: car_model,
-                        color: 'Vermelho', subsidiary: Subsidiary.new)
+                        color: 'Vermelho', subsidiary: Subsidiary.new, mileage: 100)
       other_car = Car.create!(license_plate: 'CAR02', car_model: car_model,
-                              color: 'Vermelho', subsidiary: Subsidiary.new)
+                              color: 'Vermelho', subsidiary: Subsidiary.new, mileage: 100)
       rental = Rental.create!(code: 'RENTAL01', car_category: car_category,
                               client: Client.new, user: User.new,
                               start_date: 10.days.from_now, end_date: 17.days.from_now)
@@ -143,9 +143,9 @@ describe Rental do
                                          fuel_type: 'Flex', car_category: car_category,
                                          manufacturer: Manufacturer.new)
       car = Car.create!(license_plate: 'CAR01', car_model: car_model,
-                        color: 'Vermelho', subsidiary: Subsidiary.new)
+                        color: 'Vermelho', subsidiary: Subsidiary.new, mileage: 100)
       other_car = Car.create!(license_plate: 'CAR02', car_model: car_model,
-                              color: 'Vermelho', subsidiary: Subsidiary.new)
+                              color: 'Vermelho', subsidiary: Subsidiary.new, mileage: 100)
       rental = Rental.create!(code: 'RENTAL01', car_category: car_category,
                               client: Client.new, user: User.new,
                               start_date: 1.days.from_now, end_date: 30.days.from_now)
