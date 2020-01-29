@@ -9,11 +9,21 @@ Rails.application.routes.draw do
   resources :car_models#,     only: [:index, :new, :create, :show, :edit, :update, :destroy]
   resources :clients
   resources :cars
+  resources :car_rentals, only: [:show]
+
   resources :rentals, only: [:index, :show, :new, :create, :destroy] do
     get 'search', on: :collection
     get 'reserve', on: :member
     post 'reserve', on: :member, to: 'rentals#create_reserve'
   end
-  resources :car_rentals, only: [:show]
+
+  namespace :api do
+    namespace :v1 do
+      resources :cars, only: [:index, :show, :create, :update]
+      resources :rentals, only: :create
+    end
+  end
+
+
 
 end
