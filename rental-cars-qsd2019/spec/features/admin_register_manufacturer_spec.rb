@@ -27,7 +27,7 @@ feature 'Admin register manufacturer' do
     click_on 'Registrar novo fabricante'
     click_on 'Enviar'
 
-    expect(page).to have_content('Você deve corrigir os seguintes erros para continuar:')
+    expect(page).to have_content('Você deve corrigir os seguintes erros para continuar')
     expect(page).to have_content('Nome não pode ficar em branco')
 
   end
@@ -48,7 +48,7 @@ feature 'Admin register manufacturer' do
     fill_in 'Nome', with: 'Honda'
     click_on 'Enviar'
 
-    expect(page).to have_content('Você deve corrigir os seguintes erros para continuar:')
+    expect(page).to have_content('Você deve corrigir os seguintes erros para continuar')
     expect(page).to have_content('Fabricante já cadastrada')
 
   end
@@ -62,7 +62,7 @@ feature 'Admin register manufacturer' do
     fill_in 'Nome', with: 'General Motors'
     click_on 'Enviar'
 
-    expect(page).to have_content('Você deve corrigir os seguintes erros para continuar:')
+    expect(page).to have_content('Você deve corrigir os seguintes erros para continuar')
     expect(page).to have_content('Nome composto ou caracteres inválidos')
 
   end

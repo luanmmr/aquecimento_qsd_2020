@@ -23,16 +23,16 @@ feature 'User sign in' do
     User.create!(email: 'test@test.com', password: '123456')
 
     visit root_path
-    click_on 'Entrar'
     within 'form' do
       fill_in 'Email', with: 'test@test.com'
       fill_in 'Senha', with: '123456'
       click_on 'Entrar'
     end
-    click_on 'Sair'
+    within("li#logout") do
+      click_on 'Sair'
+    end
 
-    expect(page).to have_content('Signed out successfully')
-    expect(current_path).to eq(root_path)
+    expect(current_path).to eq(new_user_session_path)
 
   end
 end

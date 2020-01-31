@@ -9,16 +9,13 @@ feature 'Visitor view manufacturers' do
     Manufacturer.create(name: 'Volkswagen')
     user = User.create!(email: 'test#@test.com', password: '123456')
 
-
     # Act - Executar ações
     login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
-    click_on 'Fiat'
 
     # Assert - Verificar coisas
     expect(page).to have_content('Fiat')
-    expect(page).to have_link('Home Page')
   end
 
   scenario 'and return to home page' do
@@ -29,25 +26,20 @@ feature 'Visitor view manufacturers' do
     login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
-    click_on 'Fiat'
     click_on 'Home Page'
 
     expect(current_path).to eq root_path
   end
 
   scenario 'and must be authenticated' do
-
     visit manufacturers_path
 
     expect(current_path).to eq(new_user_session_path)
-
   end
 
   scenario 'and must be authenticated for more view show' do
-
     visit manufacturer_path(17)
 
     expect(current_path).to eq(new_user_session_path)
-
   end
 end
