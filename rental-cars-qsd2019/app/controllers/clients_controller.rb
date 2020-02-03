@@ -1,5 +1,4 @@
 class ClientsController < ApplicationController
-  before_action :authenticate_user!
 
   def new
     @client = Client.new
@@ -8,17 +7,13 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(params_client)
 
-    return redirect_to client_path(@client), notice: 'Cliente registrado com sucesso' if @client.save
-
+    return redirect_to clients_path,
+                       notice: 'Cliente registrado com sucesso' if @client.save
     render :new
   end
 
   def index
     @clients = Client.all
-  end
-
-  def show
-    @client = Client.find(params[:id])
   end
 
   def edit
@@ -28,7 +23,8 @@ class ClientsController < ApplicationController
   def update
     @client = Client.find(params[:id])
 
-    return redirect_to @client, notice: 'Cliente editado com sucesso!' if @client.update(params_client)
+    return redirect_to clients_path,
+    notice: 'Cliente editado com sucesso!' if @client.update(params_client)
 
     render :edit
   end

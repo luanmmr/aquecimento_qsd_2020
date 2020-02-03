@@ -1,31 +1,42 @@
-<table width = 1200>
-  <tr>
-    <% if @rental.status_agendada? %>
-    <th></th>
-    <% end %>
-    <th>Código</th>
-    <th>Cliente</th>
-    <th>Email</th>
-    <th>Categoria</th>
-    <th>Data de início</th>
-    <th>Data de fim</th>
-    <th>Usuário</th>
-    <th colspan = "2"></th>
-  </tr>
-
-  <tr>
-
-    <% if @rental.status_agendada? %>
-    <td align = CENTER><%= link_to 'Efetivar locação', reserve_rental_path(@rental) %></td>
-    <% end %>
-    <td align = CENTER><%= @rental.code %></td>
-    <td align = CENTER><%= @rental.client.name %></td>
-    <td align = CENTER><%= @rental.client.email %></td>
-    <td align = CENTER><%= @rental.car_category.name %></td>
-    <td align = CENTER><%= @rental.start_date.strftime("%d/%m/%Y") if @rental %></td>
-    <td align = CENTER><%= @rental.end_date.strftime("%d/%m/%Y") if @rental %></td>
-    <td align = CENTER><%= @rental.user.email %></td>
-    <td align = CENTER><%= link_to 'Deletar', rental_path(@rental), method: :delete %></td>
-  </tr>
-
-</table>
+<div class="ls-list">
+  <header class="ls-list-header">
+    <div class="ls-list-title col-md-9">
+      <h2><%= @rental.code %></h2>
+    </div>
+    <div class="col-md-3 ls-txt-right" id=<%= "rental-#{@rental.id}" %>>
+      <% if @rental.status_agendada? %>
+      <%= link_to 'Efetivar', reserve_rental_path(@rental),
+                                      class: "ls-btn" %>
+      <% end %>
+      <%= link_to 'Deletar', rental_path(@rental),
+                             class: "ls-btn-primary-danger ls-ico-remove",
+                             method: :delete, data: {confirm: 'Tem certeza?'}%>
+    </div>
+  </header>
+  <div class="ls-list-content ">
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">Cliente</span>
+      <strong><%= @rental.client.name %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">Usuário</span>
+      <strong><%= @rental.user.email %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">Categoria</span>
+      <strong><%= @rental.car_category.name %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">Data de início</span>
+      <strong><%= @rental.start_date.strftime("%d/%m/%Y") if @rental %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">Email</span>
+      <strong><%= @rental.client.email %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">Data de fim</span>
+      <strong><%= @rental.end_date.strftime("%d/%m/%Y") if @rental %></strong>
+    </div>
+  </div>
+</div>

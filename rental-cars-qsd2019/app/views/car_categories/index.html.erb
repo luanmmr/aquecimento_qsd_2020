@@ -1,12 +1,56 @@
-<h1> Categorias de Carros </h1>
-<% if @car_categories.empty? %>
-<h3> Nenhuma categoria cadastrada </h3>
-<% else %>
+<h1 class="ls-title-intro ls-ico-bukets">Categorias de Carros</h1>
+
+<% @car_categories.each do |car_category| %>
+<h3>Categoria: <%= car_category.name %></h3>
+
+<br>
+
 <ul>
-  <% @car_categories.each do |car_category| %>
-  <li> <%= link_to car_category.name, car_category %> </li>
-  <% end %>
+  <li> Diária: <%= car_category.daily_rate %> </li>
+  <li> Seguro do Carro: <%= car_category.car_insurance %> </li>
+  <li> Seguro para Terceiros: <%= car_category.third_party_insurance %> </li>
 </ul>
+
+<br>
+
+<div id=<%= "car_category-#{car_category.id}" %>>
+  <%= link_to 'Editar', edit_car_category_path(car_category), class: "ls-btn" %>
+<%= link_to 'Deletar', car_category_path(car_category), method: :delete, data:
+{confirm: 'Tem certeza?'}, class: "ls-btn-primary-danger ls-ico-"\
+                                  "remove" %>
+</div>
+
+<div id="cars" class="ls-tab-content ls-active">
+  <table class="ls-table ls-table-striped ls-bg-header">
+    <thead>
+      <tr>
+        <th>Modelo</th>
+        <th class="hidden-xs">Fabricante</th>
+        <th>Ano</th>
+        <th class="hidden-xs">Motor</th>
+        <th>Combustível</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% car_category.car_models.each do |car_model| %>
+      <tr>
+        <td><%= car_model.name %></td>
+        <td class="hidden-xs"><%= car_model.manufacturer.name %></td>
+        <td><%= car_model.year %></td>
+        <td class="hidden-xs"><%= car_model.motorization %></td>
+        <td><%= car_model.fuel_type %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+<br>
+<br>
 <% end %>
 
-<%= link_to 'Registrar nova categoria de carro', new_car_category_path %>
+<%= link_to 'Registrar nova categoria', new_car_category_path,
+                                        class: 'ls-btn-primary' %>
+
+                                        <br><br><br>

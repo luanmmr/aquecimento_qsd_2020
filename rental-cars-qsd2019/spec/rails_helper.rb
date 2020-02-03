@@ -33,8 +33,14 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
-
+  # Adicionado para ser possível logar no devise usando apenas login_as(user, :scope => :user)
+  # Não sendo mais necessário dar um fill_in 'Email' etc.. e fill_in 'Senha' etc.. toda vez
+  # https://github.com/heartcombo/devise/wiki/How-To:-Test-with-Capybara
   config.include Warden::Test::Helpers
+
+  # Adicionando esse bloco, será possível dar um create em a necessidade de chamar
+  # FactoryBot antes
+  config.include FactoryBot::Syntax::Methods
 
   # config.after :each do
   #   Warden.test_reset!

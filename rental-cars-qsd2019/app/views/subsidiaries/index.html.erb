@@ -1,12 +1,35 @@
-<h1> Filiais </h1>
-<% if @subsidiaries.empty? %>
-<h3> Nenhuma filial cadastrada </h3>
-<% else %>
-<ul>
-  <% @subsidiaries.each do |subsidiary| %>
-  <li> <%= link_to subsidiary.name, subsidiary %> </li>
-  <% end %>
-</ul>
+<h1 class="ls-title-intro ls-ico-earth">Filiais</h1>
+
+<% @subsidiaries.each do |subsidiary| %>
+<div class="ls-list">
+  <header class="ls-list-header">
+    <div class="ls-list-title col-md-9">
+      <%= link_to subsidiary.name, subsidiary_path(subsidiary) %>
+      <small>
+        <%= "#{subsidiary.address}, #{subsidiary.number}, "\
+            "#{subsidiary.district}, #{subsidiary.state} - "\
+            "#{subsidiary.city} — #{subsidiary.zip_code}" %>
+      </small>
+    </div>
+    <div class="col-md-3 ls-txt-right" id="subsidiary-<%= subsidiary.id %>">
+      <%= link_to 'Editar', edit_subsidiary_path(subsidiary), class: "ls-btn" %>
+      <%= link_to 'Deletar', subsidiary, class: "ls-btn-primary-danger
+      ls-ico-remove", method: :delete, data: {confirm: 'Tem certeza?'}%>
+    </div>
+  </header>
+  <div class="ls-list-content ">
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">CNPJ</span>
+      <strong><%= subsidiary.cnpj %></strong>
+    </div>
+  </div>
+</div>
+<br>
 <% end %>
 
-<%= link_to 'Registrar nova filial', new_subsidiary_path %>
+<br>
+
+<%= link_to 'Registrar nova filial', new_subsidiary_path, class: 'ls-btn-primary' %>
+
+<br>
+<br>

@@ -3,13 +3,12 @@ Rails.application.routes.draw do
   root to: 'home#index', only: [:index]
   # É possível escolher quais routes serão criadas
   #resources :manufacturers, only: [:index, :show, :new]
-  resources :manufacturers#,  only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :manufacturers, only: [:new, :create, :edit, :update, :destroy]
   resources :subsidiaries#,   only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  resources :car_categories#, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  resources :car_models#,     only: [:index, :new, :create, :show, :edit, :update, :destroy]
-  resources :clients
+  resources :car_categories, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :car_models, only: [:new, :create, :edit, :update, :destroy]
+  resources :clients, only: [:new, :index, :create, :edit, :update, :destroy]
   resources :cars
-  resources :car_rentals, only: [:show]
 
   resources :rentals, only: [:index, :show, :new, :create, :destroy] do
     get 'search', on: :collection

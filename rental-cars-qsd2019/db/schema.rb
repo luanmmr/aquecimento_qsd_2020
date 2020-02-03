@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_23_121952) do
+ActiveRecord::Schema.define(version: 2020_02_01_040845) do
 
   create_table "car_categories", force: :cascade do |t|
     t.string "name"
@@ -95,6 +95,11 @@ ActiveRecord::Schema.define(version: 2020_01_23_121952) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "zip_code"
+    t.integer "number"
+    t.string "district"
+    t.string "state"
+    t.string "city"
   end
 
   create_table "users", force: :cascade do |t|

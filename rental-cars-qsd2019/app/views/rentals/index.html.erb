@@ -1,15 +1,15 @@
-<h1> Locações </h1>
-
-<%= form_tag search_rentals_path, method: :get do %>
+<h1 class="ls-title-intro ls-ico-week">Locações</h1>
+<div class="ls-box-filter">
+<%= form_tag search_rentals_path, method: :get,
+             class: "ls-form ls-form-inline" do %>
 <%= label_tag :q, 'Pesquisa' %>
 <%= text_field_tag :q %>
-<%= submit_tag 'Buscar' %>
+<%= submit_tag 'Buscar', class: "ls-btn" %>
 <% end %>
-
-<br><br>
+</div>
 
 <%= render partial: 'partial_results' %>
 
 <br>
 
-<%= link_to 'Agendar locação', new_rental_path %>
+<%= link_to 'Agendar locação', new_rental_path, class: 'ls-btn-primary' %>

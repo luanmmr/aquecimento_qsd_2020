@@ -1,34 +1,40 @@
-<h1>Pesquisa</h1>
+<h1 class="ls-title-intro ls-ico-search">Locações</h1>
 
-<%= form_tag search_rentals_path, method: :get do %>
+<div class="ls-box-filter">
+<%= form_tag search_rentals_path, method: :get,
+             class: "ls-form ls-form-inline" do %>
 <%= label_tag :q, 'Pesquisa' %>
 <%= text_field_tag :q %>
-<%= submit_tag 'Buscar' %>
+<%= submit_tag 'Buscar', class: "ls-btn" %>
 <% end %>
-
-<br><br>
+</div>
 
 <% if @q.present? %>
 
-<table width = 1200>
-  <tr>
-    <th>Código</th>
-    <th>Cliente</th>
-    <th>Email</th>
-    <th>Categoria</th>
-  </tr>
-
-  <% if @rentals.any? %>
-  <% @rentals.each do |rental| %>
-  <tr>
-    <td align = CENTER><%= link_to rental.code, rental_path(rental) %></td>
-    <td align = CENTER><%= rental.client.name %></td>
-    <td align = CENTER><%= rental.client.email %></td>
-    <td align = CENTER><%= rental.car_category.name %></td>
-  </tr>
-  <% end %>
-  <% end %>
-</table>
+<div id="cars" class="ls-tab-content ls-active">
+  <table class="ls-table ls-table-striped ls-bg-header">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th class="hidden-xs">Cliente</th>
+        <th>Email</th>
+        <th class="hidden-xs">Categoria</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @rentals.each do |rental| %>
+      <tr>
+        <td><%= link_to rental.code, rental_path(rental) %></td>
+        <td class="hidden-xs"><%= rental.client.name %></td>
+        <td><%= rental.client.email %></td>
+        <td class="hidden-xs"><%= rental.car_category.name %></td>
+        <td><%= rental.status %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 

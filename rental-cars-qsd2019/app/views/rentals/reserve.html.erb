@@ -1,25 +1,35 @@
-<h1> Efetivar Locação </h1>
+<h1 class="ls-title-intro ls-ico-week">Efetivar Locação</h1>
 
 <% if @car_rental.errors.any? %>
-<h3> <%= pluralize(@car_rental.errors.count, 'falha') %> </h3>
-<p>Você deve corrigir os seguintes erros para continuar:</p>
-
-<ul>
-  <% @car_rental.errors.values.each do |error_messages_group| %>
-  <% error_messages_group.each do |error_message| %>
-  <li><%= error_message %></li>
-  <% end %>
-  <% end %>
-</ul>
+  <div class="ls-alert-danger">Você deve corrigir os seguintes erros
+                               para continuar</div>
+  <ul>
+    <% @car_rental.errors.values.each do |messages_group| %>
+    <% messages_group.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+    <% end %>
+  </ul>
 <% end %>
 
 
 <% if @cars.any? %>
-<%= form_for @car_rental, url: reserve_rental_path do |f| %>
+<%= form_for @car_rental, url: reserve_rental_path, class: "ls-form row" do
+                                                                         |f| %>
+<label class="ls-label col-md-4">
 <%= f.label :car_id, 'Carros disponíveis' %>
-<%= f.collection_select :car_id, @cars, :id, :full_description %>
-<%= f.submit 'Efetivar' %>
+<p class="ls-label-info"></p>
+<div class="ls-custom-select">
+<%= f.collection_select :car_id, @cars, :id, :full_description,
+                        class: "ls-custom" %>
+</div>
+</label>
+<div class="ls-actions-btn">
+  <%= f.submit 'Efetivar', class: 'ls-btn-primary' %>
+</div>
+
 <% end %>
+
 
 <% else %>
 <p> Nenhum carro para essa categoria está disponível </p>

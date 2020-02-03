@@ -6,15 +6,32 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-subsidiary = Subsidiary.create(name: 'Aeroporto Congonhas',
-                  address: 'Rua Otávio Tarquínio De Souza, 379, Campo Belo, SP',
-                  cnpj: '28179836000114')
-subsidiary_2 = Subsidiary.create(name: 'Campo Limpo',
-                  address: 'Rua Marília de Souza Bueno, 147, Campo Limpo, SP',
-                  cnpj: '21173836050122')
-subsidiary_3 = Subsidiary.create(name: 'Capão Redondo',
-                  address: 'Rua Satélite de Marciano, 24, Capão Redondo, SP',
-                  cnpj: '11173424050752')
+subsidiary = Subsidiary.create!(name: 'Aeroporto Congonhas',
+                                cnpj: '21393954000181',
+                                address: 'Rua Otávio Tarquínio De Souza',
+                                number: 379,
+                                district: 'Campo Belo',
+                                state: 'SP',
+                                city: 'São Paulo',
+                                zip_code: '04613001')
+
+subsidiary_2 = Subsidiary.create!(name: 'Carrefour Giovanni Gronchi',
+                                  cnpj: '41298631000116',
+                                  address: 'Av Alberto Augusto Alves',
+                                  number: 50,
+                                  district: 'Vila Andrade',
+                                  state: 'SP',
+                                  city: 'São Paulo',
+                                  zip_code: '05724030')
+
+subsidiary_3 = Subsidiary.create!(name: 'Santos',
+                                  cnpj: '94263501000104',
+                                  address: 'Av Ana Costa',
+                                  number: 304,
+                                  district: 'Gonzaga',
+                                  state: 'SP',
+                                  city: 'Santos',
+                                  zip_code: '11060000')
 
 manufacturer = Manufacturer.create(name: 'Fiat')
 manufacturer_2 = Manufacturer.create(name: 'Ford')

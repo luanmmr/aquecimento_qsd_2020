@@ -1,6 +1,4 @@
 class CarCategoriesController < ApplicationController
-  before_action :authenticate_user!#, only: [:index, :show]
-
 
   def new
     @car_category = CarCategory.new
@@ -10,7 +8,7 @@ class CarCategoriesController < ApplicationController
     @car_category = CarCategory.new(params_car_category)
     if @car_category.save
       flash[:notice] = 'Cadastrada com sucesso'
-      redirect_to @car_category
+      redirect_to car_categories_path
     else
       render :new
     end
@@ -18,10 +16,6 @@ class CarCategoriesController < ApplicationController
 
   def index
     @car_categories = CarCategory.all
-  end
-
-  def show
-    @car_category = CarCategory.find(params[:id])
   end
 
   def edit
@@ -32,7 +26,7 @@ class CarCategoriesController < ApplicationController
     @car_category = CarCategory.find(params[:id])
     if @car_category.update(params_car_category)
       flash[:notice] = 'Alteração realizada com sucesso'
-      redirect_to @car_category
+      redirect_to car_categories_path
     else
       render :edit
     end
@@ -44,13 +38,10 @@ class CarCategoriesController < ApplicationController
   end
 
 
-
   private
 
   def params_car_category
     params.require(:car_category).permit(:name, :daily_rate, :car_insurance, :third_party_insurance)
   end
-
-
 
 end

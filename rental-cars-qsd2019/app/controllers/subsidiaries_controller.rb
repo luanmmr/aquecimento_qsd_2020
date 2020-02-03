@@ -1,6 +1,4 @@
 class SubsidiariesController < ApplicationController
-  before_action :authenticate_user!
-
 
   def new
     @subsidiary = Subsidiary.new
@@ -10,7 +8,7 @@ class SubsidiariesController < ApplicationController
     @subsidiary = Subsidiary.new(subsidiary_params)
     if @subsidiary.save
       flash[:notice] = 'Cadastrada com sucesso!'
-      redirect_to @subsidiary
+      redirect_to subsidiaries_path
     else
       render :new
     end
@@ -46,7 +44,8 @@ class SubsidiariesController < ApplicationController
 
   private
   def subsidiary_params
-    params.require(:subsidiary).permit(:name, :address, :cnpj)
+    params.require(:subsidiary).permit(:name, :address, :cnpj, :zip_code,
+                                       :number, :district, :state, :city)
   end
 
 

@@ -1,34 +1,39 @@
 <% if @client.errors.any? %>
-<h3> <%= pluralize(@client.errors.count, 'falha') %> </h3>
-<p> Você deve corrigir os seguintes erros para continuar: </p>
-
-<ul>
-  <% @client.errors.values.each do |messages_group| %>
-  <% messages_group.each do |message| %>
-  <li><%= message %></li>
-  <% end %>
-  <% end %>
-</ul>
+  <div class="ls-alert-danger">Você deve corrigir os seguintes erros para continuar</div>
+    <ul>
+      <% @client.errors.values.each do |messages_group| %>
+        <% messages_group.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      <% end %>
+    </ul>
+    <br>
 <% end %>
 
-<%= form_with(model: @client, local: true) do |form| %>
-<p>
-  <%= form.label :name, 'Nome'%>
+<br>
+
+<%= form_with(model: @client, local: true, class: "ls-form-horizontal") do
+                                                              |form| %>
+<label class="ls-label col-md-3">
+  <%= form.label :name, 'Nome' %>
+  <p class="ls-label-info">Modelo do Carro</p>
   <%= form.text_field :name %>
-</p>
+</label>
 
-<p>
-<%= form.label :email, 'Email' %>
-<%= form.text_field :email %>
-</p>
+<label class="ls-label col-md-3">
+  <%= form.label :email, 'Email' %>
+    <p class="ls-label-info"></p>
+  <%= form.text_field :email %>
+</label>
 
-<p>
-<%= form.label :document, 'CPF' %>
-<%= form.text_field :document %>
-</p>
+<label class="ls-label col-md-3">
+  <%= form.label :document, 'CPF' %>
+  <p class="ls-label-info"></p>
+  <%= form.text_field :document %>
+</label>
 
-<p>
-<%= form.submit 'Enviar' %>
-</p>
+<div class="ls-actions-btn">
+  <%= form.submit 'Enviar', class: 'ls-btn-primary' %>
+</div>
 
 <% end %>

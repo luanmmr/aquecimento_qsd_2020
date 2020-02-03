@@ -1,40 +1,50 @@
 <% if @rental.errors.any? %>
-<p> Você deve corrigir os seguintes erros para continuar: </p>
-<ul>
-<% @rental.errors.values.each do |error_messages_group| %>
-<% error_messages_group.each do |error_message| %>
-<li><%= error_message %></li>
+  <div class="ls-alert-danger">Você deve corrigir os seguintes erros
+                               para continuar</div>
+  <ul>
+    <% @rental.errors.values.each do |messages_group| %>
+    <% messages_group.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+    <% end %>
+  </ul>
 <% end %>
-<% end %>
-</ul>
-
-<% end %>
 
 
-<%= form_for @rental do |form| %>
+<%= form_with(model: @rental, local: true, class: "ls-form-horizontal") do
+                                                                 |form| %>
+<label class="ls-label col-md-3">
+  <%= form.label :start_date, 'Data de início' %>
+  <p class="ls-label-info"></p>
+  <%= form.text_field :start_date %>
+</label>
 
-<p>
-<%= form.label :start_date, 'Data de início' %>
-<%= form.date_field :start_date %>
-</p>
+<label class="ls-label col-md-3">
+  <%= form.label :end_date, 'Data de fim' %>
+    <p class="ls-label-info"></p>
+  <%= form.text_field :end_date %>
+</label>
 
-<p>
-<%= form.label :end_date, 'Data de fim' %>
-<%= form.date_field :end_date %>
-</p>
+<label class="ls-label col-md-3">
+  <%= form.label :client_id, 'Cliente' %>
+  <p class="ls-label-info"></p>
+  <div class="ls-custom-select">
+   <%= form.collection_select :client_id, @clients, :id,
+                             :name_document, class: "ls-custom" %>
+  </div>
+</label>
 
-<p>
-<%= form.label :client_id, 'Cliente' %>
-<%= form.collection_select :client_id, @clients, :id, :name_document %>
-</p>
+<label class="ls-label col-md-3">
+  <%= form.label :car_category_id, 'Categoria do Carro' %>
+  <p class="ls-label-info"></p>
+  <div class="ls-custom-select">
+   <%= form.collection_select :car_category_id, @car_categories, :id,
+                             :name, class: "ls-custom" %>
+  </div>
+</label>
 
-<p>
-<%= form.label :car_category_id, 'Categoria de Carro' %>
-<%= form.collection_select :car_category_id, @car_categories, :id, :name %>
-</p>
-
-<p>
-<%= form.submit 'Enviar' %>
-</p>
+<div class="ls-actions-btn">
+  <%= form.submit 'Enviar', class: 'ls-btn-primary' %>
+</div>
 
 <% end %>

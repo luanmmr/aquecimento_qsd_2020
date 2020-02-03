@@ -7,7 +7,6 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-
     if @car.save
       flash[:notice] = 'Carro cadastrado com sucesso'
       redirect_to car_path @car
@@ -20,6 +19,8 @@ class CarsController < ApplicationController
 
   def index
     @cars = Car.all
+    @manufacturers = Manufacturer.all
+    @car_models = CarModel.all
   end
 
   def show

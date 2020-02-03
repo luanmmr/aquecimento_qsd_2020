@@ -1,39 +1,53 @@
 <% if @car.errors.any? %>
-<div>
-  <h3> <%= pluralize(@car.errors.count, 'falha') %> </h3>
-  <p> Você deve corrigir os seguintes erros para continuar: </p>
-  <ul>
-    <% @car.errors.values.each do |messages_group| %>
-    <% messages_group.each do |message| %>
-    <li> <%= message %> </li>
-    <% end %>
-    <% end %>
-  </ul>
-</div>
+  <div class="ls-alert-danger">Você deve corrigir os seguintes erros para continuar</div>
+    <ul>
+      <% @car.errors.values.each do |messages_group| %>
+        <% messages_group.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      <% end %>
+    </ul>
+    <br>
 <% end %>
 
-<%= form_with model: @car, local: true do |form| %>
-<p>
+<%= form_with(model: @car, local: true, class: "ls-form row") do
+                                                              |form| %>
+<label class="ls-label col-md-3">
   <%= form.label :license_plate, 'Placa' %>
+  <p class="ls-label-info">Ex: RBY1995</p>
   <%= form.text_field :license_plate %>
-</p>
-<p>
+</label>
+
+<label class="ls-label col-md-3">
   <%= form.label :color, 'Cor' %>
+    <p class="ls-label-info"></p>
   <%= form.text_field :color %>
-</p>
-<p>
- <%= form.label :mileage , 'Quilometragem' %>
- <%= form.text_field :mileage %>
-</p>
-<p>
- <%= form.label :car_model_id, 'Modelo do Carro' %>
- <%= form.collection_select :car_model_id, @car_models, :id, :full_description %>
-</p>
-<p>
-<%= form.label :subsidiary_id, 'Filial' %>
-<%= form.collection_select :subsidiary_id, @subsidiaries, :id, :full_description %>
-</p>
-<p>
-<%= form.submit 'Enviar' %>
-</p>
+</label>
+
+<label class="ls-label col-md-3">
+  <%= form.label :mileage, 'Quilometragem' %>
+  <p class="ls-label-info"></p>
+  <%= form.text_field :mileage %>
+</label>
+
+<label class="ls-label col-md-4">
+  <%= form.label :car_model_id, 'Modelo do Carro' %>
+  <div class="ls-custom-select">
+   <%= form.collection_select :car_model_id, @car_models, :id,
+                             :full_description, class: "ls-custom" %>
+  </div>
+</label>
+
+<label class="ls-label col-md-6">
+  <%= form.label :subsidiary_id, 'Filial' %>
+  <div class="ls-custom-select">
+   <%= form.collection_select :subsidiary_id, @subsidiaries, :id,
+                             :full_description, class: "ls-custom" %>
+  </div>
+</label>
+
+<div class="ls-actions-btn">
+  <%= form.submit 'Enviar', class: 'ls-btn-primary' %>
+</div>
+
 <% end %>

@@ -7,7 +7,8 @@ class CarModel < ApplicationRecord
 
   validates :name,
   presence: {message: 'O campo nome está vazio'},
-  uniqueness: {message: 'Este modelo de carro já existe nesta categoria', case_sensitive: false, scope: [:year, :car_category_id]}
+  uniqueness: {message: 'Este modelo de carro já existe nesta categoria',
+               case_sensitive: false, scope: [:year, :motorization, :fuel_type]}
 
   validates :year,
   presence: {message: 'Preencha o campo ano'}
@@ -17,7 +18,6 @@ class CarModel < ApplicationRecord
 
   validates :fuel_type,
   presence: {message: 'Ops, você se esqueceu do tipo de combustível'}
-
 
   after_validation :formatting
 

@@ -3,10 +3,11 @@
 <head>
   <title>Rental Cars</title>
 
-  <!-- Se tirar esse bloco, para de funcionar chamadas delete para os métodos -->
+
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <!-- Se tirar essa chamada, para de funcionar chamadas delete para os métodos -->
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <!-- end -->
 
@@ -76,13 +77,12 @@
     <nav class="ls-menu">
       <ul>
         <li><%= link_to 'Home Page', root_path %></li>
-        <li><%= link_to 'Fabricantes', manufacturers_path %></li>
         <li><%= link_to 'Filiais', subsidiaries_path %></li>
         <li><%= link_to 'Carros', cars_path %></li>
-        <li><%= link_to 'Categorias de Carros', car_categories_path %></li>
-        <li><%= link_to 'Modelos de Carros', car_models_path %></li>
         <li><%= link_to 'Clientes', clients_path %></li>
+        <li><%= link_to 'Categorias de Carros', car_categories_path %></li>
         <li><%= link_to 'Locações', rentals_path %></li>
+
         <!-- Menu com submenu -->
         <!-- <li>
         <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>

@@ -1,6 +1,4 @@
 class ManufacturersController < ApplicationController
-  before_action :authenticate_user!
-
 
   def new
     @manufacturer = Manufacturer.new
@@ -12,7 +10,7 @@ class ManufacturersController < ApplicationController
       # Esse flash vai para a próxima requisição, ou seja, após o redirect_to
       # vai para o show. A view show terá acesso, mas depois esse flash morre.
       flash[:notice] = 'Fabricante criada com sucesso!'
-      redirect_to @manufacturer
+      redirect_to cars_path
       # A mesma coisa que  redirect_to manufacturer_path(@manufacturer)
       # Pode fazer também render :show
       # O render :show exibe diretamente na action create, a view de show, ou seja
@@ -27,14 +25,6 @@ class ManufacturersController < ApplicationController
     end
   end
 
-  def index
-    @manufacturers = Manufacturer.all
-  end
-
-  def show
-    @manufacturer = Manufacturer.find(params[:id])
-  end
-
   def edit
     @manufacturer = Manufacturer.find(params[:id])
   end
@@ -43,7 +33,7 @@ class ManufacturersController < ApplicationController
     @manufacturer = Manufacturer.find(params[:id])
     if @manufacturer.update(manufacturer_params)
       flash[:notice] = 'Fábrica editada com sucesso!'
-      redirect_to manufacturer_path @manufacturer
+      redirect_to cars_path
     else
       render :edit
     end
@@ -51,7 +41,7 @@ class ManufacturersController < ApplicationController
 
   def destroy
     Manufacturer.destroy(params[:id])
-    redirect_to manufacturers_path, notice: 'Fábrica deletada com sucesso'
+    redirect_to cars_path, notice: 'Fabricante deletada com sucesso'
   end
 
 

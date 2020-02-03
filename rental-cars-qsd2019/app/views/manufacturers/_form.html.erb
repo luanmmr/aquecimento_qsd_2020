@@ -1,6 +1,6 @@
 <% if @manufacturer.errors.any? %>
   <div class="ls-alert-danger">Você deve corrigir os seguintes erros
-    para continuar</div>
+                               para continuar</div>
   <ul>
     <% @manufacturer.errors.values.each do |messages_group| %>
     <% messages_group.each do |message| %>
@@ -12,14 +12,14 @@
 
 <br><br>
 
-<%= form_for @manufacturer do |f| %>
-<label class="ls-label col-md-3">
-<%= f.label :name, 'Nome'%>
-<p class="ls-label-info">Digite o nome da fabricante</p>
+<%= form_for @manufacturer, class: "ls-form row" do |f| %>
+<label class="ls-label col-md-2">
+<%= f.label :name, 'Nome' %>
+<p class="ls-label-info">Nome da fabricante</p>
 <%= f.text_field :name %>
 </label>
 
 <div class="ls-actions-btn">
-<%= f.submit 'Enviar', class: 'ls-btn' %>
+<%= f.submit 'Enviar', class: 'ls-btn-primary' %>
 </div>
 <% end %>

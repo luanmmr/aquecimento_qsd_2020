@@ -1,14 +1,38 @@
-<h2> Carro </h2>
+<h1 class="ls-title-intro ls-ico-cart">Carros</h1>
 
-<ul>
-  <li>Placa: <%= @car.license_plate %></li>
-  <li>Fabricante/Modelo: <%= "#{@car.car_model.manufacturer.name} #{@car.car_model.name}" %></li>
-  <li>Ano: <%= @car.car_model.year %></li>
-  <li>Motor: <%= @car.car_model.motorization %></li>
-  <li>Tipo de combustível: <%= @car.car_model.fuel_type %></li>
-  <li>Quilometragem: <%= format("%.2f", @car.mileage) %></li>
-  <li>Filial: <%= "#{@car.subsidiary.name} - #{@car.subsidiary.address}" %></li>
-</ul>
-
-<%= link_to 'Editar', edit_car_path(@car) %> |
-<%= link_to 'Deletar', car_path(@car), method: :delete, data: {confirm: 'Tem certeza?'} %>
+<div class="ls-list">
+  <header class="ls-list-header">
+    <div class="ls-list-title col-md-9">
+      <a href="#" ><%= @car.license_plate %></a>
+      <small>
+        <%= "#{@car.car_model.manufacturer.name} #{@car.car_model.name}" %>
+      </small>
+    </div>
+  </header>
+  <div class="ls-list-content ">
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">Ano</span>
+      <strong><%= @car.car_model.year %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">Motor</span>
+      <strong><%= @car.car_model.motorization %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">Combustível</span>
+      <strong><%= @car.car_model.fuel_type %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">Quilometragem</span>
+      <strong><%= format("%.2f", @car.mileage) %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">Filial</span>
+      <strong><%= @car.subsidiary.name %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">Cor</span>
+      <strong><%= @car.color %></strong>
+    </div>
+  </div>
+</div>

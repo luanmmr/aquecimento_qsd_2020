@@ -12,5 +12,5 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+// removi essa: require turbolinks
 //= require_tree .

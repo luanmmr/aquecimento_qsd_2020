@@ -1,10 +1,36 @@
-<h2> <%= "Filial #{@subsidiary.name}" %> </h2>
+<h1 class="ls-title-intro ls-ico-earth">
+  <%= "Filial #{@subsidiary.name}" %>
+</h1>
 
 <ul>
-
-  <li> Endereço: <%= @subsidiary.address %> </li>
   <li> CNPJ: <%= @subsidiary.cnpj %> </li>
+  <li> Endereço: <%= @subsidiary.address %> </li>
+  <li> Número: <%= @subsidiary.number %> </li>
+  <li> Bairro: <%= @subsidiary.district %> </li>
+  <li> Estado: <%= @subsidiary.state %> </li>
+  <li> Cidade: <%= @subsidiary.city %> </li>
+  <li> CEP: <%= @subsidiary.zip_code %> </li>
 </ul>
 
-<%= link_to 'Editar', edit_subsidiary_path(@subsidiary) %>
-<%= link_to 'Deletar', subsidiary_path(@subsidiary), method: :delete, data: {confirm: 'Você tem certeza?'} %>
+<div id="cars" class="ls-tab-content ls-active">
+  <table class="ls-table ls-table-striped ls-bg-header">
+    <thead>
+      <tr>
+        <th>Placa</th>
+        <th class="hidden-xs">Fabricante</th>
+        <th>Modelo</th>
+        <th class="hidden-xs">Filial</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @subsidiary.cars.each do |car| %>
+      <tr>
+        <td><%= link_to car.license_plate, car_path(car) %></td>
+        <td class="hidden-xs"><%= car.car_model.manufacturer.name %></td>
+        <td><%= car.car_model.name %></td>
+        <td class="hidden-xs"><%= car.subsidiary.name %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
