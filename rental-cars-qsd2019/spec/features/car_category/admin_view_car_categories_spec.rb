@@ -10,7 +10,7 @@ feature 'Admin view Car Categories' do
 
     login_as(user, scope: :user)
     visit root_path
-    click_on 'Categorias de Carros'
+    click_on 'Categorias'
 
     expect(page).to have_content('A')
     expect(page).to have_content('B')
@@ -26,18 +26,16 @@ feature 'Admin view Car Categories' do
 
     login_as(user, scope: :user)
     visit root_path
-    click_on 'Categorias de Carros'
+    click_on 'Categorias'
     click_on 'Home Page'
 
     expect(current_path).to eq root_path
   end
 
   scenario 'and must be authenticated' do
-
     visit car_categories_path
 
     expect(current_path).to eq(new_user_session_path)
-
   end
-  
+
 end

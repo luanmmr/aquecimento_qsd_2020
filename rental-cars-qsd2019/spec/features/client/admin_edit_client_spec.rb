@@ -14,9 +14,9 @@ feature 'Admin edit client' do
     fill_in 'Nome', with: 'Maria'
     fill_in 'Email', with: 'maria@hotmail.com'
     fill_in 'CPF', with: '49582428151'
-    click_on 'Enviar'
+    click_on 'Atualizar Cliente'
 
-    expect(page).to have_content('Cliente editado com sucesso')
+    expect(page).to have_content('Cliente atualizado com sucesso')
     expect(page).to have_content('Maria')
     expect(page).to have_content('maria@hotmail.com')
     expect(page).to have_content('49582428151')
@@ -35,11 +35,12 @@ feature 'Admin edit client' do
     fill_in 'Nome', with: ''
     fill_in 'Email', with: ''
     fill_in 'CPF', with: ''
-    click_on 'Enviar'
+    click_on 'Atualizar Cliente'
 
     expect(page).to have_content('Email não pode ficar em branco')
     expect(page).to have_content('Nome não pode ficar em branco')
     expect(page).to have_content('CPF não pode ficar em branco')
+    expect(page).to_not have_content('Cliente atualizado com sucesso')
   end
 
   scenario 'and cpf must be unique' do
@@ -54,11 +55,12 @@ feature 'Admin edit client' do
       click_on 'Editar'
     end
     fill_in 'CPF', with: '14498169112'
-    click_on 'Enviar'
+    click_on 'Atualizar Cliente'
 
     expect(page).to have_content('Você deve corrigir os seguintes erros para '\
                                  'continuar')
-    expect(page).to have_content('Esse cliente já está cadastrado no sistema')
+    expect(page).to have_content('CPF já está em uso')
+    expect(page).to_not have_content('Cliente atualizado com sucesso')
   end
 
   scenario 'and name must to have only words' do
@@ -69,13 +71,10 @@ feature 'Admin edit client' do
     login_as(user, scope: :user)
     visit edit_client_path(client)
     fill_in 'Nome', with: 'P3dr0 5ilva'
-    click_on 'Enviar'
+    click_on 'Atualizar Cliente'
 
-    expect(page).to have_content('Nome inválido')
-
-    fill_in 'Nome', with: 'Pedr_ S#ilva'
-
-    expect(page).to have_content('Nome inválido')
+    expect(page).to have_content('Nome não é válido')
+    expect(page).to_not have_content('Cliente atualizado com sucesso')
   end
 
   scenario 'and cpf must have only numbers' do
@@ -86,17 +85,14 @@ feature 'Admin edit client' do
     login_as(user, scope: :user)
     visit edit_client_path(client)
     fill_in 'CPF', with: 'testetestet'
-    click_on 'Enviar'
+    click_on 'Atualizar Cliente'
 
-    expect(page).to have_content('O CPF deve conter apenas números')
-
+    expect(page).to have_content('CPF não é um número')
   end
 
   scenario 'and must be authenticated' do
-
     visit edit_client_path(7)
 
     expect(current_path).to eq(new_user_session_path)
-
   end
 end

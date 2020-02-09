@@ -3,23 +3,28 @@ class Client < ApplicationRecord
   has_many :rentals
 
   validates :name,
-  presence: {message: 'Nome não pode ficar em branco'},
-  format: {with: /\A([a-zA-Z]+|[a-zA-Z]+\s{1}[a-zA-Z]+)\z/, message: 'Nome inválido'}
+  presence: true,
+  format: {with: /\A([a-zA-Z]+|[a-zA-Z]+\s{1}[a-zA-Z]+)\z/}
 
   validates :email,
-  presence: {message: 'Email não pode ficar em branco'},
-  uniqueness: {message: 'Esse email já existe'},
-  format: {with: /\A.+@[a-z]+.([a-z]+|[a-z]+.[a-z]+)\z/, message: 'Email com formato inválido'}
+  presence: true,
+  uniqueness: {case_sensitive: false},
+  format: {with: /\A.+@[a-z]+[.]([a-z]+|[a-z]+[.][a-z]+)\z/}
 
   validates :document,
-  presence: {message: 'CPF não pode ficar em branco'},
-  length: {maximum: 11, message: 'O CPF é composto de até 11 algarismo.'},
-  numericality: {message: 'O CPF deve conter apenas números'},
-  uniqueness: {message: 'Esse cliente já está cadastrado no sistema'}
+  presence: true,
+  length: {maximum: 11},
+  numericality: {only_integer: true },
+  uniqueness: true
 
 
   def name_document
-    "#{name} - #{document}"
+    if name.present? && document.present?
+      "#{name} - #{document}"
+    else
+      I18n.t(:incomplete_client, scope: [:activerecord, :methods, :client,
+                                         :name_document])
+    end
   end
 
 end

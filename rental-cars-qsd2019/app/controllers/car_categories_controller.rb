@@ -7,7 +7,7 @@ class CarCategoriesController < ApplicationController
   def create
     @car_category = CarCategory.new(params_car_category)
     if @car_category.save
-      flash[:notice] = 'Cadastrada com sucesso'
+      flash[:notice] = t('.success')
       redirect_to car_categories_path
     else
       render :new
@@ -25,7 +25,7 @@ class CarCategoriesController < ApplicationController
   def update
     @car_category = CarCategory.find(params[:id])
     if @car_category.update(params_car_category)
-      flash[:notice] = 'Alteração realizada com sucesso'
+      flash[:notice] = t('.success')
       redirect_to car_categories_path
     else
       render :edit
@@ -34,14 +34,15 @@ class CarCategoriesController < ApplicationController
 
   def destroy
     CarCategory.destroy(params[:id])
-    redirect_to car_categories_path, notice: 'Categoria de carro deletada com sucesso'
+    redirect_to car_categories_path, notice: t('.success')
   end
 
 
   private
 
   def params_car_category
-    params.require(:car_category).permit(:name, :daily_rate, :car_insurance, :third_party_insurance)
+    params.require(:car_category).permit(:name, :daily_rate, :car_insurance,
+                                         :third_party_insurance)
   end
 
 end

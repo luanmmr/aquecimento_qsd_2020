@@ -2,8 +2,10 @@ require 'rails_helper'
 
 feature 'Admin view subsidiaries' do
   scenario 'successfully' do
-    create(:subsidiary)
     user = create(:user)
+    create(:subsidiary)
+    create(:subsidiary, name: 'Aracatuba', cnpj: '10792229000160',
+                        zip_code: '16102285', address: 'Av. dos Araçás')
 
     login_as(user, scope: :user)
     visit root_path
@@ -11,6 +13,21 @@ feature 'Admin view subsidiaries' do
 
     expect(page).to have_content('Carrefour Giovanni Gronchi')
     expect(page).to have_content('41298631000116')
+    expect(page).to have_content('Aracatuba')
+    expect(page).to have_content('10792229000160')
+  end
+
+  scenario 'and access details of subsidiary' do
+    create(:car)
+    user = create(:user)
+
+    login_as user, scope: :user
+    visit root_path
+    click_on 'Filiais'
+    click_on 'Carrefour Giovanni Gronchi'
+
+    expect(page).to have_content('Carrefour Giovanni Gronchi')
+    expect(page).to have_content('RBY1995')
   end
 
   scenario 'and return to home page' do

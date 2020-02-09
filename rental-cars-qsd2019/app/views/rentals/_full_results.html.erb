@@ -4,39 +4,58 @@
       <h2><%= @rental.code %></h2>
     </div>
     <div class="col-md-3 ls-txt-right" id=<%= "rental-#{@rental.id}" %>>
-      <% if @rental.status_agendada? %>
-      <%= link_to 'Efetivar', reserve_rental_path(@rental),
-                                      class: "ls-btn" %>
+      <% if @valid && @rental.status_agendada? %>
+      <%= link_to t(:effectuate, scope: [:rental_view, :buttons]),
+                     reserve_rental_path(@rental), class: "ls-btn" %>
       <% end %>
-      <%= link_to 'Deletar', rental_path(@rental),
-                             class: "ls-btn-primary-danger ls-ico-remove",
-                             method: :delete, data: {confirm: 'Tem certeza?'}%>
+      <%= link_to t(:delete, scope: [:application_view, :buttons]),
+                    rental_path(@rental), method: :delete,
+                    data: {confirm: "#{t(:confirm?, scope: [
+                                                            :application_view,
+                                                            :messages
+                                                           ]
+                                        )}"},
+                    class: "ls-btn-primary-danger ls-ico-remove" %>
     </div>
   </header>
   <div class="ls-list-content ">
     <div class="col-xs-12 col-md-6">
-      <span class="ls-list-label">Cliente</span>
+      <span class="ls-list-label">
+        <%= Rental.human_attribute_name('client') %>
+      </span>
       <strong><%= @rental.client.name %></strong>
     </div>
     <div class="col-xs-12 col-md-6">
-      <span class="ls-list-label">Usuário</span>
+      <span class="ls-list-label">
+        <%= User.model_name.human %>
+      </span>
       <strong><%= @rental.user.email %></strong>
     </div>
     <div class="col-xs-12 col-md-6">
-      <span class="ls-list-label">Categoria</span>
+      <span class="ls-list-label">
+        <%= Rental.human_attribute_name('car_category') %>
+      </span>
       <strong><%= @rental.car_category.name %></strong>
     </div>
     <div class="col-xs-12 col-md-6">
-      <span class="ls-list-label">Data de início</span>
+      <span class="ls-list-label">
+        <%= Rental.human_attribute_name('start_date') %>
+      </span>
       <strong><%= @rental.start_date.strftime("%d/%m/%Y") if @rental %></strong>
     </div>
     <div class="col-xs-12 col-md-6">
-      <span class="ls-list-label">Email</span>
+      <span class="ls-list-label">
+        <%= Client.human_attribute_name('email') %>
+      </span>
       <strong><%= @rental.client.email %></strong>
     </div>
     <div class="col-xs-12 col-md-6">
-      <span class="ls-list-label">Data de fim</span>
-      <strong><%= @rental.end_date.strftime("%d/%m/%Y") if @rental %></strong>
+      <span class="ls-list-label">
+        <%= Rental.human_attribute_name('end_date') %>
+      </span>
+      <strong>
+        <%= @rental.end_date.strftime("%d/%m/%Y") if @rental %>
+      </strong>
     </div>
   </div>
 </div>

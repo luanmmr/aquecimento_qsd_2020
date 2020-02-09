@@ -5,9 +5,8 @@ class Api::V1::RentalsController < Api::V1::ApiController
     render json: @rental, status: :ok if @rental.save!
 
   rescue ActiveRecord::RecordInvalid
-    render json: @rental.errors, status: 412
+    render json: @rental.errors.full_messages, status: 412
   end
-
 
   private
 

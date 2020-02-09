@@ -16,5 +16,7 @@ feature 'Admin view clients' do
     expect(page).to have_content('Pedro')
     expect(page).to have_content('jose@jose.com.br')
     expect(page).to have_content('pedro@jose.com.br')
+    expect(page).to have_content('25498763123')
+    expect(page).to have_content('25498769452')
   end
 end

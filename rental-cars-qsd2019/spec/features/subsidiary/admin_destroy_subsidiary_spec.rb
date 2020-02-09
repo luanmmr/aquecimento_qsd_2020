@@ -2,7 +2,6 @@ require 'rails_helper'
 
 feature 'Admin destroys subsidiary' do
   scenario 'successfully' do
-
     subsidiary = create(:subsidiary)
     user = create(:user)
 
@@ -13,6 +12,5 @@ feature 'Admin destroys subsidiary' do
     end
 
     expect(page).to have_content('Filial deletada com sucesso')
-
   end
 end

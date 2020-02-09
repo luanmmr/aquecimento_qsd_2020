@@ -1,13 +1,13 @@
 <% if @client.errors.any? %>
-  <div class="ls-alert-danger">Você deve corrigir os seguintes erros para continuar</div>
-    <ul>
-      <% @client.errors.values.each do |messages_group| %>
-        <% messages_group.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      <% end %>
-    </ul>
-    <br>
+  <div class="ls-alert-danger">
+    <%= t(:validation_error, scope: [:application_view, :messages]) %>
+  </div>
+  <ul>
+    <% @client.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  <br>
 <% end %>
 
 <br>
@@ -15,25 +15,27 @@
 <%= form_with(model: @client, local: true, class: "ls-form-horizontal") do
                                                               |form| %>
 <label class="ls-label col-md-3">
-  <%= form.label :name, 'Nome' %>
-  <p class="ls-label-info">Modelo do Carro</p>
+  <%= form.label :name %>
+  <p class="ls-label-info">
+    <%= t(:name, scope: [:client_view, :form_label_info]) %>
+  </p>
   <%= form.text_field :name %>
 </label>
 
 <label class="ls-label col-md-3">
-  <%= form.label :email, 'Email' %>
+  <%= form.label :email %>
     <p class="ls-label-info"></p>
   <%= form.text_field :email %>
 </label>
 
 <label class="ls-label col-md-3">
-  <%= form.label :document, 'CPF' %>
+  <%= form.label :document %>
   <p class="ls-label-info"></p>
   <%= form.text_field :document %>
 </label>
 
 <div class="ls-actions-btn">
-  <%= form.submit 'Enviar', class: 'ls-btn-primary' %>
+  <%= form.submit class: 'ls-btn-primary' %>
 </div>
 
 <% end %>

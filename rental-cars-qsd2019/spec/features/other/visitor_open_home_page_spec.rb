@@ -11,12 +11,10 @@ feature 'Visitor open home page' do
 
     expect(current_path).to eq(root_path)
     expect(page).to have_link('Home Page')
-    expect(page).to have_link('Fabricantes')
     expect(page).to have_link('Filiais')
     expect(page).to have_link('Carros')
-    expect(page).to have_link('Categorias de Carros')
-    expect(page).to have_link('Modelos de Carros')
     expect(page).to have_link('Clientes')
+    expect(page).to have_link('Categorias')
     expect(page).to have_link('Locações')
   end
 end

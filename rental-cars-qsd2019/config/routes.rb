@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :car_models, only: [:new, :create, :edit, :update, :destroy]
   resources :clients, only: [:new, :index, :create, :edit, :update, :destroy]
   resources :cars
+  resources :car_rentals, only: :show
 
   resources :rentals, only: [:index, :show, :new, :create, :destroy] do
     get 'search', on: :collection
@@ -22,7 +23,4 @@ Rails.application.routes.draw do
       resources :rentals, only: :create
     end
   end
-
-
-
 end

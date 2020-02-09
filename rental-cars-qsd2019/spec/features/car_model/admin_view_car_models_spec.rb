@@ -8,10 +8,14 @@ feature 'Admin view Car Models' do
     login_as(user, scope: :user)
     visit root_path
     click_on 'Carros'
-    click_on 'Modelos de Carros'
+    click_on 'Modelos'
 
-    expect(page).to have_content('Uno')
     expect(page).to have_content('Fiat')
+    expect(page).to have_content('Uno')
+    expect(page).to have_content('2018')
+    expect(page).to have_content('Flex')
+    expect(page).to have_content('X')
+    expect(page).to have_content('1.8')
   end
 
   scenario 'and return to home page' do
@@ -21,7 +25,7 @@ feature 'Admin view Car Models' do
     login_as(user, scope: :user)
     visit root_path
     click_on 'Carros'
-    click_on 'Modelos de Carros'
+    click_on 'Modelos'
     click_on 'Home Page'
 
     expect(current_path).to eq root_path

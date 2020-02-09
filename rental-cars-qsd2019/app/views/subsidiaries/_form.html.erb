@@ -1,10 +1,10 @@
 <% if @subsidiary.errors.any? %>
-  <div class="ls-alert-danger">Você deve corrigir os seguintes erros para continuar</div>
+  <div class="ls-alert-danger">
+    <%= t(:validation_error, scope: [:application_view, :messages]) %>
+  </div>
     <ul>
-      <% @subsidiary.errors.values.each do |messages_group| %>
-        <% messages_group.each do |message| %>
+      <% @subsidiary.errors.full_messages.each do |message| %>
           <li><%= message %></li>
-        <% end %>
       <% end %>
     </ul>
     <br>
@@ -13,54 +13,70 @@
 <%= form_with(model: @subsidiary, local: true, class: "ls-form-horizontal") do
                                                                      |form| %>
 <label class="ls-label col-md-3">
-  <%= form.label :name, 'Nome' %>
-  <p class="ls-label-info">Nome da filial</p>
+  <%= form.label :name %>
+  <p class="ls-label-info">
+    <%= t(:name, scope: [:subsidiary_view, :form_label_info]) %>
+  </p>
   <%= form.text_field :name %>
 </label>
 
 <label class="ls-label col-md-3">
-  <%= form.label :cnpj, 'CNPJ' %>
-    <p class="ls-label-info">Digite apenas números</p>
+  <%= form.label :cnpj %>
+    <p class="ls-label-info">
+      <%= t(:cnpj, scope: [:subsidiary_view, :form_label_info]) %>
+    </p>
   <%= form.text_field :cnpj %>
 </label>
 
 <label class="ls-label col-md-3">
-  <%= form.label :address, 'Endereço' %>
-  <p class="ls-label-info">Ex: Rua Itapaiuna</p>
+  <%= form.label :address %>
+  <p class="ls-label-info">
+    <%= t(:address, scope: [:subsidiary_view, :form_label_info]) %>
+  </p>
   <%= form.text_field :address %>
 </label>
 
 <label class="ls-label col-md-3">
-  <%= form.label :number, 'Número' %>
-  <p class="ls-label-info">Número do endereço</p>
+  <%= form.label :number %>
+  <p class="ls-label-info">
+    <%= t(:number, scope: [:subsidiary_view, :form_label_info]) %>
+  </p>
   <%= form.text_field :number %>
 </label>
 
 <label class="ls-label col-md-3">
-  <%= form.label :district, 'Bairro' %>
-  <p class="ls-label-info">Ex: Vila Andrade</p>
+  <%= form.label :district %>
+  <p class="ls-label-info">
+    <%= t(:district, scope: [:subsidiary_view, :form_label_info]) %>
+  </p>
   <%= form.text_field :district %>
 </label>
 
 <label class="ls-label col-md-3">
   <%= form.label :zip_code, 'CEP' %>
-  <p class="ls-label-info">Digite sem hífen ou pontos</p>
+  <p class="ls-label-info">
+    <%= t(:zip_code, scope: [:subsidiary_view, :form_label_info]) %>
+  </p>
   <%= form.text_field :zip_code %>
 </label>
 
 <label class="ls-label col-md-3">
-  <%= form.label :state, 'Estado' %>
-  <p class="ls-label-info">Ex: SP</p>
+  <%= form.label :state  %>
+  <p class="ls-label-info">
+    <%= t(:state, scope: [:subsidiary_view, :form_label_info]) %>
+  </p>
   <%= form.text_field :state %>
 </label>
 
 <label class="ls-label col-md-3">
-  <%= form.label :city, 'Cidade' %>
-  <p class="ls-label-info">Nome da cidade</p>
+  <%= form.label :city %>
+  <p class="ls-label-info">
+    <%= t(:city, scope: [:subsidiary_view, :form_label_info]) %>
+  </p>
   <%= form.text_field :city %>
 </label>
 
 <div class="ls-actions-btn">
-  <%= form.submit 'Enviar', class: 'ls-btn-primary' %>
+  <%= form.submit class: 'ls-btn-primary' %>
 </div>
 <% end %>

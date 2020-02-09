@@ -5,7 +5,7 @@ class Api::V1::CarsController < Api::V1::ApiController
     render json: @car, status: 201 if @car.save!
 
   rescue ActiveRecord::RecordInvalid
-    render json: @car.errors, status: 412
+    render json: @car.errors.full_messages, status: 412
   end
 
   def index
@@ -29,7 +29,7 @@ class Api::V1::CarsController < Api::V1::ApiController
   rescue ActiveRecord::RecordNotFound
     render json: '', status: 404
   rescue ArgumentError
-    render plain: 'Não houve atualização - Dados invalidos', status: 412
+    render plain: 'Não houve atualização - Dados inválidos', status: 412
   end
 
 
@@ -38,7 +38,8 @@ class Api::V1::CarsController < Api::V1::ApiController
   def car_params
     default_keys = 3
     if params.keys.length > default_keys
-      params.permit(:license_plate, :color, :car_model_id, :mileage, :subsidiary_id)
+      params.permit(:license_plate, :color, :car_model_id, :mileage,
+                    :subsidiary_id)
     end
   end
 

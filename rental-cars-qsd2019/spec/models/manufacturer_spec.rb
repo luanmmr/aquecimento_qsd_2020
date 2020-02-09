@@ -1,16 +1,52 @@
-# Esse spec é criado automaticamente quando criamos um model via gerador ex rails generate model ...
-# É possível remover sem maiores problemas essa spec padrão
-# Quando toda(s) a(s) spec passar, essa spec padrão ficará sendo exibida como:
-#
-# Pending: (Failures listed here are expected and do not affect your suite's status)
-#
-#   1) Manufacturer add some examples to (or delete) /home/luanribeiro/Workspace/campuscode/aquecimento_quero_ser_dev_2020/aquecimento_qsd_03_OLD/rental-cars-qsd2019/spec/models/manufacturer_spec.rb
-#      # Not yet implemented
-#      # ./spec/models/manufacturer_spec.rb:4
-
-
 require 'rails_helper'
 
 RSpec.describe Manufacturer, type: :model do
-  #pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validates#name' do
+    it 'verify presence' do
+      manufacturer = Manufacturer.new
+
+      manufacturer.valid?
+
+      expect(manufacturer.errors.full_messages).to include('Nome não pode '\
+                                                           'ficar em branco')
+    end
+
+    it 'verify uniqueness' do
+      create(:manufacturer)
+      manufacturer = Manufacturer.new(name: 'Fiat')
+
+      manufacturer.valid?
+
+      expect(manufacturer.errors.full_messages).to include('Nome já está em'\
+                                                           ' uso')
+    end
+
+    it 'must fail with numbers' do
+      create(:manufacturer)
+      manufacturer = Manufacturer.new(name: '12')
+
+      manufacturer.valid?
+
+      expect(manufacturer.errors.full_messages).to include('Nome não é válido')
+    end
+
+    it 'must fail with one letter' do
+      create(:manufacturer)
+      manufacturer = Manufacturer.new(name: 'A')
+
+      manufacturer.valid?
+
+      expect(manufacturer.errors.full_messages).to include('Nome não é válido')
+    end
+
+    it 'must fail with compound name' do
+      create(:manufacturer)
+      manufacturer = Manufacturer.new(name: 'General Motors')
+
+      manufacturer.valid?
+
+      expect(manufacturer.errors.full_messages).to include('Nome não é válido')
+    end
+  end
+  
 end

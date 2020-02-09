@@ -3,39 +3,35 @@ class Subsidiary < ApplicationRecord
   has_many :cars
 
   validates :name,
-  presence: {message: 'O campo nome deve ser preenchido'}
+  presence: true
 
   validates :address,
-  presence: {message: 'O campo endereço deve ser preenchido'}
+  presence: true
 
   validates :cnpj,
-  presence: {message: 'O campo CNPJ deve ser preenchido'},
-  length: {is: 14, message: 'O CNPJ deve ter 14 números'},
-  numericality: {only_integer: true, message: 'Digite apenas números no CNPJ'}
+  presence: true,
+  length: {is: 14},
+  numericality: {only_integer: true}
 
   validates :zip_code,
-  presence: {message: 'O CEP deve ser informado'},
-  numericality: {message: 'Forneça apenas números para o CEP, sem hífen ou '\
-                          'pontos', only_integer: true},
-  length: {is: 8, message: 'O CEP deve ter 8 números'}
+  presence: true,
+  numericality: {only_integer: true},
+  length: {is: 8}
 
   validates :number,
-  presence: {message: 'O número deve ser informado'},
-  uniqueness: {scope: :zip_code, message: 'Essa filial já existe'},
-  numericality: {message: 'Existe caracteres inválidos no número'}
+  presence: true,
+  uniqueness: {scope: :zip_code},
+  numericality: {only_integer: true}
 
   validates :district,
-  presence: {message: 'Informe o bairro'}
+  presence: true
 
   validates :state,
-  presence: {message: 'O estado não foi informado'},
-  length: {is: 2, message: 'Insira a sigla do estado'}
+  presence: true,
+  length: {is: 2}
 
   validates :city,
-  presence: {message: 'A cidade não foi informada'}
-
-
-  after_validation :formatting
+  presence: true
 
 
   private
@@ -44,12 +40,12 @@ class Subsidiary < ApplicationRecord
     if name.present? && address.present?
       "#{name}: #{address}"
     else
-      "Filial cadastrada incorretamente"
+      I18n.t(:record_invalid, scope: [
+                                      :activerecord, :methods, :subsidiary,
+                                      :full_description
+                                     ]
+            )
     end
-  end
-
-  def formatting
-    self.name = name.downcase.titleize if name.present?
   end
 
 end

@@ -3,23 +3,25 @@ class Car < ApplicationRecord
   belongs_to :subsidiary
   has_one :car_rental
 
-
   validates :color,
-  presence: {message: 'O cor deve ser informada'}
+  presence: true
 
   validates :license_plate,
-  presence: {message: 'A placa não foi informada'}
+  presence: true,
+  uniqueness: true
 
   validates :mileage,
-  presence: {message: 'A quilometragem deve ser informada'},
-  numericality: {message: 'A quilometragem não aceita letras'}
+  presence: true,
+  numericality: true
 
 
   def full_description
     if car_model.nil? || color.nil? || license_plate.nil?
-      'Carro não cadastro corretamente'
+      I18n.t(:incomplete_car, scope: [:activerecord, :methods, :car,
+                                     :full_description])
     else
-      "#{car_model.manufacturer.name} #{car_model.name} - #{color} - #{license_plate}"
+      "#{car_model.manufacturer.name} #{car_model.name} - #{color} - "\
+      "#{license_plate}"
     end
   end
 

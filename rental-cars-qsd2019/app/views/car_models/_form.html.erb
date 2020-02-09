@@ -1,43 +1,49 @@
 <% if @car_model.errors.any? %>
-  <div class="ls-alert-danger">Você deve corrigir os seguintes erros para continuar</div>
-    <ul>
-      <% @car_model.errors.values.each do |messages_group| %>
-        <% messages_group.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      <% end %>
-    </ul>
-    <br>
+<div class="ls-alert-danger">
+  <%= t(:validation_error, scope: [:application_view, :messages]) %>
+</div>
+  <ul>
+    <% @car_model.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+    <% end %>
+  </ul>
+  <br>
 <% end %>
 
 <%= form_with(model: @car_model, local: true, class: "ls-form row") do
                                                               |form| %>
 <label class="ls-label col-md-2">
-  <%= form.label :name, 'Nome' %>
-  <p class="ls-label-info">Modelo do Carro</p>
+  <%= form.label :name %>
+  <p class="ls-label-info">
+   <%= t(:name, scope: [:car_model_view, :form_label_info])%>
+  </p>
   <%= form.text_field :name %>
 </label>
 
 <label class="ls-label col-md-2">
-  <%= form.label :year, 'Ano' %>
+  <%= form.label :year %>
     <p class="ls-label-info"></p>
   <%= form.text_field :year %>
 </label>
 
 <label class="ls-label col-md-2">
-  <%= form.label :motorization, 'Motor' %>
-  <p class="ls-label-info">Ex: 1.8</p>
+  <%= form.label :motorization %>
+  <p class="ls-label-info">
+    <%= t(:motorization, scope: [:car_model_view, :form_label_info])%>
+  </p>
   <%= form.text_field :motorization %>
 </label>
 
 <label class="ls-label col-md-2">
-  <%= form.label :fuel_type, 'Combustível' %>
-  <p class="ls-label-info">Ex: Flex</p>
+  <%= form.label :fuel_type %>
+  <p class="ls-label-info">
+    <%= t(:fuel_type, scope: [:car_model_view, :form_label_info])%>
+  </p>
   <%= form.text_field :fuel_type %>
 </label>
 
 <label class="ls-label col-md-2">
-  <%= form.label :manufacturer_id, 'Fabricante' %>
+  <%= form.label :manufacturer_id %>
   <p class="ls-label-info"></p>
   <div class="ls-custom-select">
    <%= form.collection_select :manufacturer_id, @manufacturers, :id,
@@ -46,16 +52,16 @@
 </label>
 
 <label class="ls-label col-md-2">
-  <%= form.label :car_category_id, 'Categoria do Carro' %>
+  <%= form.label :car_category_id %>
   <p class="ls-label-info"></p>
   <div class="ls-custom-select">
    <%= form.collection_select :car_category_id, @car_categories, :id,
-                             :name, class: "ls-custom" %>
+                              :name, class: "ls-custom" %>
   </div>
 </label>
 
 <div class="ls-actions-btn">
-  <%= form.submit 'Enviar', class: 'ls-btn-primary' %>
+  <%= form.submit class: 'ls-btn-primary' %>
 </div>
 
 <% end %>

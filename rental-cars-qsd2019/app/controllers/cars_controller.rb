@@ -1,5 +1,6 @@
 class CarsController < ApplicationController
-  before_action :car_model_collection, :subsidiary_collection, only: [:new, :edit]
+  before_action :car_model_collection,
+                :subsidiary_collection, only: [:new, :edit]
 
   def new
     @car = Car.new
@@ -8,7 +9,10 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     if @car.save
-      flash[:notice] = 'Carro cadastrado com sucesso'
+      # Eu poderia ter utilizado também:
+      # flash[:notice] = t('cars.create.success')
+      # esse é o caminho no arquivo car.pt-BR.yml
+      flash[:notice] = t('.success')
       redirect_to car_path @car
     else
       @car_models = CarModel.all
@@ -35,7 +39,10 @@ class CarsController < ApplicationController
     @car = Car.find(params[:id])
 
     if @car.update(car_params)
-      flash[:notice] = 'Cliente editado com sucesso'
+      # Eu poderia ter utilizado também:
+      # flash[:notice] = t('cars.update.success')
+      # esse é o caminho no arquivo car.pt-BR.yml
+      flash[:notice] = t('.success')
       redirect_to car_path @car
     else
       @car_models = CarModel.all
@@ -46,7 +53,10 @@ class CarsController < ApplicationController
 
   def destroy
     Car.destroy(params[:id])
-    redirect_to cars_path, notice: 'Carro deletado com sucesso'
+    # Eu poderia ter utilizado também:
+    # flash[:notice] = t('cars.destroy.success')
+    # esse é o caminho no arquivo car.pt-BR.yml
+    redirect_to cars_path, notice: t('.success')
   end
 
 

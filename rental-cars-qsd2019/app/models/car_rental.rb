@@ -1,25 +1,29 @@
 class CarRental < ApplicationRecord
-
   belongs_to :car
   belongs_to :rental
 
+  validates :daily_price,
+  presence: true,
+  numericality: true
 
-  validates :daily_price, presence: {message: 'O valor total da diária deve ser fornecida'},
-  numericality: {message: 'A taxa diária só aceita números'}
+  validates :car_insurance,
+  presence: true,
+  numericality: true
 
-  validates :car_insurance, presence: {message: 'Valor do seguro não informado'},
-  numericality: {message: 'O seguro do carro só aceita números'}
+  validates :third_party_insurance,
+  presence: true,
+  numericality: true
 
-  validates :third_party_insurance, presence: {message: 'O valor do seguro para terceiros não informado'},
-  numericality: {message: 'O seguro para terceiros só aceita números'}
+  validates :start_mileage,
+  presence: true,
+  numericality: true
 
-  validates :start_mileage, presence: {message: 'Informo a quilometragem inicial'},
-  numericality: {message: 'A quilometragem só aceita números'}
+  validates :end_mileage,
+  numericality: true
 
   validate :check_car_category
 
   after_create :rental_status_change
-
 
 
   private

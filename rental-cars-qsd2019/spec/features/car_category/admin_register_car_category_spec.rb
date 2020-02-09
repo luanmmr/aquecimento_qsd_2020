@@ -6,16 +6,19 @@ feature 'Admin register car category' do
 
     login_as(user, scope: :user)
     visit root_path
-    click_on 'Categorias de Carros'
+    click_on 'Categorias'
     click_on 'Registrar nova categoria'
     fill_in 'Nome', with: 'A'
     fill_in 'Diária', with: 71.73
     fill_in 'Seguro do Carro', with: 28.00
     fill_in 'Seguro para Terceiros', with: 10.00
-    click_on 'Enviar'
+    click_on 'Criar Categoria'
 
     expect(page).to have_content('Categoria: A')
-    expect(page).to have_content('Cadastrada com sucesso')
+    expect(page).to have_content(71.73)
+    expect(page).to have_content(28.00)
+    expect(page).to have_content(10.00)
+    expect(page).to have_content('Categoria registrada com sucesso')
   end
 
   scenario 'and must fill in all fields' do
@@ -23,16 +26,18 @@ feature 'Admin register car category' do
 
     login_as(user, scope: :user)
     visit root_path
-    click_on 'Categorias de Carros'
+    click_on 'Categorias'
     click_on 'Registrar nova categoria'
-    click_on 'Enviar'
+    click_on 'Criar Categoria'
 
     expect(page).to have_content('Você deve corrigir os seguintes erros para '\
                                  'continuar')
-    expect(page).to have_content('O campo nome está vazio')
-    expect(page).to have_content('A diária está vazia')
-    expect(page).to have_content('O seguro do carro está vazio')
-    expect(page).to have_content('O seguro para terceiros está vazio')
+    expect(page).to have_content('Nome não pode ficar em branco')
+    expect(page).to have_content('Diária não pode ficar em branco')
+    expect(page).to have_content('Seguro do Carro não pode ficar em branco')
+    expect(page).to have_content('Seguro para Terceiros não pode ficar em '\
+                                 'branco')
+    expect(page).to_not have_content('Categoria registrada com sucesso')
   end
 
   scenario 'name must be unique' do
@@ -42,12 +47,13 @@ feature 'Admin register car category' do
 
     login_as(user, scope: :user)
     visit root_path
-    click_on 'Categorias de Carros'
+    click_on 'Categorias'
     click_on 'Registrar nova categoria'
     fill_in 'Nome', with: 'A'
-    click_on 'Enviar'
+    click_on 'Criar Categoria'
 
-    expect(page).to have_content('Já existe uma categoria com este nome')
+    expect(page).to have_content('Nome já está em uso')
+    expect(page).to_not have_content('Categoria registrada com sucesso')                                 
   end
 
 

@@ -8,7 +8,7 @@ class ClientsController < ApplicationController
     @client = Client.new(params_client)
 
     return redirect_to clients_path,
-                       notice: 'Cliente registrado com sucesso' if @client.save
+                       notice: t('.success') if @client.save
     render :new
   end
 
@@ -24,14 +24,14 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
 
     return redirect_to clients_path,
-    notice: 'Cliente editado com sucesso!' if @client.update(params_client)
+    notice: t('.success') if @client.update(params_client)
 
     render :edit
   end
 
   def destroy
     Client.destroy(params[:id])
-    redirect_to clients_path, notice: 'Cliente deletado com sucesso'
+    redirect_to clients_path, notice: t('.success')
   end
 
 

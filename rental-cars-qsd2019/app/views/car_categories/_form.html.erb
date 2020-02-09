@@ -1,43 +1,53 @@
 <% if @car_category.errors.any? %>
-  <div class="ls-alert-danger">Você deve corrigir os seguintes erros para continuar</div>
+  <div class="ls-alert-danger">
+    <%= t(:validation_error, scope: [:application_view, :messages]) %>
+  </div>
     <ul>
-      <% @car_category.errors.values.each do |messages_group| %>
-        <% messages_group.each do |message| %>
+      <% @car_category.errors.full_messages.each do |message| %>
           <li><%= message %></li>
-        <% end %>
       <% end %>
     </ul>
     <br>
 <% end %>
 
+<br>
+
 <%= form_with(model: @car_category, local: true, class: "ls-form-horizontal") do
                                                               |form| %>
 <label class="ls-label col-md-3">
-  <%= form.label :name, 'Nome' %>
-  <p class="ls-label-info">Nome da categoria</p>
+  <%= form.label :name %>
+  <p class="ls-label-info">
+    <%= t(:name, scope: [:car_category_view, :form_label_info]) %>
+  </p>
   <%= form.text_field :name %>
 </label>
 
 <label class="ls-label col-md-3">
-  <%= form.label :daily_rate, 'Diária' %>
-    <p class="ls-label-info">Valor da diária</p>
+  <%= form.label :daily_rate %>
+  <p class="ls-label-info">
+    <%= t(:daily_rate, scope: [:car_category_view, :form_label_info]) %>
+  </p>
   <%= form.text_field :daily_rate %>
 </label>
 
 <label class="ls-label col-md-3">
-  <%= form.label :car_insurance, 'Seguro do Carro' %>
-  <p class="ls-label-info">Valor do seguro do carro</p>
+  <%= form.label :car_insurance %>
+  <p class="ls-label-info">
+    <%= t(:car_insurance, scope: [:car_category_view, :form_label_info]) %>
+  </p>
   <%= form.text_field :car_insurance %>
 </label>
 
 <label class="ls-label col-md-3">
-  <%= form.label :third_party_insurance, 'Seguro para Terceiros' %>
-  <p class="ls-label-info">Valor do seguro para terceiros</p>
+  <%= form.label :third_party_insurance %>
+  <p class="ls-label-info">
+    <%= t(:third_party_insurance,
+          scope: [:car_category_view, :form_label_info]) %>
+  </p>
   <%= form.text_field :third_party_insurance %>
 </label>
 
 <div class="ls-actions-btn">
-  <%= form.submit 'Enviar', class: 'ls-btn-primary' %>
+  <%= form.submit class: 'ls-btn-primary' %>
 </div>
-
 <% end %>

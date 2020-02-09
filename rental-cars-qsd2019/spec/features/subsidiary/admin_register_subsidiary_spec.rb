@@ -16,10 +16,11 @@ feature 'Admin register subsidiary' do
     fill_in 'Estado', with: 'SP'
     fill_in 'Cidade', with: 'São Paulo'
     fill_in 'CEP', with: '04661902'
-    click_on 'Enviar'
+    click_on 'Criar Filial'
 
+    expect(page).to have_content('Filial registrada com sucesso')
     expect(page).to have_content('Interlagos')
-    expect(page).to have_content('Cadastrada com sucesso!')
+    expect(page).to have_content('28179836000114')
   end
 
   scenario 'and must fill in all fields' do
@@ -29,33 +30,18 @@ feature 'Admin register subsidiary' do
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova filial'
-    click_on 'Enviar'
+    click_on 'Criar Filial'
 
-    expect(page).to have_content('Você deve corrigir os seguintes erros para continuar')
-    expect(page).to have_content('O campo nome deve ser preenchido')
-    expect(page).to have_content('O campo endereço deve ser preenchido')
-    expect(page).to have_content('O campo CNPJ deve ser preenchido')
-    expect(page).to have_content('O CEP deve ser informado')
-    expect(page).to have_content('O número deve ser informado')
-    expect(page).to have_content('Informe o bairro')
-    expect(page).to have_content('O estado não foi informado')
-    expect(page).to have_content('A cidade não foi informada')
-  end
-
-  scenario 'and zip_code and number must be unique' do
-    create(:subsidiary)
-    user = create(:user)
-
-    login_as(user, scope: :user)
-    visit root_path
-    click_on 'Filiais'
-    click_on 'Registrar nova filial'
-    fill_in 'Número', with: 50
-    fill_in 'CEP', with: '05724030'
-    click_on 'Enviar'
-
-    expect(page).to have_content('Você deve corrigir os seguintes erros para continuar')
-    expect(page).to have_content('Essa filial já existe')
+    expect(page).to have_content('Você deve corrigir os seguintes erros para '\
+                                 'continuar')
+    expect(page).to have_content('Nome não pode ficar em branco')
+    expect(page).to have_content('Endereço não pode ficar em branco')
+    expect(page).to have_content('CNPJ não pode ficar em branco')
+    expect(page).to have_content('CEP não pode ficar em branco')
+    expect(page).to have_content('Número não pode ficar em branco')
+    expect(page).to have_content('Bairro não pode ficar em branco')
+    expect(page).to have_content('Estado não pode ficar em branco')
+    expect(page).to have_content('Cidade não pode ficar em branco')
   end
 
   scenario 'and must be authenticated' do
@@ -63,5 +49,4 @@ feature 'Admin register subsidiary' do
 
     expect(current_path).to eq(new_user_session_path)
   end
-
 end

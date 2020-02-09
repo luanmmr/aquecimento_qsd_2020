@@ -1,15 +1,12 @@
-<h1 class="ls-title-intro ls-ico-week">Locações</h1>
-<div class="ls-box-filter">
-<%= form_tag search_rentals_path, method: :get,
-             class: "ls-form ls-form-inline" do %>
-<%= label_tag :q, 'Pesquisa' %>
-<%= text_field_tag :q %>
-<%= submit_tag 'Buscar', class: "ls-btn" %>
-<% end %>
-</div>
+<h1 class="ls-title-intro ls-ico-week">
+  <%= Rental.model_name.human(count: 2) %>
+</h1>
+
+<%= render partial: 'search' %>
 
 <%= render partial: 'partial_results' %>
 
 <br>
 
-<%= link_to 'Agendar locação', new_rental_path, class: 'ls-btn-primary' %>
+<%= link_to t(:schedule, scope: [:rental_view, :buttons]),
+            new_rental_path, class: 'ls-btn-primary' %>

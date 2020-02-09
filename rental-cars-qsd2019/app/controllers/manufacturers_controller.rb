@@ -9,7 +9,7 @@ class ManufacturersController < ApplicationController
     if @manufacturer.save
       # Esse flash vai para a próxima requisição, ou seja, após o redirect_to
       # vai para o show. A view show terá acesso, mas depois esse flash morre.
-      flash[:notice] = 'Fabricante criada com sucesso!'
+      flash[:notice] = t('.success')
       redirect_to cars_path
       # A mesma coisa que  redirect_to manufacturer_path(@manufacturer)
       # Pode fazer também render :show
@@ -32,7 +32,7 @@ class ManufacturersController < ApplicationController
   def update
     @manufacturer = Manufacturer.find(params[:id])
     if @manufacturer.update(manufacturer_params)
-      flash[:notice] = 'Fábrica editada com sucesso!'
+      flash[:notice] = t('.success')
       redirect_to cars_path
     else
       render :edit
@@ -41,9 +41,8 @@ class ManufacturersController < ApplicationController
 
   def destroy
     Manufacturer.destroy(params[:id])
-    redirect_to cars_path, notice: 'Fabricante deletada com sucesso'
+    redirect_to cars_path, notice: t('.success')
   end
-
 
 
   private

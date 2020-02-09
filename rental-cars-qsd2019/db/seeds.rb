@@ -64,6 +64,6 @@ Car.create!(license_plate: 'UML6111', color: 'Roxo', car_model: car_model_4, mil
 Car.create!(license_plate: 'XUU7117', color: 'Cinza', car_model: car_model_5, mileage: 0, subsidiary: subsidiary_2)
 Car.create!(license_plate: 'MXA8769', color: 'Rosa', car_model: car_model_6, mileage: 150.00, subsidiary: subsidiary_3)
 
-Rental.create!(code: 'XFB0000', start_date: Date.current, end_date: 1.day.from_now, client: client, car_category: car_category, user: user)
-Rental.create!(code: 'XFB0001', start_date: Date.current, end_date: 3.day.from_now, client: client_2, car_category: car_category_2, user: user_2)
-Rental.create!(code: 'XFB0002', start_date: Date.current, end_date: 6.day.from_now, client: client_3, car_category: car_category_3, user: user_3)
+Rental.create!(code: 'XFB0000', start_date: Date.today, end_date: 1.day.from_now, client: client, car_category: car_category, user: user)
+Rental.create!(code: 'XFB0001', start_date: Date.today, end_date: 3.day.from_now, client: client_2, car_category: car_category_2, user: user_2)
+Rental.create!(code: 'XFB0002', start_date: Date.today, end_date: 6.day.from_now, client: client_3, car_category: car_category_3, user: user_3)

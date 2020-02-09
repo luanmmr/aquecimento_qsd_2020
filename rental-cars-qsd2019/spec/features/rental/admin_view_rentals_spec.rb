@@ -2,7 +2,6 @@ require 'rails_helper'
 
 feature 'Admin view rentals' do
   scenario 'successfully' do
-
     user = User.create!(email: 'teste@teste.com.br', password: '123456')
     client = Client.create!(name: 'Jose', document: '25498763123',
                             email: 'jose@jose.com.br')
@@ -14,10 +13,10 @@ feature 'Admin view rentals' do
     other_car_category = CarCategory.create(name: 'B', daily_rate: '92.20',
                                             car_insurance: '35.20',
                                             third_party_insurance: '10.00')
-    Rental.create!(code: '12a120c4c7', start_date: Date.current,
+    Rental.create!(code: '12a120c4c7', start_date: Date.today,
                    end_date: 2.days.from_now, client: client,
                   car_category: car_category, user: user)
-    Rental.create!(code: '45a157c4b8', start_date: Date.current,
+    Rental.create!(code: '45a157c4b8', start_date: Date.today,
                    end_date: 2.days.from_now, client: other_client,
                    car_category: other_car_category, user: user)
 
@@ -34,15 +33,18 @@ feature 'Admin view rentals' do
     expect(page).to have_content('A')
     expect(page).to have_content('B')
     expect(page).to have_content('agendada', count: 2)
-
   end
 
   scenario 'and also view more details of an rental' do
-
     user = User.create!(email: 'teste@teste.com.br', password: '123456')
-    client = Client.create!(name: 'Jose', document: '25498763123', email: 'jose@jose.com.br')
-    car_category = CarCategory.create(name: 'A', daily_rate: '72.20', car_insurance: '28.00', third_party_insurance: '10.00')
-    Rental.create!(code: '12a120c4c7', start_date: Date.current, end_date: 2.days.from_now, client: client, car_category: car_category, user: user)
+    client = Client.create!(name: 'Jose', document: '25498763123',
+                            email: 'jose@jose.com.br')
+    car_category = CarCategory.create(name: 'A', daily_rate: '72.20',
+                                      car_insurance: '28.00',
+                                      third_party_insurance: '10.00')
+    Rental.create!(code: '12a120c4c7', start_date: Date.today,
+                   end_date: 2.days.from_now, client: client,
+                   car_category: car_category, user: user)
 
     login_as(user, scope: :user)
     visit rentals_path
@@ -52,25 +54,20 @@ feature 'Admin view rentals' do
     expect(page).to have_content('Jose')
     expect(page).to have_content('jose@jose.com.br')
     expect(page).to have_content('A')
-    expect(page).to have_content(Date.current.strftime("%d/%m/%Y"))
+    expect(page).to have_content(Date.today.strftime("%d/%m/%Y"))
     expect(page).to have_content(2.days.from_now.strftime("%d/%m/%Y"))
     expect(page).to have_content('teste@teste.com.br')
-
   end
 
   scenario 'and must be authenticated' do
-
     visit rentals_path
 
     expect(current_path).to eq(new_user_session_path)
-
   end
 
   scenario 'and must be authenticated for more details' do
-
     visit rental_path(7)
 
     expect(current_path).to eq(new_user_session_path)
-
   end
 end

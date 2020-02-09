@@ -11,7 +11,7 @@ feature 'User register client' do
     fill_in 'Nome', with: 'Fulano Sicrano'
     fill_in 'Email', with: 'fulano@hotmail.com'
     fill_in 'CPF', with: '29382458754'
-    click_on 'Enviar'
+    click_on 'Criar Cliente'
 
     expect(page).to have_content('Cliente registrado com sucesso')
     expect(page).to have_content('Fulano Sicrano')
@@ -24,12 +24,12 @@ feature 'User register client' do
 
     login_as(user, scope: :user)
     visit new_client_path
-    click_on 'Enviar'
+    click_on 'Criar Cliente'
 
     expect(page).to have_content('Email não pode ficar em branco')
     expect(page).to have_content('Nome não pode ficar em branco')
     expect(page).to have_content('CPF não pode ficar em branco')
-
+    expect(page).to_not have_content('Cliente registrado com sucesso')
   end
 
   scenario 'and cpf must be unique' do
@@ -42,11 +42,12 @@ feature 'User register client' do
     fill_in 'Nome', with: 'Jose'
     fill_in 'CPF', with: '25498763123'
     fill_in 'Email', with: 'jose@jose.com.br'
-    click_on 'Enviar'
+    click_on 'Criar Cliente'
 
     expect(page).to have_content('Você deve corrigir os seguintes erros para '\
                                  'continuar')
-    expect(page).to have_content('Esse cliente já está cadastrado no sistema')
+    expect(page).to have_content('CPF já está em uso')
+    expect(page).to_not have_content('Cliente registrado com sucesso')
   end
 
   scenario 'and name must to have only words' do
@@ -55,13 +56,10 @@ feature 'User register client' do
     login_as(user, scope: :user)
     visit new_client_path
     fill_in 'Nome', with: 'Jos3 5ilva'
-    click_on 'Enviar'
+    click_on 'Criar Cliente'
 
-    expect(page).to have_content('Nome inválido')
-
-    fill_in 'Nome', with: 'Jos_ S#ilva'
-
-    expect(page).to have_content('Nome inválido')
+    expect(page).to have_content('Nome não é válido')
+    expect(page).to_not have_content('Cliente registrado com sucesso')
   end
 
   scenario 'and cpf must have only numbers' do
@@ -70,8 +68,9 @@ feature 'User register client' do
     login_as(user, scope: :user)
     visit new_client_path
     fill_in 'CPF', with: 'testetestet'
-    click_on 'Enviar'
+    click_on 'Criar Cliente'
 
-    expect(page).to have_content('O CPF deve conter apenas números')
+    expect(page).to have_content('CPF não é um número')
+    expect(page).to_not have_content('Cliente registrado com sucesso')
   end
 end

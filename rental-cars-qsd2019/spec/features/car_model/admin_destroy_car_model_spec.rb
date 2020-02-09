@@ -8,11 +8,11 @@ feature 'Admin destroys car model' do
     login_as(user, scope: :user)
     visit root_path
     click_on 'Carros'
-    click_on 'Modelos de Carros'
+    click_on 'Modelos'
     within "td#car_model-#{car_model.id}" do
       click_on 'Deletar'
     end
 
-    expect(page).to have_content('Modelo de carro deletado com sucesso')
+    expect(page).to have_content('Modelo deletado com sucesso')
   end
 end

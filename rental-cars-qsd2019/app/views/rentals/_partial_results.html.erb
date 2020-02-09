@@ -2,11 +2,21 @@
   <table class="ls-table ls-table-striped ls-bg-header">
     <thead>
       <tr>
-        <th>Código</th>
-        <th class="hidden-xs">Cliente</th>
-        <th>Email</th>
-        <th class="hidden-xs">Categoria</th>
-        <th>Status</th>
+        <th>
+          <%= t(:code, scope: [:activerecord, :attributes, :rental]) %>
+        </th>
+        <th class="hidden-xs">
+          <%= t(:client, scope: [:activerecord, :attributes, :rental]) %>
+        </th>
+        <th>
+          <%= t(:email, scope: [:activerecord, :attributes, :client]) %>
+        </th>
+        <th class="hidden-xs">
+          <%= t(:car_category, scope: [:activerecord, :attributes, :rental]) %>
+        </th>
+        <th>
+          <%= t(:status, scope: [:activerecord, :attributes, :rental]) %>
+        </th>
       </tr>
     </thead>
     <tbody>

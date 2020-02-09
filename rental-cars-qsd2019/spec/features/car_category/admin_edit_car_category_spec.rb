@@ -7,7 +7,7 @@ feature 'Admin edits car category' do
 
     login_as(user, scope: :user)
     visit root_path
-    click_on 'Categorias de Carros'
+    click_on 'Categorias'
     within "div#car_category-#{car_category.id}" do
       click_on 'Editar'
     end
@@ -15,9 +15,9 @@ feature 'Admin edits car category' do
     fill_in 'Diária', with: 100.20
     fill_in 'Seguro do Carro', with: 58.23
     fill_in 'Seguro para Terceiros', with: 20.19
-    click_on 'Enviar'
+    click_on 'Atualizar Categoria'
 
-    expect(page).to have_content('Alteração realizada com sucesso')
+    expect(page).to have_content('Categoria atualizada com sucesso')
     expect(page).to have_content('B')
     expect(page).to have_content(100.20)
     expect(page).to have_content(58.23)
@@ -30,7 +30,7 @@ feature 'Admin edits car category' do
 
     login_as(user, :scope => :user)
     visit root_path
-    click_on 'Categorias de Carros'
+    click_on 'Categorias'
     within "div#car_category-#{car_category.id}" do
       click_on 'Editar'
     end
@@ -38,14 +38,16 @@ feature 'Admin edits car category' do
     fill_in 'Diária', with: ''
     fill_in 'Seguro do Carro', with: ''
     fill_in 'Seguro para Terceiros', with: ''
-    click_on 'Enviar'
+    click_on 'Atualizar Categoria'
 
     expect(page).to have_content('Você deve corrigir os seguintes erros para '\
                                  'continuar')
-    expect(page).to have_content('O campo nome está vazio')
-    expect(page).to have_content('A diária está vazia')
-    expect(page).to have_content('O seguro do carro está vazio')
-    expect(page).to have_content('O seguro para terceiros está vazio')
+    expect(page).to have_content('Nome não pode ficar em branco')
+    expect(page).to have_content('Diária não pode ficar em branco')
+    expect(page).to have_content('Seguro do Carro não pode ficar em branco')
+    expect(page).to have_content('Seguro para Terceiros não pode ficar em '\
+                                 'branco')
+    expect(page).to_not have_content('Categoria atualizada com sucesso')
   end
 
   scenario 'and name must be unique' do
@@ -55,14 +57,17 @@ feature 'Admin edits car category' do
 
     login_as(user, scope: :user)
     visit root_path
-    click_on 'Categorias de Carros'
+    click_on 'Categorias'
     within "div#car_category-#{car_category.id}" do
       click_on 'Editar'
     end
     fill_in 'Nome', with: 'W'
-    click_on 'Enviar'
+    click_on 'Atualizar Categoria'
 
-    expect(page).to have_content('Já existe uma categoria com este nome')
+    expect(page).to have_content('Você deve corrigir os seguintes erros para '\
+                                 'continuar')
+    expect(page).to have_content('Nome já está em uso')
+    expect(page).to_not have_content('Categoria atualizada com sucesso')
   end
 
   scenario 'and must be authenticated to edit a car category' do

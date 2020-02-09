@@ -1,25 +1,67 @@
 <h1 class="ls-title-intro ls-ico-earth">
-  <%= "Filial #{@subsidiary.name}" %>
+  <%= Subsidiary.model_name.human %>
 </h1>
 
-<ul>
-  <li> CNPJ: <%= @subsidiary.cnpj %> </li>
-  <li> Endereço: <%= @subsidiary.address %> </li>
-  <li> Número: <%= @subsidiary.number %> </li>
-  <li> Bairro: <%= @subsidiary.district %> </li>
-  <li> Estado: <%= @subsidiary.state %> </li>
-  <li> Cidade: <%= @subsidiary.city %> </li>
-  <li> CEP: <%= @subsidiary.zip_code %> </li>
-</ul>
+<div class="ls-list">
+  <header class="ls-list-header">
+    <div class="ls-list-title col-md-9">
+        <a href="#" ><%= "#{@subsidiary.name}" %></a>
+    </div>
+  </header>
+  <div class="ls-list-content ">
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">
+        <%= Subsidiary.human_attribute_name('cnpj') %>
+      </span>
+      <strong><%= @subsidiary.cnpj %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">
+        <%= Subsidiary.human_attribute_name('address') %>
+      </span>
+      <strong><%= @subsidiary.address %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">
+        <%= Subsidiary.human_attribute_name('number') %>
+      </span>
+      <strong><%= @subsidiary.number %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">
+        <%= Subsidiary.human_attribute_name('district') %>
+      </span>
+      <strong><%= @subsidiary.district %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">
+        <%= Subsidiary.human_attribute_name('state') %>
+      </span>
+      <strong><%= @subsidiary.state %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">
+        <%= Subsidiary.human_attribute_name('city') %>
+      </span>
+      <strong><%= @subsidiary.city %></strong>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <span class="ls-list-label">
+        <%= Subsidiary.human_attribute_name('zip_code') %>
+      </span>
+      <strong><%= @subsidiary.zip_code %></strong>
+    </div>
+  </div>
+</div>
 
 <div id="cars" class="ls-tab-content ls-active">
   <table class="ls-table ls-table-striped ls-bg-header">
     <thead>
       <tr>
-        <th>Placa</th>
-        <th class="hidden-xs">Fabricante</th>
-        <th>Modelo</th>
-        <th class="hidden-xs">Filial</th>
+        <th><%= Car.human_attribute_name('license_plate') %></th>
+        <th class="hidden-xs"><%= Manufacturer.model_name.human %></th>
+        <th><%= CarModel.model_name.human %></th>
+        <th class="hidden-xs"><%= Subsidiary.model_name.human %></th>
       </tr>
     </thead>
     <tbody>

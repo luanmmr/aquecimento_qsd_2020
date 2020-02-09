@@ -1,13 +1,8 @@
-<h1 class="ls-title-intro ls-ico-search">Locações</h1>
+<h1 class="ls-title-intro ls-ico-week">
+<%= Rental.model_name.human(count: 2) %>
+</h1>
 
-<div class="ls-box-filter">
-<%= form_tag search_rentals_path, method: :get,
-             class: "ls-form ls-form-inline" do %>
-<%= label_tag :q, 'Pesquisa' %>
-<%= text_field_tag :q %>
-<%= submit_tag 'Buscar', class: "ls-btn" %>
-<% end %>
-</div>
+<%= render partial: 'search' %>
 
 <% if @q.present? %>
 
@@ -15,11 +10,21 @@
   <table class="ls-table ls-table-striped ls-bg-header">
     <thead>
       <tr>
-        <th>Código</th>
-        <th class="hidden-xs">Cliente</th>
-        <th>Email</th>
-        <th class="hidden-xs">Categoria</th>
-        <th>Status</th>
+        <th>
+          <%= t(:code, scope: [:activerecord, :attributes, :rental]) %>
+        </th>
+        <th class="hidden-xs">
+          <%= t(:client, scope: [:activerecord, :attributes, :rental]) %>
+        </th>
+        <th>
+          <%= t(:email, scope: [:activerecord, :attributes, :client]) %>
+        </th>
+        <th class="hidden-xs">
+          <%= t(:car_category, scope: [:activerecord, :attributes, :rental]) %>
+        </th>
+        <th>
+          <%= t(:status, scope: [:activerecord, :attributes, :rental]) %>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -38,6 +43,7 @@
 
 <br>
 
-<%= "#{@rentals.length} resultado(s) encontrado(s)" %>
+<%= "#{@rentals.length} #{t(:results_found,
+                            scope: [:application_view, :messages])}" %>
 
 <% end %>

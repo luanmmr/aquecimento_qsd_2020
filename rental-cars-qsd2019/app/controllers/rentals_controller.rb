@@ -10,8 +10,8 @@ class RentalsController < ApplicationController
     @rental.code = SecureRandom.hex(5)
     @rental.user = current_user
 
-    return redirect_to rental_path(@rental), notice: 'Locação agendada com '\
-                                                     'sucesso' if @rental.save
+    return redirect_to rental_path(@rental),
+                       notice: t('.success') if @rental.save
     clients_collection
     categories_collection
     render :new
@@ -23,11 +23,17 @@ class RentalsController < ApplicationController
 
   def show
     @rental = Rental.find(params[:id])
+    if @rental.start_date < Date.today && @rental.status_agendada?
+      flash.now[:alert] = t('.expired')
+      @valid = false
+    else
+      @valid = true
+    end
   end
 
   def destroy
     Rental.destroy(params[:id])
-    redirect_to rentals_path, notice: 'Locação deletada com sucesso'
+    redirect_to rentals_path, notice: t('.success')
   end
 
   def search
@@ -52,9 +58,10 @@ class RentalsController < ApplicationController
                                 daily_price: @rental.daily_price_total,
                                 car_insurance: @rental.car_insurance,
                                 third_party_insurance: @rental.third_party_insurance,
-                                start_mileage: @car.mileage)
+                                start_mileage: @car.mileage,
+                                end_mileage: @car.mileage)
     @car_rental.save!
-    redirect_to rentals_path, notice: "Locação efetivada"
+    redirect_to car_rental_path(@car_rental), notice: t('.success')
   end
 
 
@@ -69,11 +76,12 @@ class RentalsController < ApplicationController
   end
 
   def params_rental
-    params.require(:rental).permit(:start_date, :end_date, :client_id, :car_category_id)
+    params.require(:rental).permit(:start_date, :end_date, :client_id,
+                                   :car_category_id)
   end
 
   def params_create_reserve
-    params.require(:car_rental).permit(:car_id, :id)
+    params.require(:car_rental).permit(:car_id)
   end
 
 end

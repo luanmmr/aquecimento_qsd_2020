@@ -1,5 +1,5 @@
 <h1 class="ls-title-intro ls-ico-bukets">
-  Editando Categoria <%= @car_category.name %>
+  <%= t(:editing_car_category, scope: [:car_category_view, :title]) %>
 </h1>
 
 <%= render 'form' %>

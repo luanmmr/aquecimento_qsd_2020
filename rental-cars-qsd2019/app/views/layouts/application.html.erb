@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="ls-theme-wine">
 <head>
-  <title>Rental Cars</title>
+  <title><%= t(:brand, scope: [:application_view]) %></title>
 
 
   <%= csrf_meta_tags %>
@@ -43,7 +43,7 @@
 
       <nav class="ls-dropdown-nav ls-user-menu">
         <ul>
-          <li id="logout"><%= link_to 'Sair', destroy_user_session_path, method: :delete %></li>
+          <li id="logout"><%= link_to t(:logout, scope: [:application_view, :topbar]), destroy_user_session_path, method: :delete %></li>
           <!-- <li><a href="#">Faturas</a></li>
           <li><a href="#">Planos</a></li>
           <li><a href="#">Sair</a></li> -->
@@ -54,13 +54,17 @@
 
 <span class="ls-show-sidebar ls-ico-menu"></span>
 
-<a href="/"  class="ls-go-next"><span class="ls-text">Voltar à lista de serviços</span></a>
+<a href="/"  class="ls-go-next">
+  <span class="ls-text">
+    <%= t(:back_to_list_of_services, scope: [:application_view, :topbar]) %>
+  </span>
+</a>
 
 <!-- Nome do produto/marca com sidebar -->
 <h1 class="ls-brand-name">
   <a href="/" class="ls-ico-earth">
-    <small>Aluguel de Carro</small>
-    Rental Cars
+    <small><%= t(:rental_cars, scope: [:application_view]) %></small>
+    <%= t(:brand, scope: [:application_view]) %>
   </a>
 </h1>
 
@@ -71,17 +75,15 @@
 <aside class="ls-sidebar">
 
   <div class="ls-sidebar-inner">
-    <a href="/"  class="ls-go-prev">
-      <span class="ls-text">Voltar à lista de serviços</span></a>
 
     <nav class="ls-menu">
       <ul>
-        <li><%= link_to 'Home Page', root_path %></li>
-        <li><%= link_to 'Filiais', subsidiaries_path %></li>
-        <li><%= link_to 'Carros', cars_path %></li>
-        <li><%= link_to 'Clientes', clients_path %></li>
-        <li><%= link_to 'Categorias de Carros', car_categories_path %></li>
-        <li><%= link_to 'Locações', rentals_path %></li>
+        <li><%= link_to t(:home_page, scope: :menu), root_path %></li>
+        <li><%= link_to Subsidiary.model_name.human(count: 2), subsidiaries_path %></li>
+        <li><%= link_to Car.model_name.human(count: 2), cars_path %></li>
+        <li><%= link_to Client.model_name.human(count: 2), clients_path %></li>
+        <li><%= link_to CarCategory.model_name.human(count: 2), car_categories_path %></li>
+        <li><%= link_to Rental.model_name.human(count: 2), rentals_path %></li>
 
         <!-- Menu com submenu -->
         <!-- <li>

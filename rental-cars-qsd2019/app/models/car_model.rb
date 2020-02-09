@@ -6,38 +6,29 @@ class CarModel < ApplicationRecord
 
 
   validates :name,
-  presence: {message: 'O campo nome está vazio'},
-  uniqueness: {message: 'Este modelo de carro já existe nesta categoria',
-               case_sensitive: false, scope: [:year, :motorization, :fuel_type]}
+  presence: true,
+  uniqueness: {case_sensitive: false,
+               scope: [:year, :motorization, :fuel_type]}
 
   validates :year,
-  presence: {message: 'Preencha o campo ano'}
+  presence: true
 
   validates :motorization,
-  presence: {message: 'Você deve informar a motorização'}
+  presence: true
 
   validates :fuel_type,
-  presence: {message: 'Ops, você se esqueceu do tipo de combustível'}
+  presence: true
 
-  after_validation :formatting
-
-
-  private
-
-  def formatting
-    if name.present? && fuel_type.present?
-      self.name = name.downcase.titleize
-      self.fuel_type = fuel_type.downcase.titleize
-    else
-      'Este modelo foi criado incompleto'
-    end
-  end
 
   def full_description
-    if name.present? && manufacturer.present?
+    if name && manufacturer && year && motorization && fuel_type
       "#{manufacturer.name} #{name} | #{year} | #{motorization} | #{fuel_type}"
     else
-      "Modelo de carro cadastrado incorretamente!"
+      I18n.t(:incomplete_model, scope: [
+                                        :activerecord, :methods, :car_model,
+                                        :full_description
+                                       ]
+            )
     end
   end
 

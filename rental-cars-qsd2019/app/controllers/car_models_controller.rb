@@ -1,5 +1,6 @@
 class CarModelsController < ApplicationController
-  before_action :collection_manufacturer, :collection_car_category, only: [:new, :edit]
+  before_action :collection_manufacturer,
+                :collection_car_category, only: [:new, :edit]
 
   def new
     @car_model = CarModel.new
@@ -8,8 +9,7 @@ class CarModelsController < ApplicationController
   def create
     @car_model = CarModel.new(params_car_model)
 
-    return redirect_to cars_path, notice: 'Modelo de carro criado com'\
-                                  ' sucesso!' if @car_model.save
+    return redirect_to cars_path, notice: t('.success') if @car_model.save
 
     collection_manufacturer
     collection_car_category
@@ -28,8 +28,8 @@ class CarModelsController < ApplicationController
   def update
     @car_model = CarModel.find(params[:id])
 
-    return redirect_to cars_path, notice: 'Modelo de carro editado com'\
-                      ' sucesso!' if @car_model.update(params_car_model)
+    return redirect_to cars_path,
+                   notice: t('.success') if @car_model.update(params_car_model)
 
     collection_manufacturer
     collection_car_category
@@ -39,15 +39,16 @@ class CarModelsController < ApplicationController
 
   def destroy
     CarModel.destroy(params[:id])
-    redirect_to cars_path, notice: 'Modelo de carro deletado com sucesso'
+    redirect_to cars_path, notice: t('.success')
   end
-
 
 
   private
 
   def params_car_model
-    params.require(:car_model).permit(:name, :year, :motorization, :fuel_type, :car_category_id, :manufacturer_id)
+    params.require(:car_model).permit(:name, :year, :motorization,
+                                      :fuel_type, :car_category_id,
+                                      :manufacturer_id)
   end
 
   def collection_manufacturer
