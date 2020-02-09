@@ -38,7 +38,7 @@ RSpec.describe CarRental, type: :model do
       car_category = CarCategory.new(name: 'A')
       car_model = CarModel.new(name: 'Uno', car_category: car_category)
       car = Car.new(car_model: car_model)
-      rental = Rental.create!(start_date: Date.today, end_date: 1.day.from_now,
+      rental = Rental.create!(start_date: Time.zone.today, end_date: 1.day.from_now,
                               client: client, user: user, car_category: car_category)
       car_rental = CarRental.create!(car: car, rental: rental, daily_price: 80.40,
                                      car_insurance: 40.50, third_party_insurance: 10,

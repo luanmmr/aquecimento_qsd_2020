@@ -30,6 +30,62 @@ describe Car do
 
       expect(car.errors.full_messages).to include('Placa já está em uso')
     end
+
+    it 'verify if license plate with 3 letters and 4 numbers' do
+      car = Car.new(license_plate: 'RBY1995')
+
+      car.valid?
+
+      expect(car.errors.full_messages).to_not include('Placa não é válida')
+    end
+
+    it 'verify if license plate with 4 letters and 3 numbers' do
+      car = Car.new(license_plate: 'RBY1A95')
+
+      car.valid?
+
+      expect(car.errors.full_messages).to_not include('Placa não é válida')
+    end
+
+    it 'verify if license plate with 5 letters and 2 numbers' do
+      car = Car.new(license_plate: 'RBY1A9Z')
+
+      car.valid?
+
+      expect(car.errors.full_messages).to include('Placa não é válida')
+    end
+
+    it 'verify if license plate with 6 letters and 1 numbers' do
+      car = Car.new(license_plate: 'RBY1AYZ')
+
+      car.valid?
+
+      expect(car.errors.full_messages).to include('Placa não é válida')
+    end
+
+    it 'verify if license plate with 2 letters and 5 numbers' do
+      car = Car.new(license_plate: 'RB11775')
+
+      car.valid?
+
+      expect(car.errors.full_messages).to include('Placa não é válida')
+    end
+
+    it 'verify if license plate with 1 letters and 6 numbers' do
+      car = Car.new(license_plate: 'R711775')
+
+      car.valid?
+
+      expect(car.errors.full_messages).to include('Placa não é válida')
+    end
+
+    it 'verify if license plate with 0 letters and 7 numbers' do
+      car = Car.new(license_plate: '2711775')
+
+      car.valid?
+
+      expect(car.errors.full_messages).to include('Placa não é válida')
+    end
   end
 
   describe 'validates#mileage' do

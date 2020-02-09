@@ -8,15 +8,15 @@ feature 'User search rental' do
     client = Client.create!(name: 'Fulano', document: '2938248684',
                             email: 'fulano@test.com')
     user = User.create!(email: 'teste@hotmail.com', password: '123456')
-    Rental.create!(code: 'XFB0000', start_date: Date.today,
+    Rental.create!(code: 'XFB0000', start_date: Time.zone.today,
       end_date: 1.day.from_now,
       client: client, car_category: car_category, user: user)
 
-    Rental.create!(code: 'XFB0001', start_date: Date.today,
+    Rental.create!(code: 'XFB0001', start_date: Time.zone.today,
       end_date: 1.day.from_now,
       client: client, car_category: car_category, user: user)
 
-    Rental.create!(code: 'XFB0000', start_date: Date.today,
+    Rental.create!(code: 'XFB0000', start_date: Time.zone.today,
       end_date: 1.day.from_now,
       client: client, car_category: car_category, user: user)
 
@@ -39,7 +39,7 @@ feature 'User search rental' do
       car_category =  CarCategory.create!(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
       client = Client.create!(name: 'Fulano', document: '2938248684', email: 'fulano@test.com')
       user = User.create!(email: 'teste@hotmail.com', password: '123456')
-      Rental.create!(code: 'XFB0000', start_date: Date.today,
+      Rental.create!(code: 'XFB0000', start_date: Time.zone.today,
         end_date: 1.day.from_now,
         client: client, car_category: car_category, user: user)
 
@@ -59,15 +59,15 @@ feature 'User search rental' do
       car_category =  CarCategory.create!(name: 'A', daily_rate: 72.20, car_insurance: 28.00, third_party_insurance: 10.00)
       client = Client.create!(name: 'Fulano', document: '2938248684', email: 'fulano@test.com')
       user = User.create!(email: 'teste@hotmail.com', password: '123456')
-      Rental.create!(code: 'XFB0000', start_date: Date.today,
+      Rental.create!(code: 'XFB0000', start_date: Time.zone.today,
                      end_date: 1.day.from_now,
                      client: client, car_category: car_category, user: user)
 
-      Rental.create!(code: 'XFB0001', start_date: Date.today,
+      Rental.create!(code: 'XFB0001', start_date: Time.zone.today,
                      end_date: 1.day.from_now,
                      client: client, car_category: car_category, user: user)
 
-      Rental.create!(code: 'FXB0000', start_date: Date.today,
+      Rental.create!(code: 'FXB0000', start_date: Time.zone.today,
                      end_date: 1.day.from_now,
                      client: client, car_category: car_category, user: user)
 

@@ -5,7 +5,8 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in '\
+      'production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -33,12 +34,15 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
-  # Adicionado para ser possível logar no devise usando apenas login_as(user, :scope => :user)
-  # Não sendo mais necessário dar um fill_in 'Email' etc.. e fill_in 'Senha' etc.. toda vez
+  # Adicionado para ser possível logar no devise usando apenas
+  # login_as(user, :scope => :user)
+  # Não sendo mais necessário dar um fill_in 'Email' etc.. e fill_in 'Senha'
+  # etc.. toda vez
   # https://github.com/heartcombo/devise/wiki/How-To:-Test-with-Capybara
   config.include Warden::Test::Helpers
 
-  # Adicionando esse bloco, será possível dar um create em a necessidade de chamar
+  # Adicionando esse bloco, será possível dar um create em a necessidade de
+  # chamar
   # FactoryBot antes
   config.include FactoryBot::Syntax::Methods
 

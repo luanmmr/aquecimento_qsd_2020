@@ -18,7 +18,7 @@ class Rental < ApplicationRecord
 
 
   def valid_start_date
-    if start_date && start_date < Date.today
+    if start_date && start_date < Time.zone.today
       message = I18n.t(:invalid_start_date, scope:
                        [:activerecord, :methods, :rental, :valid_start_date])
       errors.add(:start_date, message)

@@ -10,14 +10,14 @@ feature 'User schedule rental' do
     visit root_path
     click_on 'Locações'
     click_on 'Agendar locação'
-    fill_in 'Data de início', with: Date.today
+    fill_in 'Data de início', with: Time.zone.today
     fill_in 'Data de fim', with: 3.days.from_now
     select 'Jose', from: 'Cliente'
     select 'X', from: 'Categoria do Carro'
     click_on 'Criar Locação'
 
     expect(page).to have_content('Locação agendada com sucesso')
-    expect(page).to have_content(Date.today.strftime("%d/%m/%Y"))
+    expect(page).to have_content(Time.zone.today.strftime("%d/%m/%Y"))
     expect(page).to have_content(3.days.from_now.strftime("%d/%m/%Y"))
     expect(page).to have_content('Jose')
     expect(page).to have_content(/X/)
@@ -60,7 +60,7 @@ feature 'User schedule rental' do
     car_category = CarCategory.create!(name: 'A', daily_rate: 72.20,
                                        car_insurance: 28.00,
                                        third_party_insurance: 10.00)
-    Rental.create!(code: SecureRandom.hex(5), start_date: Date.today,
+    Rental.create!(code: SecureRandom.hex(5), start_date: Time.zone.today,
                    end_date: 4.days.from_now, client: client,
                    car_category: car_category, user: user)
     subsidiary = Subsidiary.create(name: 'Aeroporto Congonhas',

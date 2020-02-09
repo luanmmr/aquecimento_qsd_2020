@@ -10,6 +10,8 @@ class Car < ApplicationRecord
   presence: true,
   uniqueness: true
 
+  validate :valid_license_plate
+
   validates :mileage,
   presence: true,
   numericality: true
@@ -22,6 +24,13 @@ class Car < ApplicationRecord
     else
       "#{car_model.manufacturer.name} #{car_model.name} - #{color} - "\
       "#{license_plate}"
+    end
+  end
+
+  def valid_license_plate
+    unless /\A[A-Z]{3}[0-9]{1}([A-Z]{1}|[0-9]{1})[0-9]{2}\z/.match license_plate
+      errors.add(:license_plate, I18n.t(:invalid_license_plate,
+         scope: [:activerecord, :methods, :car, :valid_license_plate]))
     end
   end
 

@@ -23,7 +23,7 @@ class RentalsController < ApplicationController
 
   def show
     @rental = Rental.find(params[:id])
-    if @rental.start_date < Date.today && @rental.status_agendada?
+    if @rental.start_date < Time.zone.today && @rental.status_agendada?
       flash.now[:alert] = t('.expired')
       @valid = false
     else

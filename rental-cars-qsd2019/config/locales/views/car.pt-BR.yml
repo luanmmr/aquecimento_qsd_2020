@@ -7,4 +7,4 @@ pt-BR:
     buttons:
       new_register: 'Registrar novo carro'
     form_label_info:
-      license_plate: 'Ex: RBY1995'
+      license_plate: 'Ex: RBY1995 ou EAE2A04'

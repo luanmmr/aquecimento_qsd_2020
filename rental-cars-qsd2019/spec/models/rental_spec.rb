@@ -34,7 +34,7 @@ describe Rental do
     end
 
     it 'start date is inserted correctly' do
-      rental = Rental.new(start_date: Date.today)
+      rental = Rental.new(start_date: Time.zone.today)
 
       rental.valid?
 
@@ -46,7 +46,7 @@ describe Rental do
 
   describe '#valid_end_date' do
     it 'should not let end date before the start date' do
-      rental = Rental.new(start_date: Date.today, end_date: 1.day.ago)
+      rental = Rental.new(start_date: Time.zone.today, end_date: 1.day.ago)
 
       rental.valid?
 
@@ -55,7 +55,7 @@ describe Rental do
     end
 
     it 'end date is inserted correctly' do
-      rental = Rental.new(start_date: Date.today, end_date: 1.day.from_now)
+      rental = Rental.new(start_date: Time.zone.today, end_date: 1.day.from_now)
 
       rental.valid?
 
