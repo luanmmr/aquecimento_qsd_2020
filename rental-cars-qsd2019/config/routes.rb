@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :cars, only: %i[index show create update]
       resources :rentals, only: :create
+      resources :clients, only: [] do
+        get 'rentals', on: :member, to: 'rentals#client_rentals'
+      end
     end
   end
 end

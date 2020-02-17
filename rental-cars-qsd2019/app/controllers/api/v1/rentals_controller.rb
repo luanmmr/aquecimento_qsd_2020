@@ -6,6 +6,19 @@ class Api::V1::RentalsController < Api::V1::ApiController
     render json: @rental.errors.full_messages, status: :precondition_failed
   end
 
+  def client_rentals
+    @client = Client.find_by!(document: params[:id])
+    @rentals = Rental.where(client: @client)
+    unless @rentals.empty?
+      return render json: @rentals.as_json(include: { client:
+        { only: %i[name document] }, car_category: { only: :name } }, except:
+        %i[client_id car_category_id]), status: :ok
+    end
+    render json: '', status: :no_content
+  rescue ActiveRecord::RecordNotFound
+    render json: '', status: :not_found
+  end
+
   private
 
   def rental_params
