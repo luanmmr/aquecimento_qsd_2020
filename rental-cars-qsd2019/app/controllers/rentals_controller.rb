@@ -23,7 +23,7 @@ class RentalsController < ApplicationController
 
   def show
     @rental = Rental.find(params[:id])
-    if @rental.expired?
+    if @rental.scheduled? && @rental.rental_expired?
       flash.now[:alert] = t('.expired')
       @rental.expired!
       @valid = false

@@ -19,6 +19,15 @@ class Api::V1::RentalsController < Api::V1::ApiController
     render json: '', status: :not_found
   end
 
+  def show
+    @rental = Rental.find(params[:id])
+    render json: @rental.as_json(include: { client:
+      { only: %i[name document] }, car_category: { only: :name } }, except:
+      %i[client_id car_category_id]), status: :ok
+  rescue ActiveRecord::RecordNotFound
+    render json: '', status: :not_found
+  end
+
   private
 
   def rental_params

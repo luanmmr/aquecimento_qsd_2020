@@ -245,7 +245,7 @@ describe Rental do
     it 'verify if start date has expired' do
       rental = Rental.new(start_date: Time.zone.yesterday)
 
-      rental.expired?
+      rental.rental_expired?
 
       expect(rental.errors.full_messages).to include('A locação expirou')
     end

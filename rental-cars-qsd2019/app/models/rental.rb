@@ -43,7 +43,7 @@ class Rental < ApplicationRecord
     end
   end
 
-  def expired?
+  def rental_expired?
     if start_date < Time.zone.today && scheduled?
       errors.add(:base, I18n.t(:expired_rental, scope:
         %i[activerecord methods rental expired?]))

@@ -177,6 +177,7 @@ describe 'Rental Management', type: :request do
       json = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to have_http_status(200)
+      expect(json.length).to eq(2)
       expect(json[0][:code]).to eq('RENTAL01')
       expect(json[0][:start_date]).to eq(rental.start_date.strftime('%Y-%m-%d'))
       expect(json[0][:end_date]).to eq(rental.end_date.strftime('%Y-%m-%d'))
@@ -199,6 +200,49 @@ describe 'Rental Management', type: :request do
 
     it 'cannot found client document' do
       get rentals_api_v1_client_path(id: '11111163123')
+
+      expect(response).to have_http_status(404)
+    end
+  end
+
+  describe '#show' do
+    it 'must view rental details' do
+      client = create(:client)
+      car_category = create(:car_category)
+      manufacturer = create(:manufacturer)
+      car_model = create(:car_model, name: 'Uno', car_category: car_category,
+                                     manufacturer: manufacturer)
+      other_car_model = create(:car_model, name: 'Punto',
+                                           car_category: car_category,
+                                           manufacturer: manufacturer)
+      create(:car, license_plate: 'JVA1996', car_model: car_model,
+                   color: 'Vermelho', subsidiary: Subsidiary.new,
+                   mileage: 100)
+      create(:car, license_plate: 'CCC1972', color: 'Vermelho', mileage: 100,
+                   car_model: other_car_model, subsidiary: Subsidiary.new)
+      rental = create(:rental, code: 'RENTAL01', car_category: car_category,
+                               client: client, user: User.new,
+                               start_date: 10.days.from_now,
+                               end_date: 17.days.from_now)
+      create(:rental, code: 'RENTAL02', client: client,
+                      car_category: car_category, user: User.new,
+                      start_date: 12.days.from_now, end_date: 19.days.from_now)
+
+      get api_v1_rental_path(rental)
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to have_http_status(200)
+      expect(json[:code]).to eq('RENTAL01')
+      expect(json[:start_date]).to eq(rental.start_date.strftime('%Y-%m-%d'))
+      expect(json[:end_date]).to eq(rental.end_date.strftime('%Y-%m-%d'))
+      expect(json[:status]).to eq('scheduled')
+      expect(json[:client][:name]).to eq('Jose')
+      expect(json[:client][:document]).to eq('25498763123')
+      expect(json[:car_category][:name]).to eq('X')
+    end
+
+    it 'cannot found rental id' do
+      get api_v1_rental_path(id: 7777)
 
       expect(response).to have_http_status(404)
     end
