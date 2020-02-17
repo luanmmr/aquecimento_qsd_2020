@@ -5,8 +5,8 @@
 <br>
 
 <% if @cars.any? %>
-<%= form_for @car_rental, url: reserve_rental_path, class: "ls-form row" do
-                                                                         |f| %>
+<%= form_for @car_rental, url: book_rental_path, class: "ls-form row" do |f| %>
+
 <label class="ls-label col-md-4">
 <%= f.label :car_id, t(:car_id, scope: [:rental_view, :form_labels]) %>
 <p class="ls-label-info"></p>

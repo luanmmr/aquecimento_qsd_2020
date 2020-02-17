@@ -242,8 +242,8 @@ describe Rental do
   end
 
   describe '#expired?' do
-    it 'must check if rental has expired' do
-      rental = Rental.new(start_date: 1.day.ago)
+    it 'verify if start date has expired' do
+      rental = Rental.new(start_date: Time.zone.yesterday)
 
       rental.expired?
 

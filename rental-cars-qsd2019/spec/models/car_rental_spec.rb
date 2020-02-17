@@ -46,7 +46,7 @@ RSpec.describe CarRental, type: :model do
                                      third_party_insurance: 10,
                                      start_mileage: 150.40)
 
-      expect(car_rental.rental.status).to eq('em_andamento')
+      expect(car_rental.rental.status).to eq('in_progress')
     end
   end
 end

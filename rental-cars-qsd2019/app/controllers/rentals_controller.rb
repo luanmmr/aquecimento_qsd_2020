@@ -18,22 +18,18 @@ class RentalsController < ApplicationController
   end
 
   def index
-    @rentals = Rental.all
+    @rentals = Rental.order(status: :asc)
   end
 
   def show
     @rental = Rental.find(params[:id])
     if @rental.expired?
       flash.now[:alert] = t('.expired')
+      @rental.expired!
       @valid = false
     else
       @valid = true
     end
-  end
-
-  def destroy
-    Rental.destroy(params[:id])
-    redirect_to rentals_path, notice: t('.success')
   end
 
   def search
@@ -45,17 +41,38 @@ class RentalsController < ApplicationController
     @rentals = Rental.where('code LIKE ?', "%#{params[:q]}%")
   end
 
-  def reserve
+  def book
     @rental = Rental.find(params[:id])
     @car_rental = CarRental.new
     @cars = Car.where(car_model: @rental.car_category.car_models)
   end
 
-  def create_reserve
+  def create_book
     @rental = Rental.find(params[:id])
     @car = Car.find(params[:car_rental][:car_id])
     @car_rental = CarRental.new(car_rental_parameters)
     redirect_to @car_rental, notice: t('.success') if @car_rental.save!
+  end
+
+  def cancel
+    @rental = Rental.find(params[:id])
+    unless @rental.able_to_cancel?
+      return redirect_to @rental, alert: I18n.t(:cannot_cancel, scope:
+        %i[activerecord methods cancel_rental])
+    end
+    @cancel_rental = CancelRental.new
+  end
+
+  def cancellation_confirmation
+    @rental = Rental.find(params[:id])
+    @cancel_rental = CancelRental.new(rental: @rental,
+                                      reason: params[:cancel_rental][:reason])
+    if @cancel_rental.save
+      flash[:notice] = t('.success')
+      redirect_to rentals_path
+    else
+      render :cancel
+    end
   end
 
   private
@@ -80,9 +97,5 @@ class RentalsController < ApplicationController
   def params_rental
     params.require(:rental).permit(:start_date, :end_date, :client_id,
                                    :car_category_id)
-  end
-
-  def params_create_reserve
-    params.require(:car_rental).permit(:car_id)
   end
 end

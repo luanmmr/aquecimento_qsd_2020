@@ -14,7 +14,7 @@ class CarRental < ApplicationRecord
   private
 
   def rental_status_change
-    rental.status_em_andamento!
+    rental.in_progress!
   end
 
   def check_car_category

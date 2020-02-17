@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User effective a rental' do
+feature 'User book a rental' do
   scenario 'successfully' do
     rental = create(:rental)
     car_model = create(:car_model, car_category: rental.car_category)
@@ -21,8 +21,8 @@ feature 'User effective a rental' do
     expect(page).to have_content('X')
     expect(page).to have_content('Uno')
     expect(page).to have_content(rental.daily_price_total)
-    expect(page).to have_content(Time.zone.today.strftime('%d/%m/%Y'))
-    expect(page).to have_content(7.days.from_now.strftime('%d/%m/%Y'))
+    expect(page).to have_content(rental.start_date.strftime('%d/%m/%Y'))
+    expect(page).to have_content(rental.end_date.strftime('%d/%m/%Y'))
   end
 
   scenario 'and there is no car' do

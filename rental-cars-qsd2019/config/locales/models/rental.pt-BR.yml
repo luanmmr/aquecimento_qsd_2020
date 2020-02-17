@@ -5,9 +5,9 @@ pt-BR:
       success: 'Locação agendada com sucesso'
     update:
       success: 'Locação editada com sucesso'
-    destroy:
-      success: 'Locação deletada com sucesso'
-    create_reserve:
+    cancellation_confirmation:
+      success: 'Locação cancelada com sucesso'
+    create_book:
       success: 'Locação efetivada'
     show:
       expired: 'A locação expirou'
@@ -27,7 +27,11 @@ pt-BR:
         car_category: 'Categoria do Carro'
         user_id: 'Usuário'
         user: 'Usuário'
-        status: 'Status'
+        status:
+          scheduled: 'Agendada'
+          in_progress: 'Em andamento'
+          expired: 'Expirada'
+          canceled: 'Cancelada'
     methods:
       rental:
         valid_start_date:

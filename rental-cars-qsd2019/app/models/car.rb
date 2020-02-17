@@ -9,6 +9,8 @@ class Car < ApplicationRecord
   validate :valid_license_plate
   validates :mileage, presence: true, numericality: true
 
+  enum status: { available: 0, under_maintenance: 1 }
+
   def full_description
     if car_model.nil? || color.nil? || license_plate.nil?
       I18n.t(:incomplete_car, scope:

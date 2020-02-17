@@ -11,6 +11,7 @@ pt-BR:
     buttons:
       edit: 'Editar'
       delete: 'Deletar'
+      cancel: 'Cancelar'
     messages:
       confirm?: 'Tem certeza?'
       validation_error: 'Você deve corrigir os seguintes erros para continuar'

@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_01_040845) do
+ActiveRecord::Schema.define(version: 2020_02_17_092218) do
+
+  create_table "cancel_rentals", force: :cascade do |t|
+    t.integer "rental_id"
+    t.text "reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rental_id"], name: "index_cancel_rentals_on_rental_id"
+  end
 
   create_table "car_categories", force: :cascade do |t|
     t.string "name"
@@ -56,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_02_01_040845) do
     t.integer "subsidiary_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["car_model_id"], name: "index_cars_on_car_model_id"
     t.index ["subsidiary_id"], name: "index_cars_on_subsidiary_id"
   end

@@ -32,7 +32,7 @@ feature 'Admin view rentals' do
     expect(page).to have_content('pedro@jose.com.br')
     expect(page).to have_content('A')
     expect(page).to have_content('B')
-    expect(page).to have_content('agendada', count: 2)
+    expect(page).to have_content('Agendada', count: 2)
   end
 
   scenario 'and also view more details of an rental' do

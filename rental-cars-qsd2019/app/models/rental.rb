@@ -9,7 +9,11 @@ class Rental < ApplicationRecord
   validate :valid_start_date, :valid_end_date
   validate :availables_cars, on: %i[create save]
 
-  enum status: { agendada: 0, em_andamento: 1 }, _prefix: true
+  enum status: { scheduled: 0, in_progress: 1, expired: 2, canceled: 3 }
+
+  def able_to_cancel?
+    Time.zone.today < (start_date - 1.day)
+  end
 
   def daily_price_total
     if car_category.present?
@@ -40,7 +44,7 @@ class Rental < ApplicationRecord
   end
 
   def expired?
-    if start_date < Time.zone.today && status_agendada?
+    if start_date < Time.zone.today && scheduled?
       errors.add(:base, I18n.t(:expired_rental, scope:
         %i[activerecord methods rental expired?]))
       true
@@ -86,7 +90,9 @@ class Rental < ApplicationRecord
   end
 
   def car_category_rentals
-    Rental.where(car_category: car_category)
+    scheduled = 0
+    in_progress = 1
+    Rental.where(car_category: car_category, status: scheduled..in_progress)
   end
 
   def category_cars

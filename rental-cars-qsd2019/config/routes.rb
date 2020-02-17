@@ -13,8 +13,10 @@ Rails.application.routes.draw do
 
   resources :rentals, only: %i[index show new create destroy] do
     get 'search', on: :collection
-    get 'reserve', on: :member
-    post 'reserve', on: :member, to: 'rentals#create_reserve'
+    get 'book', on: :member
+    post 'book', on: :member, to: 'rentals#create_book'
+    get 'cancel', on: :member
+    post 'cancel', on: :member, to: 'rentals#cancellation_confirmation'
   end
 
   namespace :api do

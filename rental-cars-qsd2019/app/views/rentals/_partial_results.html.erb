@@ -15,7 +15,7 @@
           <%= t(:car_category, scope: [:activerecord, :attributes, :rental]) %>
         </th>
         <th>
-          <%= t(:status, scope: [:activerecord, :attributes, :rental]) %>
+          <%= t(:status, scope: [:rental_view, :title]) %>
         </th>
       </tr>
     </thead>
@@ -26,7 +26,10 @@
         <td class="hidden-xs"><%= rental.client.name %></td>
         <td><%= rental.client.email %></td>
         <td class="hidden-xs"><%= rental.car_category.name %></td>
-        <td><%= rental.status %></td>
+        <td>
+          <% rental.expired? %>
+          <%= t(rental.status, scope: [:activerecord, :attributes, :rental, :status]) %>
+        </td>
       </tr>
       <% end %>
     </tbody>

@@ -4,18 +4,15 @@
       <h2><%= @rental.code %></h2>
     </div>
     <div class="col-md-3 ls-txt-right" id=<%= "rental-#{@rental.id}" %>>
-      <% if @valid && @rental.status_agendada? %>
+      <% if @valid && @rental.scheduled? %>
       <%= link_to t(:effectuate, scope: [:rental_view, :buttons]),
-                     reserve_rental_path(@rental), class: "ls-btn" %>
+                     book_rental_path(@rental), class: "ls-btn" %>
       <% end %>
-      <%= link_to t(:delete, scope: [:application_view, :buttons]),
-                    rental_path(@rental), method: :delete,
-                    data: {confirm: "#{t(:confirm?, scope: [
-                                                            :application_view,
-                                                            :messages
-                                                           ]
-                                        )}"},
-                    class: "ls-btn-primary-danger ls-ico-remove" %>
+      <% if !@rental.canceled? && @rental.scheduled? %>
+        <%= link_to t(:cancel, scope: [:application_view, :buttons]),
+                      cancel_rental_path(@rental),
+                      class: "ls-btn-primary-danger" %>
+      <% end %>
     </div>
   </header>
   <div class="ls-list-content ">
