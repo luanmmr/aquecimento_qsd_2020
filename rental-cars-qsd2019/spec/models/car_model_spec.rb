@@ -135,5 +135,4 @@ RSpec.describe CarModel, type: :model do
                                                'incompleto')
     end
   end
-
 end

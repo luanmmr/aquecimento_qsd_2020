@@ -73,20 +73,18 @@ describe Rental do
       other_car_model = create(:car_model, name: 'Punto',
                                            car_category: car_category,
                                            manufacturer: manufacturer)
-      car = create(:car, license_plate: 'JVA1996', car_model: car_model,
-                         color: 'Vermelho', subsidiary: Subsidiary.new,
-                         mileage: 100)
-      other_car = create(:car, license_plate: 'CCC1972', color: 'Vermelho',
-                               car_model: other_car_model, mileage: 100,
-                               subsidiary: Subsidiary.new)
-      rental = create(:rental, code: 'RENTAL01', car_category: car_category,
-                               client: Client.new, user: User.new,
-                               start_date: 10.days.from_now,
-                               end_date: 17.days.from_now)
-      other_rental = create(:rental, code: 'RENTAL02', client: Client.new,
-                                     car_category: car_category, user: User.new,
-                                     start_date: 12.days.from_now,
-                                     end_date: 19.days.from_now)
+      create(:car, license_plate: 'JVA1996', car_model: car_model,
+                   color: 'Vermelho', subsidiary: Subsidiary.new,
+                   mileage: 100)
+      create(:car, license_plate: 'CCC1972', color: 'Vermelho',
+                   car_model: other_car_model, mileage: 100,
+                   subsidiary: Subsidiary.new)
+      create(:rental, code: 'RENTAL01', car_category: car_category,
+                      client: Client.new, user: User.new,
+                      start_date: 10.days.from_now, end_date: 17.days.from_now)
+      create(:rental, code: 'RENTAL02', client: Client.new,
+                      car_category: car_category, user: User.new,
+                      start_date: 12.days.from_now, end_date: 19.days.from_now)
       another_rental = Rental.new(code: 'RENTAL03', client: Client.new,
                                   car_category: car_category, user: User.new,
                                   start_date: 20.days.from_now,
@@ -109,20 +107,18 @@ describe Rental do
       other_car_model = create(:car_model, name: 'Punto',
                                            car_category: car_category,
                                            manufacturer: manufacturer)
-      car = create(:car, license_plate: 'JVA1996', car_model: car_model,
-                         color: 'Vermelho', subsidiary: Subsidiary.new,
-                         mileage: 100)
-      other_car = create(:car, license_plate: 'CCC1972', color: 'Vermelho',
-                               car_model: other_car_model, mileage: 100,
-                               subsidiary: Subsidiary.new)
-      rental = create(:rental, code: 'RENTAL01', car_category: car_category,
-                               client: Client.new, user: User.new,
-                               start_date: 10.days.from_now,
-                               end_date: 17.days.from_now)
-      other_rental = create(:rental, code: 'RENTAL02', client: Client.new,
-                                     car_category: car_category, user: User.new,
-                                     start_date: 12.days.from_now,
-                                     end_date: 19.days.from_now)
+      create(:car, license_plate: 'JVA1996', car_model: car_model,
+                   color: 'Vermelho', subsidiary: Subsidiary.new,
+                   mileage: 100)
+      create(:car, license_plate: 'CCC1972', color: 'Vermelho',
+                   car_model: other_car_model, mileage: 100,
+                   subsidiary: Subsidiary.new)
+      create(:rental, code: 'RENTAL01', car_category: car_category,
+                      client: Client.new, user: User.new,
+                      start_date: 10.days.from_now, end_date: 17.days.from_now)
+      create(:rental, code: 'RENTAL02', client: Client.new,
+                      car_category: car_category, user: User.new,
+                      start_date: 12.days.from_now, end_date: 19.days.from_now)
       another_rental = Rental.new(code: 'RENTAL03', client: Client.new,
                                   car_category: car_category, user: User.new,
                                   start_date: 13.days.from_now,
@@ -143,20 +139,18 @@ describe Rental do
       other_car_model = create(:car_model, name: 'Punto',
                                            car_category: car_category,
                                            manufacturer: manufacturer)
-      car = create(:car, license_plate: 'JVA1996', car_model: car_model,
-                         color: 'Vermelho', subsidiary: Subsidiary.new,
-                         mileage: 100)
-      other_car = create(:car, license_plate: 'CCC1972', color: 'Vermelho',
-                               car_model: other_car_model, mileage: 100,
-                               subsidiary: Subsidiary.new)
-      rental = create(:rental, code: 'RENTAL01', car_category: car_category,
-                               client: Client.new, user: User.new,
-                               start_date: 10.days.from_now,
-                               end_date: 17.days.from_now)
-      other_rental = create(:rental, code: 'RENTAL02', client: Client.new,
-                                     car_category: car_category, user: User.new,
-                                     start_date: 12.days.from_now,
-                                     end_date: 19.days.from_now)
+      create(:car, license_plate: 'JVA1996', car_model: car_model,
+                   color: 'Vermelho', subsidiary: Subsidiary.new,
+                   mileage: 100)
+      create(:car, license_plate: 'CCC1972', color: 'Vermelho',
+                   car_model: other_car_model, mileage: 100,
+                   subsidiary: Subsidiary.new)
+      create(:rental, code: 'RENTAL01', car_category: car_category,
+                      client: Client.new, user: User.new,
+                      start_date: 10.days.from_now, end_date: 17.days.from_now)
+      create(:rental, code: 'RENTAL02', client: Client.new,
+                      car_category: car_category, user: User.new,
+                      start_date: 12.days.from_now, end_date: 19.days.from_now)
       another_rental = Rental.new(code: 'RENTAL03', client: Client.new,
                                   car_category: car_category, user: User.new,
                                   start_date: 8.days.from_now,
@@ -177,20 +171,18 @@ describe Rental do
       other_car_model = create(:car_model, name: 'Punto',
                                            car_category: car_category,
                                            manufacturer: manufacturer)
-      car = create(:car, license_plate: 'JVA1996', car_model: car_model,
-                         color: 'Vermelho', subsidiary: Subsidiary.new,
-                         mileage: 100)
-      other_car = create(:car, license_plate: 'CCC1972', color: 'Vermelho',
-                               car_model: other_car_model, mileage: 100,
-                               subsidiary: Subsidiary.new)
-      rental = create(:rental, code: 'RENTAL01', car_category: car_category,
-                               client: Client.new, user: User.new,
-                               start_date: 10.days.from_now,
-                               end_date: 17.days.from_now)
-      other_rental = create(:rental, code: 'RENTAL02', client: Client.new,
-                                     car_category: car_category, user: User.new,
-                                     start_date: 12.days.from_now,
-                                     end_date: 19.days.from_now)
+      create(:car, license_plate: 'JVA1996', car_model: car_model,
+                   color: 'Vermelho', subsidiary: Subsidiary.new,
+                   mileage: 100)
+      create(:car, license_plate: 'CCC1972', color: 'Vermelho',
+                   car_model: other_car_model, mileage: 100,
+                   subsidiary: Subsidiary.new)
+      create(:rental, code: 'RENTAL01', car_category: car_category,
+                      client: Client.new, user: User.new,
+                      start_date: 10.days.from_now, end_date: 17.days.from_now)
+      create(:rental, code: 'RENTAL02', client: Client.new,
+                      car_category: car_category, user: User.new,
+                      start_date: 12.days.from_now, end_date: 19.days.from_now)
       another_rental = Rental.new(code: 'RENTAL03', client: Client.new,
                                   car_category: car_category, user: User.new,
                                   start_date: 9.days.from_now,
@@ -249,4 +241,13 @@ describe Rental do
     end
   end
 
+  describe '#expired?' do
+    it 'must check if rental has expired' do
+      rental = Rental.new(start_date: 1.day.ago)
+
+      rental.expired?
+
+      expect(rental.errors.full_messages).to include('A locação expirou')
+    end
+  end
 end

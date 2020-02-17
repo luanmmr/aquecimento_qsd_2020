@@ -14,8 +14,8 @@ feature 'Admin view rentals' do
                                             car_insurance: '35.20',
                                             third_party_insurance: '10.00')
     Rental.create!(code: '12a120c4c7', start_date: Time.zone.today,
-                   end_date: 2.days.from_now, client: client,
-                  car_category: car_category, user: user)
+                   end_date: 2.days.from_now, client: client, user: user,
+                   car_category: car_category)
     Rental.create!(code: '45a157c4b8', start_date: Time.zone.today,
                    end_date: 2.days.from_now, client: other_client,
                    car_category: other_car_category, user: user)
@@ -54,8 +54,8 @@ feature 'Admin view rentals' do
     expect(page).to have_content('Jose')
     expect(page).to have_content('jose@jose.com.br')
     expect(page).to have_content('A')
-    expect(page).to have_content(Time.zone.today.strftime("%d/%m/%Y"))
-    expect(page).to have_content(2.days.from_now.strftime("%d/%m/%Y"))
+    expect(page).to have_content(Time.zone.today.strftime('%d/%m/%Y'))
+    expect(page).to have_content(2.days.from_now.strftime('%d/%m/%Y'))
     expect(page).to have_content('teste@teste.com.br')
   end
 

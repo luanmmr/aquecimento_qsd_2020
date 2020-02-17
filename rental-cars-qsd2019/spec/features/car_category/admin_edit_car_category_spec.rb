@@ -28,7 +28,7 @@ feature 'Admin edits car category' do
     car_category = create(:car_category)
     user = create(:user)
 
-    login_as(user, :scope => :user)
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categorias'
     within "div#car_category-#{car_category.id}" do

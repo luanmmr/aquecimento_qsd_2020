@@ -54,8 +54,6 @@ client_2 = Client.create!(name: 'Sicrano', document: '1238344486', email: 'sicra
 client_3 = Client.create!(name: 'Beltrano', document: '9278245521', email: 'beltrano@test.com')
 
 user = User.create(email: 'luan@hotmail.com', password: '123456')
-user_2 = User.create(email: 'cintia@hotmail.com', password: '123456')
-user_3 = User.create(email: 'leonardo@hotmail.com', password: '123456')
 
 Car.create!(license_plate: 'MVL7266', color: 'Vermelho', car_model: car_model, mileage: 120.00, subsidiary: subsidiary)
 Car.create!(license_plate: 'UFC4212', color: 'Azul', car_model: car_model_2, mileage: 50.00, subsidiary: subsidiary_2)

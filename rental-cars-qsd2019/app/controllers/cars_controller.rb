@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
   before_action :car_model_collection,
-                :subsidiary_collection, only: [:new, :edit]
+                :subsidiary_collection, only: %i[new edit]
 
   def new
     @car = Car.new
@@ -8,17 +8,11 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-    if @car.save
-      # Eu poderia ter utilizado também:
-      # flash[:notice] = t('cars.create.success')
-      # esse é o caminho no arquivo car.pt-BR.yml
-      flash[:notice] = t('.success')
-      redirect_to car_path @car
-    else
-      @car_models = CarModel.all
-      @subsidiaries = Subsidiary.all
-      render :new
-    end
+    return redirect_to @car, notice: t('.success') if @car.save
+
+    @car_models = CarModel.all
+    @subsidiaries = Subsidiary.all
+    render :new
   end
 
   def index
@@ -37,11 +31,7 @@ class CarsController < ApplicationController
 
   def update
     @car = Car.find(params[:id])
-
     if @car.update(car_params)
-      # Eu poderia ter utilizado também:
-      # flash[:notice] = t('cars.update.success')
-      # esse é o caminho no arquivo car.pt-BR.yml
       flash[:notice] = t('.success')
       redirect_to car_path @car
     else
@@ -53,12 +43,8 @@ class CarsController < ApplicationController
 
   def destroy
     Car.destroy(params[:id])
-    # Eu poderia ter utilizado também:
-    # flash[:notice] = t('cars.destroy.success')
-    # esse é o caminho no arquivo car.pt-BR.yml
     redirect_to cars_path, notice: t('.success')
   end
-
 
   private
 
@@ -74,5 +60,4 @@ class CarsController < ApplicationController
     params.require(:car).permit(:license_plate, :color, :mileage, :car_model_id,
                                 :subsidiary_id)
   end
-
 end

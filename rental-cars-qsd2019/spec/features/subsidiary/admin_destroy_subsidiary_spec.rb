@@ -5,7 +5,7 @@ feature 'Admin destroys subsidiary' do
     subsidiary = create(:subsidiary)
     user = create(:user)
 
-    login_as(user, :scope => :user)
+    login_as(user, scope: :user)
     visit subsidiaries_path
     within "div#subsidiary-#{subsidiary.id}" do
       click_on 'Deletar'

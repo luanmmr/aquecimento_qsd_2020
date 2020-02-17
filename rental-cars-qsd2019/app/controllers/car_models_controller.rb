@@ -1,6 +1,6 @@
 class CarModelsController < ApplicationController
   before_action :collection_manufacturer,
-                :collection_car_category, only: [:new, :edit]
+                :collection_car_category, only: %i[new edit]
 
   def new
     @car_model = CarModel.new
@@ -8,17 +8,11 @@ class CarModelsController < ApplicationController
 
   def create
     @car_model = CarModel.new(params_car_model)
-
     return redirect_to cars_path, notice: t('.success') if @car_model.save
 
     collection_manufacturer
     collection_car_category
-
     render :new
-  end
-
-  def index
-    @car_models = CarModel.all
   end
 
   def edit
@@ -27,21 +21,20 @@ class CarModelsController < ApplicationController
 
   def update
     @car_model = CarModel.find(params[:id])
-
-    return redirect_to cars_path,
-                   notice: t('.success') if @car_model.update(params_car_model)
-
-    collection_manufacturer
-    collection_car_category
-
-    render :edit
+    if @car_model.update(params_car_model)
+      flash[:notice] = t('.success')
+      redirect_to cars_path
+    else
+      collection_manufacturer
+      collection_car_category
+      render :edit
+    end
   end
 
   def destroy
     CarModel.destroy(params[:id])
     redirect_to cars_path, notice: t('.success')
   end
-
 
   private
 
@@ -58,5 +51,4 @@ class CarModelsController < ApplicationController
   def collection_car_category
     @car_categories = CarCategory.all
   end
-
 end

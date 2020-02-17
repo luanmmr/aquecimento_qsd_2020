@@ -53,9 +53,8 @@ feature 'Admin register car category' do
     click_on 'Criar Categoria'
 
     expect(page).to have_content('Nome já está em uso')
-    expect(page).to_not have_content('Categoria registrada com sucesso')                                 
+    expect(page).to_not have_content('Categoria registrada com sucesso')
   end
-
 
   scenario 'and must be authenticated' do
     visit new_car_category_path

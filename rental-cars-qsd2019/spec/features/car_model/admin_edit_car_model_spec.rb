@@ -62,11 +62,12 @@ feature 'Admin edits car model' do
     car_model = create(:car_model)
     manufacturer = create(:manufacturer, name: 'Honda')
     car_category = create(:car_category, name: 'W', daily_rate: 129.00,
-                          car_insurance: 30.00, third_party_insurance: 30.00)
-    other_car_model = create(:car_model, manufacturer: manufacturer,
-                             car_category: car_category, name: 'Fit',
-                             year: '2019', motorization: '1.8',
-                             fuel_type: 'Flex')
+                                         car_insurance: 30.00,
+                                         third_party_insurance: 30.00)
+    create(:car_model, manufacturer: manufacturer,
+                       car_category: car_category,
+                       year: '2019', motorization: '1.8',
+                       fuel_type: 'Flex', name: 'Fit')
 
     login_as(user, scope: :user)
     visit root_path
@@ -92,5 +93,4 @@ feature 'Admin edits car model' do
 
     expect(current_path).to eq(new_user_session_path)
   end
-
 end

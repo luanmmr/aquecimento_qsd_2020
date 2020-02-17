@@ -1,5 +1,4 @@
 class CarCategoriesController < ApplicationController
-
   def new
     @car_category = CarCategory.new
   end
@@ -37,12 +36,10 @@ class CarCategoriesController < ApplicationController
     redirect_to car_categories_path, notice: t('.success')
   end
 
-
   private
 
   def params_car_category
     params.require(:car_category).permit(:name, :daily_rate, :car_insurance,
                                          :third_party_insurance)
   end
-
 end

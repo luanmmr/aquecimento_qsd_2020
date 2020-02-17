@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User sign in' do
   scenario 'successfully' do
-    user = create(:user)
+    create(:user)
 
     visit root_path
     click_on 'Entrar'
@@ -27,7 +27,7 @@ feature 'User sign in' do
       fill_in 'Senha', with: '123456'
       click_on 'Entrar'
     end
-    within("li#logout") do
+    within('li#logout') do
       click_on 'Sair'
     end
 

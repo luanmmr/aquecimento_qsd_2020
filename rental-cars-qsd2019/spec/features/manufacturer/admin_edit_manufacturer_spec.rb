@@ -45,7 +45,7 @@ feature 'Admin edits manufacturer' do
     manufacturer = create(:manufacturer)
     user = create(:user)
 
-    login_as(user, :scope => :user)
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Carros'
     click_on 'Fabricantes'
@@ -79,5 +79,4 @@ feature 'Admin edits manufacturer' do
     expect(page).to have_content('Nome não é válido')
     expect(page).to_not have_content('Fabricante atualizada com sucesso')
   end
-
 end

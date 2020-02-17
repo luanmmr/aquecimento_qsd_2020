@@ -32,7 +32,7 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'name must be unique' do
-    manufacuter = create(:manufacturer)
+    create(:manufacturer)
     user = create(:user)
 
     login_as(user, scope: :user)
@@ -63,5 +63,4 @@ feature 'Admin register manufacturer' do
     expect(page).to have_content('Nome não é válido')
     expect(page).to_not have_content('Fabricante registrada com sucesso')
   end
-
 end

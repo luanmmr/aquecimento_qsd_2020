@@ -143,5 +143,4 @@ describe Car do
       expect(car.car_category).to eq(car.car_model.car_category)
     end
   end
-
 end

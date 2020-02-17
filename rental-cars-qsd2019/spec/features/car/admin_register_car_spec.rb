@@ -3,8 +3,8 @@ require 'rails_helper'
 feature 'Admin register car' do
   scenario 'successfully' do
     user = create(:user)
-    car_model = create(:car_model)
-    subsidiary = create(:subsidiary)
+    create(:car_model)
+    create(:subsidiary)
 
     login_as user, scope: :user
     visit root_path
@@ -33,12 +33,12 @@ feature 'Admin register car' do
     visit new_car_path
     click_on 'Criar Carro'
 
-   expect(page).to have_content('Você deve corrigir os seguintes erros '\
+    expect(page).to have_content('Você deve corrigir os seguintes erros '\
                                  'para continuar')
-   expect(page).to have_content('Cor não pode ficar em branco')
-   expect(page).to have_content('Placa não pode ficar em branco')
-   expect(page).to have_content('Quilometragem não pode ficar em branco')
-   expect(page).to_not have_content('Carro registrado com sucesso')
+    expect(page).to have_content('Cor não pode ficar em branco')
+    expect(page).to have_content('Placa não pode ficar em branco')
+    expect(page).to have_content('Quilometragem não pode ficar em branco')
+    expect(page).to_not have_content('Carro registrado com sucesso')
   end
 
   scenario 'and license plate must be unique' do

@@ -34,8 +34,9 @@ feature 'Admin edit car' do
 
   scenario 'and must fill in all fields' do
     user = User.create!(email: 'test#@test.com', password: '123456')
-    car = Car.create!(license_plate: 'JSO1245', color: 'Azul', car_model: CarModel.new,
-                mileage: 100, subsidiary: Subsidiary.new)
+    car = Car.create!(license_plate: 'JSO1245', color: 'Azul',
+                      car_model: CarModel.new, mileage: 100,
+                      subsidiary: Subsidiary.new)
 
     login_as(user, scope: :user)
     visit edit_car_path(car)
@@ -67,7 +68,7 @@ feature 'Admin edit car' do
                                    year: '2012', car_category: car_category,
                                    manufacturer: manufacturer)
     car = create(:car, car_model: car_model, subsidiary: subsidiary,
-                 license_plate: 'RLS2004')
+                       license_plate: 'RLS2004')
     create(:car)
 
     login_as user, scope: :user

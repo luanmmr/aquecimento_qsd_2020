@@ -1,14 +1,12 @@
 class ClientsController < ApplicationController
-
   def new
     @client = Client.new
   end
 
   def create
     @client = Client.new(params_client)
+    return redirect_to clients_path, notice: t('.success') if @client.save
 
-    return redirect_to clients_path,
-                       notice: t('.success') if @client.save
     render :new
   end
 
@@ -22,9 +20,8 @@ class ClientsController < ApplicationController
 
   def update
     @client = Client.find(params[:id])
-
-    return redirect_to clients_path,
-    notice: t('.success') if @client.update(params_client)
+    return redirect_to clients_path, notice: t('.success') \
+    if @client.update(params_client)
 
     render :edit
   end
@@ -34,11 +31,9 @@ class ClientsController < ApplicationController
     redirect_to clients_path, notice: t('.success')
   end
 
-
   private
 
   def params_client
     params.require(:client).permit(:name, :email, :document)
   end
-
 end

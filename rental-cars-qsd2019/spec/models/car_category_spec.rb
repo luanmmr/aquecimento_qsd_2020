@@ -148,5 +148,4 @@ RSpec.describe CarCategory, type: :model do
                                                            'ser maior que 1')
     end
   end
-
 end

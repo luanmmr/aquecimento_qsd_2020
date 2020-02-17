@@ -48,5 +48,4 @@ RSpec.describe Manufacturer, type: :model do
       expect(manufacturer.errors.full_messages).to include('Nome não é válido')
     end
   end
-  
 end

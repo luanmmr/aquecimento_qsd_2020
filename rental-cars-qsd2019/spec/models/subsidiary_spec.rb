@@ -34,7 +34,7 @@ RSpec.describe Subsidiary, type: :model do
     end
 
     it 'verify if cnpj length is 14' do
-      subsidiary = Subsidiary.new(cnpj: 213123123123123)
+      subsidiary = Subsidiary.new(cnpj: '789920110001927')
 
       subsidiary.valid?
 
@@ -44,7 +44,7 @@ RSpec.describe Subsidiary, type: :model do
     end
 
     it 'verify if cnpj only have numbers' do
-      subsidiary = Subsidiary.new(cnpj: 'A9221E59000188')
+      subsidiary = Subsidiary.new(cnpj: '7899A011000192')
 
       subsidiary.valid?
 
@@ -52,7 +52,7 @@ RSpec.describe Subsidiary, type: :model do
     end
 
     it 'verify if cnpj only have integer' do
-      subsidiary = Subsidiary.new(cnpj: 49.221359000188)
+      subsidiary = Subsidiary.new(cnpj: '49.221359000188')
 
       subsidiary.valid?
 
@@ -72,7 +72,7 @@ RSpec.describe Subsidiary, type: :model do
     end
 
     it 'verify if cep length is 8' do
-      subsidiary = Subsidiary.new(zip_code: 584625789)
+      subsidiary = Subsidiary.new(zip_code: '584625789')
 
       subsidiary.valid?
 
@@ -90,7 +90,7 @@ RSpec.describe Subsidiary, type: :model do
     end
 
     it 'verify if cep only have integer' do
-      subsidiary = Subsidiary.new(zip_code: 58.625789)
+      subsidiary = Subsidiary.new(zip_code: '58.625789')
 
       subsidiary.valid?
 
@@ -191,4 +191,22 @@ RSpec.describe Subsidiary, type: :model do
     end
   end
 
+  describe '#full_description' do
+    it 'successfully' do
+      subsidiary = Subsidiary.new(name: 'Carrefour Giovanni Gronchi',
+                                  address: 'Rua Alberto Augusto Alves')
+
+      expect(subsidiary.full_description).to eq(
+        'Carrefour Giovanni Gronchi: Rua Alberto Augusto Alves'
+      )
+    end
+
+    it 'must return error message if subsidiary is incomplete' do
+      subsidiary = Subsidiary.new
+
+      expect(subsidiary.full_description).to eq(
+        'Filial cadastrada incorretamente'
+      )
+    end
+  end
 end

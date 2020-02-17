@@ -37,5 +37,4 @@ feature 'Admin view Car Categories' do
 
     expect(current_path).to eq(new_user_session_path)
   end
-
 end

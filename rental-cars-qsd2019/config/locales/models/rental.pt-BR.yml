@@ -36,5 +36,8 @@ pt-BR:
           invalid_end_date: 'deve ser após data de início'
         availables_cars:
           no_car: 'Não há carros dessa categoria disponível para o período'
+          incomplete_rental: 'Categoria sem modelos associados ou locação cadastrada incorretamente'
         daily_price_total:
           incomplete_rental: 'Locação cadastrada incorretamente'
+        expired?:
+          expired_rental: 'A locação expirou'

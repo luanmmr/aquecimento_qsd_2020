@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin destroys manufacturer' do
   scenario 'successfully' do
-    manufacturer = create(:manufacturer)
+    create(:manufacturer)
     user = create(:user)
 
     login_as(user, scope: :user)

@@ -115,7 +115,7 @@ describe 'Car Management', type: :request do
       patch api_v1_car_path(car), params: {}
 
       expect(response).to have_http_status(412)
-      expect(response.body).to eq('Não houve atualização - Dados inválidos')
+      expect(response.body).to eq('Não houve atualização')
     end
   end
 end

@@ -17,8 +17,8 @@ feature 'User schedule rental' do
     click_on 'Criar Locação'
 
     expect(page).to have_content('Locação agendada com sucesso')
-    expect(page).to have_content(Time.zone.today.strftime("%d/%m/%Y"))
-    expect(page).to have_content(3.days.from_now.strftime("%d/%m/%Y"))
+    expect(page).to have_content(Time.zone.today.strftime('%d/%m/%Y'))
+    expect(page).to have_content(3.days.from_now.strftime('%d/%m/%Y'))
     expect(page).to have_content('Jose')
     expect(page).to have_content(/X/)
     expect(page).to have_content('jose@hotmail.com')
@@ -82,5 +82,4 @@ feature 'User schedule rental' do
     expect(page).to have_content('Não há carros dessa categoria disponível '\
                                  'para o período')
   end
-
 end

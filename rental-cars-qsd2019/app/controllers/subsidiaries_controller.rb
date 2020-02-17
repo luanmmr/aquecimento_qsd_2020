@@ -1,5 +1,4 @@
 class SubsidiariesController < ApplicationController
-
   def new
     @subsidiary = Subsidiary.new
   end
@@ -47,6 +46,4 @@ class SubsidiariesController < ApplicationController
     params.require(:subsidiary).permit(:name, :address, :cnpj, :zip_code,
                                        :number, :district, :state, :city)
   end
-
-
 end

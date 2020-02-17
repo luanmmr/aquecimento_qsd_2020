@@ -121,5 +121,4 @@ RSpec.describe Client, type: :model do
       expect(client.name_document).to include('Cliente com dados incompletos')
     end
   end
-
 end

@@ -61,5 +61,4 @@ feature 'Admin register car model' do
     expect(page).to have_content('Nome já está em uso')
     expect(page).to_not have_content('Modelo registrado com sucesso')
   end
-
 end
